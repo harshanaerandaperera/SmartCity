@@ -10,5 +10,11 @@ package app;
  * @author Oshin
  */
 public class test {
-    
+    public static void main(String[] args) {
+        
+        System.out.println("Hello smart city");
+       
+        
+        
+    }
 }
