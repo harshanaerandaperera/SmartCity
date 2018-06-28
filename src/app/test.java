@@ -11,10 +11,10 @@ package app;
  */
 public class test {
     public static void main(String[] args) {
-        
-        System.out.println("Hello smart city");
-       
-        
-        
+      
+        System.out.println(testController.addTest(10, 10));
+        System.out.println(testController.multiTest(10, 2));
+                
+         System.out.println("Hello smart city");    
     }
 }
