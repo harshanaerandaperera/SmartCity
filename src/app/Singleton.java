@@ -5,16 +5,20 @@
  */
 package app;
 
+import java.io.*;
+import java.io.ObjectStreamException;
+import java.io.Serializable;
+
 /**
  *
  * @author Oshin
  */
-public class Singleton {
+public class Singleton implements Serializable{
     
     // 1st rule-Static Variable whic will hold a Singleton Object
     private static Singleton singletonInstance;
     
-    //2nd rule-Need to make constructor private to prevent any other class from instantiating singleton class
+    //2nd rule-Need to make constructor private to prevent any other class from instantiating singleton 
     private  Singleton(){
         
     }
@@ -24,14 +28,17 @@ public class Singleton {
         if(null==singletonInstance){
             
             singletonInstance=new Singleton();
-            System.out.println("Inside Null Check ,Object is created :"+singletonInstance.toString());
+            System.out.println("Inside Null Check ,Object is created :"+singletonInstance.hashCode());
             System.out.println("---------------------------------------------------------------------");
         }
         
         return singletonInstance;
     }
+    private Object readResolve(){
+        return singletonInstance;
+    }
     public void printIngleton(){
-        System.out.println("Inside print singleton object :"+singletonInstance.toString());
+        System.out.println("Inside print singleton object :"+singletonInstance.hashCode());
         System.out.println("");
     }
     
