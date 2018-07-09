@@ -9,19 +9,11 @@ package Models;
  *
  * @author Oshin
  */
-public class Sensor {
-
- private String sensorId;
+public class BinSensor extends Sensor{
    
- public Sensor(String sensorId){
-     this.sensorId=sensorId;
- } 
- 
- /**
-  * @return the sensorId
-  */
-public String getSensorId() {
-        return sensorId;
+    
+    public BinSensor(String binSensorId){
+        super(binSensorId);
     }
-   
+    
 }

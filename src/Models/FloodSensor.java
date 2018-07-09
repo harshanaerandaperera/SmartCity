@@ -9,19 +9,8 @@ package Models;
  *
  * @author Oshin
  */
-public class Sensor {
-
- private String sensorId;
-   
- public Sensor(String sensorId){
-     this.sensorId=sensorId;
- } 
- 
- /**
-  * @return the sensorId
-  */
-public String getSensorId() {
-        return sensorId;
+public class FloodSensor extends Sensor{
+    public FloodSensor(String floodSensorId){
+        super(floodSensorId);
     }
-   
 }

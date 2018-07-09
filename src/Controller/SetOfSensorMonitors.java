@@ -5,10 +5,20 @@
  */
 package Controller;
 
+import Models.SensorMonitor;
+import java.util.ArrayList;
+
 /**
  *
  * @author Oshin
  */
-public class SetOfSensorMonitors {
+public class SetOfSensorMonitors extends ArrayList<SensorMonitor>{
+    
+     public void addSensorMonitor(SensorMonitor aSensorMonitor) {
+        super.add(aSensorMonitor);
+    
+    }
+    
+    
     
 }
