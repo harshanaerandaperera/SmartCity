@@ -21,6 +21,8 @@ import java.util.UUID;
  */
 public class SensorMonitor implements Subject,Observer{
 
+   
+
     private String sensorMonitorID;
    //interval is the frequency
     private Double interval;
@@ -28,6 +30,12 @@ public class SensorMonitor implements Subject,Observer{
     private boolean isActive;
     private Sensor sensor;
     private ArrayList<Observer> Observers;
+    private Integer readingsCount;
+
+    
+    private SetOfBinSensors SOBS=new SetOfBinSensors();
+    private SetOfFloodSensors SOFS=new SetOfFloodSensors();
+    private SetOfTrafficSensors SOTS=new SetOfTrafficSensors();
     
     
      /**
@@ -49,38 +57,45 @@ public class SensorMonitor implements Subject,Observer{
         }
         
          if (inSensorType.equals("Bin Sensor")) {
-            this.sensor = new BinSensor(inSensorID);
+            this.sensor=new BinSensor(inSensorID);
+          SOBS.addBinSensor(new BinSensor(inSensorID));
         } else if (inSensorType.equals("Flood Sensor")) {
             this.sensor = new FloodSensor(inSensorID);
+            SOFS.addFloodSensor(new FloodSensor(inSensorID));
         } else {
             this.sensor = new TrafficSensor(inSensorID);
-            // System.out.println(inSensorID);
+            SOTS.addTrafficSensor(new TrafficSensor(inSensorID));
         }
-        
-        
-        
+     }
+     public void doTick() {
+        interval--;
+        // System.out.println("Interval is"+interval);
+        if (interval == 0){
+            System.out.println("Interval is "+interval);
+          //  getReadingsCount();
+        }
     }
     
     @Override
     public void registerObserver(Observer obs) {
         Observers.add(obs);
-        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
     public void unRegisterObserver(Observer obs) {
         Observers.remove(obs);
-        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
     public void Notify() {
-        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
     public void update(Object ob) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+       if(ob instanceof Clock){
+      //     System.out.println("This is Clock !");
+           this.doTick();
+       }
     }
 
     
@@ -90,19 +105,26 @@ public class SensorMonitor implements Subject,Observer{
     public String getSensorMonitorID() {
         return sensorMonitorID;
     }
-
-    
-
-   
-   
-
-    /**
+ /**
      * @return the isActive
      */
     public boolean isIsActive() {
         return isActive;
     }
+ /**
+     * @return the readingsCount
+     */
+    public Integer getReadingsCount() {
+        System.out.println("Reading Count Found");
+        return readingsCount;
+    }
 
+    /**
+     * @param readingsCount the readingsCount to set
+     */
+    public void setReadingsCount(Integer readingsCount) {
+        this.readingsCount = readingsCount;
+    }
     
 
     /**

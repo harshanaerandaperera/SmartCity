@@ -18,14 +18,17 @@ public class Clock implements Subject,Serializable{
     
      private ArrayList<Observer> Observers;
      private static Clock clock;
+     /**
+      * Time required reach to wakeup clock
+      */
+     public double wakeUpTime=2;
      
      private Clock(){
          Observers=new ArrayList<>();
-         
-      }
+     }
 
-     public Clock getInstance(){
-          if(null==clock){
+     public static Clock getInstance(){
+          if(clock==null){
             
             clock=new Clock();
             System.out.println("Inside Null Check ,Object is created :"+clock.hashCode());
@@ -38,23 +41,55 @@ public class Clock implements Subject,Serializable{
         return clock;
     }
      public void printInstance(){
-        System.out.println("Inside print singleton object :"+clock.hashCode());
+      //  System.out.println("Inside print singleton object :"+clock.hashCode());
         System.out.println("");
     }
     @Override
     public void registerObserver(Observer obs) {
             Observers.add(obs);
-            throw new UnsupportedOperationException("Not supported yet.");
+            this.trackTime();
+
+         //   System.out.println(Observers.size());
     }
 
     @Override
     public void unRegisterObserver(Observer obs) {
         Observers.remove(obs);
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void Notify() {
-         throw new UnsupportedOperationException("Not supported yet."); 
     }
- }
+/**
+ * Wait for time to wakes the sensor
+ */
+    
+     public void waitForTime()
+    {
+       // System.out.println("waiting....");
+        while (wakeUpTime != 0) {
+            wakeUpTime--;
+         //   System.out.println("reduce time..");
+        }
+    }
+     private void notifyObservers()
+    {
+       
+       for(int i=0; i<Observers.size(); i++){
+           System.out.println("Notify Observer :"+Observers.get(i));
+           Observers.get(i).update(this);
+          
+            }
+    }
+     private void trackTime()
+    { //System.out.println("Traking Time");
+       for(int i=0;i<Observers.size();i++){
+                waitForTime();
+                notifyObservers();
+              
+       }
+       
+      
+               
+    } 
+}

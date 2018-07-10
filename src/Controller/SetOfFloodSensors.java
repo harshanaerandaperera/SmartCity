@@ -5,16 +5,17 @@
  */
 package Controller;
 
-import Models.Sensor;
+import Models.FloodSensor;
 import java.util.ArrayList;
 
 /**
  *
  * @author Oshin
  */
-public class SetOfSensors extends ArrayList<Sensor>{
-   
-    public void addSensor(Sensor sensor){
-        super.add(sensor);
+public class SetOfFloodSensors extends ArrayList<FloodSensor> {
+    public void addFloodSensor(FloodSensor floodsensor){
+        super.add(floodsensor);
+        System.out.println("Flood Sensor Added !");
     }
- }
+    
+}
