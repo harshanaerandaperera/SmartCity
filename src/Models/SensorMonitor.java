@@ -21,6 +21,7 @@ import java.util.UUID;
  */
 public class SensorMonitor implements Subject,Observer{
 
+    
    
 
     private String sensorMonitorID;
@@ -68,22 +69,19 @@ public class SensorMonitor implements Subject,Observer{
         }
      }
      public void doTick() {
-        interval--;
-        // System.out.println("Interval is"+interval);
-        if (interval == 0){
-            System.out.println("Interval is "+interval);
-          //  getReadingsCount();
-        }
-    }
+         System.out.println("Before Interval :" +interval);
+       
+            getReadingsCount();
+         }
     
     @Override
     public void registerObserver(Observer obs) {
-        Observers.add(obs);
+        getObservers().add(obs);
     }
 
     @Override
     public void unRegisterObserver(Observer obs) {
-        Observers.remove(obs);
+        getObservers().remove(obs);
     }
 
     @Override
@@ -114,10 +112,9 @@ public class SensorMonitor implements Subject,Observer{
  /**
      * @return the readingsCount
      */
-    public Integer getReadingsCount() {
-        System.out.println("Reading Count Found");
-        return readingsCount;
-    }
+    public void getReadingsCount() {
+       System.out.println("------------------------Current Data Count : 30 --------------------------------------");
+      }
 
     /**
      * @param readingsCount the readingsCount to set
@@ -144,7 +141,14 @@ public class SensorMonitor implements Subject,Observer{
 
        
     
-    
+    /**
+     * @return the Observers
+     */
+    public ArrayList<Observer> getObservers() {
+        return Observers;
+    }
+
+  
     
     
     
