@@ -10,8 +10,8 @@ package Models;
  * @author Oshin
  */
 public class Data {
-    
+    Double limit;
     public Data(){
-        
+        this.limit=1000.0;
     }
 }

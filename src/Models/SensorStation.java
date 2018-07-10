@@ -42,7 +42,7 @@ public class SensorStation implements Subject,Observer{
     }
 
     @Override
-    public void update(Object ob) {
+    public void update(Object ob,Observer observer) {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
     

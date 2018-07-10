@@ -10,6 +10,6 @@ package Controller;
  * @author Oshin
  */
 public interface Observer {
-    void update(Object ob);
+    void update(Object ob,Observer observer);
     
 }

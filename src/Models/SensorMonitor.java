@@ -7,6 +7,7 @@ package Models;
 
 import java.util.ArrayList;
 import Controller.*;
+import java.util.Random;
 import java.util.UUID;
 /**
  *
@@ -21,9 +22,6 @@ import java.util.UUID;
  */
 public class SensorMonitor implements Subject,Observer{
 
-    
-   
-
     private String sensorMonitorID;
    //interval is the frequency
     private Double interval;
@@ -31,13 +29,15 @@ public class SensorMonitor implements Subject,Observer{
     private boolean isActive;
     private Sensor sensor;
     private ArrayList<Observer> Observers;
-    private Integer readingsCount;
-
     
+    
+    private Data reading;
+
+   private SetOfSensors SOS=new SetOfSensors();
     private SetOfBinSensors SOBS=new SetOfBinSensors();
     private SetOfFloodSensors SOFS=new SetOfFloodSensors();
     private SetOfTrafficSensors SOTS=new SetOfTrafficSensors();
-    
+    private SetOfSensorMonitors SOSM;
     
      /**
      * Constructor for Sensor Monitor object with status , interval , Sensor Type
@@ -60,18 +60,24 @@ public class SensorMonitor implements Subject,Observer{
          if (inSensorType.equals("Bin Sensor")) {
             this.sensor=new BinSensor(inSensorID);
           SOBS.addBinSensor(new BinSensor(inSensorID));
+          SOS.addSensor(sensor);
         } else if (inSensorType.equals("Flood Sensor")) {
             this.sensor = new FloodSensor(inSensorID);
             SOFS.addFloodSensor(new FloodSensor(inSensorID));
+            SOS.addSensor(sensor);
         } else {
             this.sensor = new TrafficSensor(inSensorID);
             SOTS.addTrafficSensor(new TrafficSensor(inSensorID));
+            SOS.addSensor(sensor);
         }
      }
-     public void doTick() {
+     public void getSetOfSensorMonitors(SetOfSensorMonitors SOSM){
+        this.SOSM=SOSM;
+    }
+     public void doTick(Observer observer) {
          System.out.println("Before Interval :" +interval);
        
-            getReadingsCount();
+            shouldTakeReading(observer);
          }
     
     @Override
@@ -89,10 +95,10 @@ public class SensorMonitor implements Subject,Observer{
     }
 
     @Override
-    public void update(Object ob) {
+    public void update(Object ob,Observer observer) {
        if(ob instanceof Clock){
-      //     System.out.println("This is Clock !");
-           this.doTick();
+          
+           this.doTick(observer);
        }
     }
 
@@ -109,19 +115,35 @@ public class SensorMonitor implements Subject,Observer{
     public boolean isIsActive() {
         return isActive;
     }
- /**
-     * @return the readingsCount
-     */
-    public void getReadingsCount() {
-       System.out.println("------------------------Current Data Count : 30 --------------------------------------");
-      }
-
-    /**
-     * @param readingsCount the readingsCount to set
-     */
-    public void setReadingsCount(Integer readingsCount) {
-        this.readingsCount = readingsCount;
+ 
+    public void shouldTakeReading(Observer observer) {
+        
+        for(int i=0;i<SOSM.size();i++){
+            if(SOSM.get(i)==observer){
+               System.out.println(SOSM.get(i));
+               
+              this.reading=SOSM.get(i).sensor.getData();
+              System.out.println(this.reading.limit);
+           }
+            
+        }
+       
+      //  embellishData();
+        
     }
+
+    
+//     public EmbellishedData embellishData(){
+//        Random r = new Random();
+//        long timeInMills = r.nextInt(100); 
+//        ArrayList<Double> coords = getCoords();
+//        String id = sensor.getID();
+//      //  EmbellishedData embellishedData = new EmbellishedData(reading, timeInMills, coords, sensor.getID());
+//        
+//        return embellishedData;
+//    }
+    
+   
     
 
     /**

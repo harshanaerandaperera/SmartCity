@@ -23,5 +23,12 @@ public class Sensor {
 public String getSensorId() {
         return sensorId;
     }
-   
+/**
+ * 
+ * @return data
+ */
+    public Data getData() {
+        Data data = new Data();
+        return data;
+    }
 }

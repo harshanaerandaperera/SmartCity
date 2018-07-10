@@ -47,7 +47,8 @@ public class Clock implements Subject,Serializable{
     @Override
     public void registerObserver(Observer obs) {
             Observers.add(obs);
-            new Thread(this::trackTime).start();
+           // new Thread(this::trackTime).start();
+           trackTime();
     }
 
     @Override
@@ -76,20 +77,22 @@ public class Clock implements Subject,Serializable{
        
        for(int i=0; i<Observers.size(); i++){
            
-           Observers.get(i).update(this);
+           Observers.get(i).update(this,Observers.get(i));
           
             }
     }
      private void trackTime()
-    { //System.out.println("Traking Time");
-       while(Observers.isEmpty() == false){
-               // System.out.println(i);
-                waitForTime();
-                notifyObservers();
-                //this.unRegisterObserver(Observers.get(i));
-              
+    { 
+//       while(Observers.isEmpty() == false){
+//              
+//                waitForTime();
+//                notifyObservers();
+//              
+//       }
+       for(int i=0;i<Observers.size();i++){
+           waitForTime();
+               notifyObservers();
        }
-       
       
                
     } 
