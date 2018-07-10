@@ -5,16 +5,16 @@
  */
 package Controller;
 
-import Models.Sensor;
+import Models.BinSensor;
 import java.util.ArrayList;
 
 /**
  *
  * @author Oshin
  */
-public class SetOfSensors extends ArrayList<Sensor>{
-   
-    public void addSensor(Sensor sensor){
-        super.add(sensor);
+public class SetOfBinSensors extends ArrayList<BinSensor>{
+    public void addBinSensor(BinSensor binsensor){
+        super.add(binsensor);
+        System.out.println("Bin Sensor added !");
     }
- }
+}

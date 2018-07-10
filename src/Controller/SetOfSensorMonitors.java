@@ -16,7 +16,7 @@ public class SetOfSensorMonitors extends ArrayList<SensorMonitor>{
     
      public void addSensorMonitor(SensorMonitor aSensorMonitor) {
         super.add(aSensorMonitor);
-    
+         System.out.println("Sensor Monitor Added");
     }
     
     

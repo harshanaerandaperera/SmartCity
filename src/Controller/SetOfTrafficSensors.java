@@ -5,16 +5,16 @@
  */
 package Controller;
 
-import Models.Sensor;
+import Models.TrafficSensor;
 import java.util.ArrayList;
 
 /**
  *
  * @author Oshin
  */
-public class SetOfSensors extends ArrayList<Sensor>{
-   
-    public void addSensor(Sensor sensor){
-        super.add(sensor);
+public class SetOfTrafficSensors extends ArrayList<TrafficSensor>{
+    public void addTrafficSensor(TrafficSensor trfficSensor){
+        super.add(trfficSensor);
+        System.out.println("Traffic Sensor Added");
     }
- }
+}

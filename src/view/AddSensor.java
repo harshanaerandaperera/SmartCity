@@ -1,7 +1,13 @@
-
 package view;
 
+import Controller.SetOfBinSensors;
+import Controller.SetOfFloodSensors;
 import Controller.SetOfSensorMonitors;
+import Controller.SetOfSensors;
+import Controller.SetOfTrafficSensors;
+import Models.Clock;
+
+import Models.Sensor;
 import Models.SensorMonitor;
 
 /**
@@ -10,8 +16,9 @@ import Models.SensorMonitor;
  */
 public class AddSensor extends javax.swing.JFrame {
 
-    private SetOfSensorMonitors SOSM=new SetOfSensorMonitors();
-    
+    private SetOfSensorMonitors SOSM = new SetOfSensorMonitors();
+    private SetOfSensors SOS = new SetOfSensors();
+
     public AddSensor() {
         initComponents();
     }
@@ -150,17 +157,23 @@ public class AddSensor extends javax.swing.JFrame {
     }//GEN-LAST:event_sensorStatusTextActionPerformed
 
     private void sensorAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sensorAddButtonActionPerformed
-           
-           String inSensorId=sensorIdText.getText();
-           String inIsActive=sensorStatusText.getText();
-           Double inInterval=Double.parseDouble(sensorFrequencyText.getText());
-           String inSensorType=SensortypeCombo.getSelectedItem().toString();
-           
-           SensorMonitor ssensormonitor=new SensorMonitor(inSensorId, inInterval, inIsActive, inSensorType);
-           SOSM.addSensorMonitor(ssensormonitor);
-          
-      
-          
+
+        String inSensorId = sensorIdText.getText();
+        String inIsActive = sensorStatusText.getText();
+        Double inInterval = Double.parseDouble(sensorFrequencyText.getText());
+        String inSensorType = SensortypeCombo.getSelectedItem().toString();
+
+        SensorMonitor ssensormonitor = new SensorMonitor(inSensorId, inInterval, inIsActive, inSensorType);
+        SOSM.addSensorMonitor(ssensormonitor);
+        try {
+            Clock clock = Clock.getInstance();
+            clock.registerObserver(ssensormonitor);
+            
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
     }//GEN-LAST:event_sensorAddButtonActionPerformed
 
     /**
