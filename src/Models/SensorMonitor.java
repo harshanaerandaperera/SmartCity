@@ -22,6 +22,8 @@ import java.util.UUID;
  */
 public class SensorMonitor implements Subject,Observer{
 
+    
+
     private String sensorMonitorID;
    //interval is the frequency
     private Double interval;
@@ -29,9 +31,10 @@ public class SensorMonitor implements Subject,Observer{
     private boolean isActive;
     private Sensor sensor;
     private ArrayList<Observer> Observers;
-    
+    private ArrayList<Double> coords;
     
     private Data reading;
+    
 
    private SetOfSensors SOS=new SetOfSensors();
     private SetOfBinSensors SOBS=new SetOfBinSensors();
@@ -123,25 +126,22 @@ public class SensorMonitor implements Subject,Observer{
                System.out.println(SOSM.get(i));
                
               this.reading=SOSM.get(i).sensor.getData();
+              embellishData(SOSM.get(i).sensor);
               System.out.println(this.reading.limit);
            }
             
         }
-       
-      //  embellishData();
-        
-    }
+      }
 
     
-//     public EmbellishedData embellishData(){
-//        Random r = new Random();
-//        long timeInMills = r.nextInt(100); 
-//        ArrayList<Double> coords = getCoords();
-//        String id = sensor.getID();
-//      //  EmbellishedData embellishedData = new EmbellishedData(reading, timeInMills, coords, sensor.getID());
-//        
-//        return embellishedData;
-//    }
+    public EmblishedData embellishData(Sensor senor){
+        Random r = new Random();
+        long timeInMills = r.nextInt(100); 
+        ArrayList<Double> coords = getCoords();
+        String id = sensor.getSensorId();
+        EmblishedData embellishedData = new EmblishedData(reading, timeInMills, coords, id);
+        return embellishedData;
+    }
     
    
     
@@ -172,7 +172,19 @@ public class SensorMonitor implements Subject,Observer{
 
   
     
-    
+    /**
+     * @return the coords
+     */
+    public ArrayList<Double> getCoords() {
+        return coords;
+    }
+
+    /**
+     * @param coords the coords to set
+     */
+    public void setCoords(ArrayList<Double> coords) {
+        this.coords = coords;
+    }
     
     
 }
