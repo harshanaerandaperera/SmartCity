@@ -70,7 +70,7 @@ public class Main extends javax.swing.JFrame implements Serializable {
         btnRemoveSensorStation = new javax.swing.JButton();
         btnAddSensorStation = new javax.swing.JButton();
         jSeparator14 = new javax.swing.JSeparator();
-        txtSensorId1 = new javax.swing.JTextField();
+        txtStationID = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -264,11 +264,11 @@ public class Main extends javax.swing.JFrame implements Serializable {
 
             },
             new String [] {
-                "Sensor Station", "Location", "Number Of Active Sensors"
+                "Station ID", "Sensor Station", "Location", "Number Of Active Sensors"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -277,7 +277,7 @@ public class Main extends javax.swing.JFrame implements Serializable {
         });
         jScrollPane3.setViewportView(tblStationManagement);
 
-        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 1150, 310));
+        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 1160, 310));
 
         jSeparator10.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator10.setForeground(new java.awt.Color(255, 255, 255));
@@ -328,28 +328,28 @@ public class Main extends javax.swing.JFrame implements Serializable {
         btnRemoveSensorStation.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         btnRemoveSensorStation.setForeground(new java.awt.Color(255, 255, 255));
         btnRemoveSensorStation.setText("Remove Sensor Station");
-        jPanel2.add(btnRemoveSensorStation, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 450, 260, -1));
+        jPanel2.add(btnRemoveSensorStation, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 450, 210, -1));
 
         btnAddSensorStation.setBackground(new java.awt.Color(38, 50, 56));
         btnAddSensorStation.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         btnAddSensorStation.setForeground(new java.awt.Color(255, 255, 255));
         btnAddSensorStation.setText("Add Sensor Station");
-        jPanel2.add(btnAddSensorStation, new org.netbeans.lib.awtextra.AbsoluteConstraints(999, 30, -1, -1));
+        jPanel2.add(btnAddSensorStation, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 30, -1, -1));
 
         jSeparator14.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator14.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator14, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 90, 10));
+        jPanel2.add(jSeparator14, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 90, 10));
 
-        txtSensorId1.setBackground(new java.awt.Color(32, 33, 35));
-        txtSensorId1.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
-        txtSensorId1.setForeground(new java.awt.Color(255, 255, 255));
-        txtSensorId1.setBorder(null);
-        jPanel2.add(txtSensorId1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 90, -1));
+        txtStationID.setBackground(new java.awt.Color(32, 33, 35));
+        txtStationID.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        txtStationID.setForeground(new java.awt.Color(255, 255, 255));
+        txtStationID.setBorder(null);
+        jPanel2.add(txtStationID, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 90, -1));
 
         jLabel22.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("Station ID:");
-        jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 80, -1));
+        jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 80, -1));
 
         jTabbedPane4.addTab("                   Station Management                   ", jPanel2);
 
@@ -380,7 +380,7 @@ public class Main extends javax.swing.JFrame implements Serializable {
 
         cmbStatus.setForeground(new java.awt.Color(255, 255, 255));
         cmbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Active", "Not-Active" }));
-        jPanel7.add(cmbStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 60, 100, -1));
+        jPanel7.add(cmbStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 60, 100, -1));
 
         btnUpdateSelectedSensor.setBackground(new java.awt.Color(38, 50, 56));
         btnUpdateSelectedSensor.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
@@ -421,7 +421,7 @@ public class Main extends javax.swing.JFrame implements Serializable {
         jLabel20.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("Status :");
-        jPanel7.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 60, -1, -1));
+        jPanel7.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 60, 60, -1));
 
         btnAddSensor.setBackground(new java.awt.Color(38, 50, 56));
         btnAddSensor.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
@@ -451,7 +451,7 @@ public class Main extends javax.swing.JFrame implements Serializable {
                 cmbSelectSensorStationActionPerformed(evt);
             }
         });
-        jPanel7.add(cmbSelectSensorStation, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 349, -1));
+        jPanel7.add(cmbSelectSensorStation, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 349, -1));
 
         jTabbedPane4.addTab("              View Sensor Station             ", jPanel7);
 
@@ -618,8 +618,8 @@ public class Main extends javax.swing.JFrame implements Serializable {
     private javax.swing.JTextField txtLatitude;
     private javax.swing.JTextField txtLongitude;
     private javax.swing.JTextField txtSensorId;
-    private javax.swing.JTextField txtSensorId1;
     private javax.swing.JTextField txtSensorStationName;
+    private javax.swing.JTextField txtStationID;
     private javax.swing.JTextField txtUpdateUserName;
     private javax.swing.JTextField txtWeight;
     // End of variables declaration//GEN-END:variables
