@@ -69,6 +69,9 @@ public class Main extends javax.swing.JFrame implements Serializable {
         jLabel17 = new javax.swing.JLabel();
         btnRemoveSensorStation = new javax.swing.JButton();
         btnAddSensorStation = new javax.swing.JButton();
+        jSeparator14 = new javax.swing.JSeparator();
+        txtSensorId1 = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblViewSensorStation = new javax.swing.JTable();
@@ -234,6 +237,8 @@ public class Main extends javax.swing.JFrame implements Serializable {
 
         jTabbedPane2.addTab("           Mgt          ", jPanel5);
 
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jTabbedPane4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jTabbedPane4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -276,48 +281,48 @@ public class Main extends javax.swing.JFrame implements Serializable {
 
         jSeparator10.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator10.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 188, 10));
+        jPanel2.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 188, 10));
 
         txtSensorStationName.setBackground(new java.awt.Color(32, 33, 35));
         txtSensorStationName.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         txtSensorStationName.setForeground(new java.awt.Color(255, 255, 255));
         txtSensorStationName.setBorder(null);
-        jPanel2.add(txtSensorStationName, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 190, -1));
+        jPanel2.add(txtSensorStationName, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, 190, -1));
 
         jLabel15.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Sensor Station Name:");
-        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 150, -1));
+        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, 150, -1));
 
         jSeparator11.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator11.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, 100, 10));
+        jPanel2.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 60, 100, 10));
 
         txtLongitude.setBackground(new java.awt.Color(32, 33, 35));
         txtLongitude.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         txtLongitude.setForeground(new java.awt.Color(255, 255, 255));
         txtLongitude.setBorder(null);
-        jPanel2.add(txtLongitude, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, 100, -1));
+        jPanel2.add(txtLongitude, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 40, 100, -1));
 
         jLabel16.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Longitude:");
-        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, 80, -1));
+        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 40, 80, -1));
 
         jSeparator12.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator12.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 60, 100, 10));
+        jPanel2.add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 60, 100, 10));
 
         txtLatitude.setBackground(new java.awt.Color(32, 33, 35));
         txtLatitude.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         txtLatitude.setForeground(new java.awt.Color(255, 255, 255));
         txtLatitude.setBorder(null);
-        jPanel2.add(txtLatitude, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 40, 100, -1));
+        jPanel2.add(txtLatitude, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 40, 100, -1));
 
         jLabel17.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Latitude :");
-        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 40, 70, -1));
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 40, 70, -1));
 
         btnRemoveSensorStation.setBackground(new java.awt.Color(38, 50, 56));
         btnRemoveSensorStation.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
@@ -329,7 +334,22 @@ public class Main extends javax.swing.JFrame implements Serializable {
         btnAddSensorStation.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         btnAddSensorStation.setForeground(new java.awt.Color(255, 255, 255));
         btnAddSensorStation.setText("Add Sensor Station");
-        jPanel2.add(btnAddSensorStation, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 30, 217, -1));
+        jPanel2.add(btnAddSensorStation, new org.netbeans.lib.awtextra.AbsoluteConstraints(999, 30, -1, -1));
+
+        jSeparator14.setBackground(new java.awt.Color(255, 255, 255));
+        jSeparator14.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(jSeparator14, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 90, 10));
+
+        txtSensorId1.setBackground(new java.awt.Color(32, 33, 35));
+        txtSensorId1.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        txtSensorId1.setForeground(new java.awt.Color(255, 255, 255));
+        txtSensorId1.setBorder(null);
+        jPanel2.add(txtSensorId1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 90, -1));
+
+        jLabel22.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel22.setText("Station ID:");
+        jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 80, -1));
 
         jTabbedPane4.addTab("                   Station Management                   ", jPanel2);
 
@@ -435,20 +455,7 @@ public class Main extends javax.swing.JFrame implements Serializable {
 
         jTabbedPane4.addTab("              View Sensor Station             ", jPanel7);
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(jTabbedPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 1222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(jTabbedPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        jPanel6.add(jTabbedPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 546));
 
         jTabbedPane2.addTab("           Station Management         ", jPanel6);
 
@@ -572,6 +579,7 @@ public class Main extends javax.swing.JFrame implements Serializable {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
@@ -589,6 +597,7 @@ public class Main extends javax.swing.JFrame implements Serializable {
     private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator12;
     private javax.swing.JSeparator jSeparator13;
+    private javax.swing.JSeparator jSeparator14;
     private javax.swing.JSeparator jSeparator15;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
@@ -609,6 +618,7 @@ public class Main extends javax.swing.JFrame implements Serializable {
     private javax.swing.JTextField txtLatitude;
     private javax.swing.JTextField txtLongitude;
     private javax.swing.JTextField txtSensorId;
+    private javax.swing.JTextField txtSensorId1;
     private javax.swing.JTextField txtSensorStationName;
     private javax.swing.JTextField txtUpdateUserName;
     private javax.swing.JTextField txtWeight;
