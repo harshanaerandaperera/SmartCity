@@ -7,12 +7,12 @@ public  boolean isValidName(String name){
 }
 
 
-public  boolean isValidStationID(String bID){
-    return bID.matches("^[ST]{1}[0-9]{3}$");
+public  boolean isValidStationID(String stID){
+    return stID.matches("^[ST]{2}[0-9]{3}$");
 }
 
-public  boolean isValidSensorID(String mID){
-    return mID.matches("^[S]{1}[0-9]{3}$");
+public  boolean isValidSensorID(String sID){
+    return sID.matches("^[S]{1}[0-9]{3}$");
 }
 
 public  boolean isValidEmail(String email){
