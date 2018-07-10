@@ -415,7 +415,7 @@ public class Main extends javax.swing.JFrame implements Serializable {
         jPanel7.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 60, 90, -1));
 
         cmbSensorType.setForeground(new java.awt.Color(255, 255, 255));
-        cmbSensorType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select  Sensor Type", "Bin Sensor", "Flood Sensor", "Traffic Sensor", " " }));
+        cmbSensorType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select  Sensor Type", "Bin Sensor", "Flood Sensor", "Traffic Sensor" }));
         jPanel7.add(cmbSensorType, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 150, -1));
 
         btnRemoveSensor.setBackground(new java.awt.Color(38, 50, 56));
@@ -426,9 +426,9 @@ public class Main extends javax.swing.JFrame implements Serializable {
 
         cmbSelectSensorStation.setForeground(new java.awt.Color(255, 255, 255));
         cmbSelectSensorStation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Sensor Station", "Station Name 1, (x,y)", "Station Name 2, (x,y)", "Station Name 3, (x,y)" }));
-        cmbSelectSensorStation.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmbSelectSensorStationItemStateChanged(evt);
+        cmbSelectSensorStation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbSelectSensorStationActionPerformed(evt);
             }
         });
         jPanel7.add(cmbSelectSensorStation, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 349, -1));
@@ -504,13 +504,22 @@ public class Main extends javax.swing.JFrame implements Serializable {
 
     }//GEN-LAST:event_jTabbedPane4MouseClicked
 
-    private void cmbSelectSensorStationItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSelectSensorStationItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbSelectSensorStationItemStateChanged
-
+    private void cmbSelectSensorStationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSelectSensorStationActionPerformed
+        if (cmbSelectSensorStation.getSelectedIndex() == 0) {
+            System.out.println("index 0");
+        } else if (cmbSelectSensorStation.getSelectedIndex() == 1) {
+            System.out.println("index 1");
+        } else if(cmbSelectSensorStation.getSelectedIndex() == 2){
+            System.out.println("index 2");
+        } else if(cmbSelectSensorStation.getSelectedIndex() == 3){
+            System.out.println("index 3");
+        }else{
+            System.out.println("err");
+        }
+    }//GEN-LAST:event_cmbSelectSensorStationActionPerformed
 
     public static void main(String args[]) {
-         /* Set the Nimbus look and feel */
+        /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
