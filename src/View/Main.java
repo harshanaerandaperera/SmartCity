@@ -1,6 +1,7 @@
-package view;
+package View;
 
 import java.io.Serializable;
+import javax.swing.JOptionPane;
 
 //IT16083424 Perera P.A.H.E     SHU ID=27045240 
 /**
@@ -17,17 +18,27 @@ public class Main extends javax.swing.JFrame implements Serializable {
         roleSwitchValidator();
     }
 
-    
     public void roleSwitchValidator() {
-        if (jTabbedPaneMainPanel.getSelectedIndex() == 0) {
+        int selectedIndex = jTabbedPaneMainPanel.getSelectedIndex();
+        if (selectedIndex == 0) {
             jTabbedPaneMainPanel.setEnabledAt(1, false);
             jTabbedPaneMainPanel.setEnabledAt(2, false);
-        } else if (jTabbedPaneMainPanel.getSelectedIndex() == 1) {
+        }
+        if (selectedIndex == 1) {
             jTabbedPaneMainPanel.setEnabledAt(1, true);
             jTabbedPaneMainPanel.setEnabledAt(2, false);
-        } else if (jTabbedPaneMainPanel.getSelectedIndex() == 2) {
+        }
+        if (selectedIndex == 2) {
             jTabbedPaneMainPanel.setEnabledAt(2, true);
             jTabbedPaneMainPanel.setEnabledAt(1, false);
+        }
+        if (selectedIndex == 3) {
+            int answer = JOptionPane.showConfirmDialog(null, "Do you really want to Exit?", "Exit", JOptionPane.YES_NO_OPTION);
+            if (answer == 0) {            //yes=0   No=1
+                //call Serialize functions here before exit application
+                this.dispose(); //exit application
+            }
+
         }
     }
 
@@ -575,10 +586,6 @@ public class Main extends javax.swing.JFrame implements Serializable {
         roleSwitchValidator();
     }//GEN-LAST:event_btnRoleUserActionPerformed
 
-    
-    
-    
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
