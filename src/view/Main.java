@@ -14,7 +14,21 @@ public class Main extends javax.swing.JFrame implements Serializable {
      */
     public Main() {
         initComponents();
+        roleSwitchValidator();
+    }
 
+    
+    public void roleSwitchValidator() {
+        if (jTabbedPaneMainPanel.getSelectedIndex() == 0) {
+            jTabbedPaneMainPanel.setEnabledAt(1, false);
+            jTabbedPaneMainPanel.setEnabledAt(2, false);
+        } else if (jTabbedPaneMainPanel.getSelectedIndex() == 1) {
+            jTabbedPaneMainPanel.setEnabledAt(1, true);
+            jTabbedPaneMainPanel.setEnabledAt(2, false);
+        } else if (jTabbedPaneMainPanel.getSelectedIndex() == 2) {
+            jTabbedPaneMainPanel.setEnabledAt(2, true);
+            jTabbedPaneMainPanel.setEnabledAt(1, false);
+        }
     }
 
     /**
@@ -27,9 +41,11 @@ public class Main extends javax.swing.JFrame implements Serializable {
     private void initComponents() {
 
         radGrpGender = new javax.swing.ButtonGroup();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jTabbedPaneMainPanel = new javax.swing.JTabbedPane();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
+        btnRoleAdmin = new javax.swing.JButton();
+        btnRoleUser = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jTabbedPane3 = new javax.swing.JTabbedPane();
@@ -101,10 +117,10 @@ public class Main extends javax.swing.JFrame implements Serializable {
             }
         });
 
-        jTabbedPane2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jTabbedPane2.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTabbedPaneMainPanel.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jTabbedPaneMainPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTabbedPane2MouseClicked(evt);
+                jTabbedPaneMainPanelMouseClicked(evt);
             }
         });
 
@@ -119,12 +135,36 @@ public class Main extends javax.swing.JFrame implements Serializable {
         jPanel1.setVerifyInputWhenFocusTarget(false);
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/smart-cities.jpg"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1230, 520));
+        btnRoleAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/admin256.png"))); // NOI18N
+        btnRoleAdmin.setBorder(null);
+        btnRoleAdmin.setContentAreaFilled(false);
+        btnRoleAdmin.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/admin128.png"))); // NOI18N
+        btnRoleAdmin.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/admin256rollover.png"))); // NOI18N
+        btnRoleAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRoleAdminActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnRoleAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 90, 450, 360));
 
-        jTabbedPane1.addTab("                                          Welcome                                           ", jPanel1);
+        btnRoleUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/user256.png"))); // NOI18N
+        btnRoleUser.setBorder(null);
+        btnRoleUser.setContentAreaFilled(false);
+        btnRoleUser.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/user128.png"))); // NOI18N
+        btnRoleUser.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/user256rollover.png"))); // NOI18N
+        btnRoleUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRoleUserActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnRoleUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, -1, -1));
 
-        jTabbedPane2.addTab("          Home         ", jTabbedPane1);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/smartcity3.jpg"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1230, 510));
+
+        jTabbedPane1.addTab("                                          Welcome To Smart City                                            ", jPanel1);
+
+        jTabbedPaneMainPanel.addTab("          Home         ", jTabbedPane1);
 
         jTabbedPane3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jTabbedPane3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -235,7 +275,7 @@ public class Main extends javax.swing.JFrame implements Serializable {
             .addComponent(jTabbedPane3, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
-        jTabbedPane2.addTab("           Mgt          ", jPanel5);
+        jTabbedPaneMainPanel.addTab("          User Mgt          ", jPanel5);
 
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -321,7 +361,7 @@ public class Main extends javax.swing.JFrame implements Serializable {
 
         jLabel17.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setText("Latitude :");
+        jLabel17.setText("Latitude:");
         jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 40, 70, -1));
 
         btnRemoveSensorStation.setBackground(new java.awt.Color(38, 50, 56));
@@ -386,7 +426,7 @@ public class Main extends javax.swing.JFrame implements Serializable {
         btnUpdateSelectedSensor.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         btnUpdateSelectedSensor.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdateSelectedSensor.setText("Update Selected Sensor");
-        jPanel7.add(btnUpdateSelectedSensor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 260, -1));
+        jPanel7.add(btnUpdateSelectedSensor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 220, -1));
 
         jSeparator13.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator13.setForeground(new java.awt.Color(255, 255, 255));
@@ -401,7 +441,7 @@ public class Main extends javax.swing.JFrame implements Serializable {
         jLabel18.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Sensor ID:");
-        jPanel7.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 80, -1));
+        jPanel7.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
 
         jLabel19.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
@@ -420,8 +460,8 @@ public class Main extends javax.swing.JFrame implements Serializable {
 
         jLabel20.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel20.setText("Status :");
-        jPanel7.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 60, 60, -1));
+        jLabel20.setText("Status:");
+        jPanel7.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 60, 50, -1));
 
         btnAddSensor.setBackground(new java.awt.Color(38, 50, 56));
         btnAddSensor.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
@@ -431,8 +471,8 @@ public class Main extends javax.swing.JFrame implements Serializable {
 
         jLabel21.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel21.setText("Frequency :");
-        jPanel7.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 60, 90, -1));
+        jLabel21.setText("Frequency:");
+        jPanel7.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 60, 80, -1));
 
         cmbSensorType.setForeground(new java.awt.Color(255, 255, 255));
         cmbSensorType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select  Sensor Type", "Bin Sensor", "Flood Sensor", "Traffic Sensor" }));
@@ -457,35 +497,35 @@ public class Main extends javax.swing.JFrame implements Serializable {
 
         jPanel6.add(jTabbedPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 546));
 
-        jTabbedPane2.addTab("           Station Management         ", jPanel6);
+        jTabbedPaneMainPanel.addTab("           Station Management         ", jPanel6);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1222, Short.MAX_VALUE)
+            .addGap(0, 1232, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 542, Short.MAX_VALUE)
         );
 
-        jTabbedPane2.addTab("   X   ", jPanel3);
+        jTabbedPaneMainPanel.addTab("   X   ", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2)
+            .addComponent(jTabbedPaneMainPanel)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabbedPaneMainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 1, Short.MAX_VALUE))
         );
 
-        jTabbedPane2.getAccessibleContext().setAccessibleName("     Me     ");
+        jTabbedPaneMainPanel.getAccessibleContext().setAccessibleName("     Me     ");
 
         setSize(new java.awt.Dimension(1222, 585));
         setLocationRelativeTo(null);
@@ -499,9 +539,9 @@ public class Main extends javax.swing.JFrame implements Serializable {
 
     }//GEN-LAST:event_jTabbedPane1MouseClicked
 
-    private void jTabbedPane2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane2MouseClicked
-
-    }//GEN-LAST:event_jTabbedPane2MouseClicked
+    private void jTabbedPaneMainPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPaneMainPanelMouseClicked
+        roleSwitchValidator();
+    }//GEN-LAST:event_jTabbedPaneMainPanelMouseClicked
 
     private void jTabbedPane3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane3MouseClicked
 
@@ -516,15 +556,29 @@ public class Main extends javax.swing.JFrame implements Serializable {
             System.out.println("index 0");
         } else if (cmbSelectSensorStation.getSelectedIndex() == 1) {
             System.out.println("index 1");
-        } else if(cmbSelectSensorStation.getSelectedIndex() == 2){
+        } else if (cmbSelectSensorStation.getSelectedIndex() == 2) {
             System.out.println("index 2");
-        } else if(cmbSelectSensorStation.getSelectedIndex() == 3){
+        } else if (cmbSelectSensorStation.getSelectedIndex() == 3) {
             System.out.println("index 3");
-        }else{
+        } else {
             System.out.println("err");
         }
     }//GEN-LAST:event_cmbSelectSensorStationActionPerformed
 
+    private void btnRoleAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRoleAdminActionPerformed
+        jTabbedPaneMainPanel.setSelectedIndex(2);
+        roleSwitchValidator();
+    }//GEN-LAST:event_btnRoleAdminActionPerformed
+
+    private void btnRoleUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRoleUserActionPerformed
+        jTabbedPaneMainPanel.setSelectedIndex(1);
+        roleSwitchValidator();
+    }//GEN-LAST:event_btnRoleUserActionPerformed
+
+    
+    
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -562,6 +616,8 @@ public class Main extends javax.swing.JFrame implements Serializable {
     private javax.swing.JButton btnAddSensorStation;
     private javax.swing.JButton btnRemoveSensor;
     private javax.swing.JButton btnRemoveSensorStation;
+    private javax.swing.JButton btnRoleAdmin;
+    private javax.swing.JButton btnRoleUser;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnUpdateSelectedSensor;
     private javax.swing.JComboBox<String> cmbSelectSensorStation;
@@ -604,9 +660,9 @@ public class Main extends javax.swing.JFrame implements Serializable {
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTabbedPane jTabbedPane4;
+    private javax.swing.JTabbedPane jTabbedPaneMainPanel;
     private javax.swing.JRadioButton radFemale;
     private javax.swing.ButtonGroup radGrpGender;
     private javax.swing.JRadioButton radMale;
