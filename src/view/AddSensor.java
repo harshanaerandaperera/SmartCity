@@ -1,11 +1,13 @@
 package view;
 
 import Controller.SetOfBinSensors;
+import Controller.SetOfEmbelishedData;
 import Controller.SetOfFloodSensors;
 import Controller.SetOfSensorMonitors;
 import Controller.SetOfSensors;
 import Controller.SetOfTrafficSensors;
 import Models.Clock;
+import Models.EmbelishedData;
 
 import Models.Sensor;
 import Models.SensorMonitor;
@@ -18,9 +20,18 @@ public class AddSensor extends javax.swing.JFrame {
 
     private SetOfSensorMonitors SOSM = new SetOfSensorMonitors();
     private SetOfSensors SOS = new SetOfSensors();
-
+    private SetOfEmbelishedData SOED=new SetOfEmbelishedData();
+    
+  
+    private SensorMonitor sensormonitor;
+    
     public AddSensor() {
         initComponents();
+    }
+    public void display(EmbelishedData e){
+       // System.out.println("current Data Limit"+e.data.getLimit());
+        textArea.setText(e.data.getLimit().toString());
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -38,37 +49,49 @@ public class AddSensor extends javax.swing.JFrame {
         sensorAddButton = new javax.swing.JButton();
         sensorCancelButton = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textArea = new javax.swing.JTextArea();
+        get = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
         setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Sensor ID");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 78, 29));
+        getContentPane().add(sensorIdText, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 254, 29));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Type");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 78, 29));
 
         sensorStatusText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sensorStatusTextActionPerformed(evt);
             }
         });
+        getContentPane().add(sensorStatusText, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 254, 29));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Status");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 78, 29));
 
         sensorFrequencyText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sensorFrequencyTextActionPerformed(evt);
             }
         });
+        getContentPane().add(sensorFrequencyText, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 390, 254, 29));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Freaquency");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 78, 29));
 
         SensortypeCombo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         SensortypeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Select -", "Flood Sensor", "Traffic Sensor", "Bin Sensor" }));
+        getContentPane().add(SensortypeCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 254, 29));
 
         sensorAddButton.setText("Add");
         sensorAddButton.addActionListener(new java.awt.event.ActionListener() {
@@ -76,73 +99,28 @@ public class AddSensor extends javax.swing.JFrame {
                 sensorAddButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(sensorAddButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 470, 103, 41));
 
         sensorCancelButton.setText("Cancel");
+        getContentPane().add(sensorCancelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 103, 41));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel6.setText("Add Sensor");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(357, 357, 357)
-                        .addComponent(jLabel6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(241, 241, 241)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(71, 71, 71)
-                        .addComponent(sensorIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(241, 241, 241)
-                        .addComponent(sensorCancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(196, 196, 196)
-                        .addComponent(sensorAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(241, 241, 241)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(71, 71, 71)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(SensortypeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sensorStatusText, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sensorFrequencyText, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(138, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jLabel6)
-                .addGap(102, 102, 102)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sensorIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SensortypeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sensorStatusText, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(sensorFrequencyText, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(103, 103, 103)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(sensorCancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(sensorAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(36, Short.MAX_VALUE))
-        );
+        textArea.setColumns(20);
+        textArea.setRows(5);
+        jScrollPane1.setViewportView(textArea);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, -1, 270));
+
+        get.setText("Get ");
+        get.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getActionPerformed(evt);
+            }
+        });
+        getContentPane().add(get, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 420, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -163,19 +141,27 @@ public class AddSensor extends javax.swing.JFrame {
         Double inInterval = Double.parseDouble(sensorFrequencyText.getText());
         String inSensorType = SensortypeCombo.getSelectedItem().toString();
 
-        SensorMonitor ssensormonitor = new SensorMonitor(inSensorId, inInterval, inIsActive, inSensorType);
-        SOSM.addSensorMonitor(ssensormonitor);
-        ssensormonitor.getSetOfSensorMonitors(SOSM);
+        sensormonitor = new SensorMonitor(inSensorId, inInterval, inIsActive, inSensorType);
+        SOSM.addSensorMonitor(sensormonitor);
+        sensormonitor.setSetOfSensorMonitors(SOSM);
         try {
             Clock clock = Clock.getInstance();
-            clock.registerObserver(ssensormonitor);
-            
-
+            clock.registerObserver(sensormonitor);
+            sensormonitor.getSetOfEmbellishedData();
+           SOED=sensormonitor.getSetOfEmbellishedData();
+           // System.out.println(SOED.size());
         } catch (Exception e) {
             System.out.println(e);
         }
-
     }//GEN-LAST:event_sensorAddButtonActionPerformed
+
+    private void getActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getActionPerformed
+            SOED=sensormonitor.getSetOfEmbellishedData();    
+            for(int i=0;i<SOED.size();i++){
+                textArea.setText(SOED.get(i).sensorID.toString());
+            }
+
+    }//GEN-LAST:event_getActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,15 +201,18 @@ public class AddSensor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> SensortypeCombo;
+    private javax.swing.JButton get;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton sensorAddButton;
     private javax.swing.JButton sensorCancelButton;
     private javax.swing.JTextField sensorFrequencyText;
     private javax.swing.JTextField sensorIdText;
     private javax.swing.JTextField sensorStatusText;
+    private javax.swing.JTextArea textArea;
     // End of variables declaration//GEN-END:variables
 }

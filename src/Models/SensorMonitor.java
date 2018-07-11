@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import Controller.*;
 import java.util.Random;
 import java.util.UUID;
+import view.AddSensor;
 /**
  *
  * @author Oshin
@@ -32,15 +33,15 @@ public class SensorMonitor implements Subject,Observer{
     private Sensor sensor;
     private ArrayList<Observer> Observers;
     private ArrayList<Double> coords;
-    
+   
     private Data reading;
     
-
-   private SetOfSensors SOS=new SetOfSensors();
+    private SetOfSensorMonitors SOSM;
+    private SetOfSensors SOS=new SetOfSensors();
     private SetOfBinSensors SOBS=new SetOfBinSensors();
     private SetOfFloodSensors SOFS=new SetOfFloodSensors();
     private SetOfTrafficSensors SOTS=new SetOfTrafficSensors();
-    private SetOfSensorMonitors SOSM;
+    private SetOfEmbelishedData SOED=new SetOfEmbelishedData();
     
      /**
      * Constructor for Sensor Monitor object with status , interval , Sensor Type
@@ -74,13 +75,11 @@ public class SensorMonitor implements Subject,Observer{
             SOS.addSensor(sensor);
         }
      }
-     public void getSetOfSensorMonitors(SetOfSensorMonitors SOSM){
-        this.SOSM=SOSM;
-    }
+    
      public void doTick(Observer observer) {
-         System.out.println("Before Interval :" +interval);
        
-            shouldTakeReading(observer);
+         System.out.println("take readings------------------------------------------------------------------------------------------------------------");
+           shouldTakeReading(observer);
          }
     
     @Override
@@ -120,31 +119,32 @@ public class SensorMonitor implements Subject,Observer{
     }
  
     public void shouldTakeReading(Observer observer) {
-        
         for(int i=0;i<SOSM.size();i++){
-            if(SOSM.get(i)==observer){
-               System.out.println(SOSM.get(i));
-               
-              this.reading=SOSM.get(i).sensor.getData();
-              embellishData(SOSM.get(i).sensor);
-              System.out.println(this.reading.limit);
-           }
-            
-        }
-      }
-
-    
-    public EmblishedData embellishData(Sensor senor){
-        Random r = new Random();
-        long timeInMills = r.nextInt(100); 
+           if(SOSM.get(i)==observer){
+               System.out.println("i"+i);
+                  this.reading=SOSM.get(i).sensor.getData();
+                  EmbelishedData ED=embellishData(SOSM.get(i).sensor);
+                  this.SOED.addEmblishedData(ED);
+                 System.out.println("Reading -------------------------"+this.reading.getLimit());
+              }
+         }       
+}
+   public EmbelishedData embellishData(Sensor senor){
+        long timeInMills = 10; 
         ArrayList<Double> coords = getCoords();
         String id = sensor.getSensorId();
-        EmblishedData embellishedData = new EmblishedData(reading, timeInMills, coords, id);
+        EmbelishedData embellishedData = new EmbelishedData(reading, timeInMills, coords, id);
         return embellishedData;
     }
     
    
-    
+     public void setSetOfSensorMonitors(SetOfSensorMonitors SOSM){
+        this.SOSM=SOSM;
+    }
+     public SetOfEmbelishedData getSetOfEmbellishedData(){
+            //System.out.println("Emblished data size:"+SOED.size());
+            return SOED;
+     }
 
     /**
      * @return the sensor

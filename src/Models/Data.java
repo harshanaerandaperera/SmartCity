@@ -10,8 +10,25 @@ package Models;
  * @author Oshin
  */
 public class Data {
-    Double limit;
-    public Data(){
+
+    private Double limit;
+     
+     public Data(){
         this.limit=1000.0;
     }
+    /**
+     * @return the limit
+     */
+    public Double getLimit() {
+        return limit;
+    }
+
+    /**
+     * @param limit the limit to set
+     */
+    public void setLimit(Double limit) {
+        this.limit = limit;
+    }
+ 
+
 }

@@ -5,18 +5,18 @@
  */
 package Controller;
 
-import Models.EmblishedData;
+import Models.EmbelishedData;
 import java.util.ArrayList;
 
 /**
  *
  * @author Oshin
  */
-public class setOfEmblishedData extends ArrayList<EmblishedData>{
-    public void addEmblishedData(EmblishedData emblishedData){
+public class SetOfEmbelishedData extends ArrayList<EmbelishedData>{
+    public void addEmblishedData(EmbelishedData emblishedData){
             super.add(emblishedData);
     }
     
-    
+   
     
 }

@@ -11,13 +11,13 @@ import java.util.ArrayList;
  *
  * @author Oshin
  */
-public class EmblishedData {
+public class EmbelishedData {
     public Data data;
     public Long timeInMills;
     public ArrayList<Double> location;
     public String sensorID;
     
-     public EmblishedData(Data data, Long timeInMills, ArrayList<Double> location, String sensorID) {
+     public EmbelishedData(Data data, Long timeInMills, ArrayList<Double> location, String sensorID) {
         this.data = data;
         this.timeInMills = timeInMills;
         this.location = location;
