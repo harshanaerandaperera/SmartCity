@@ -7,7 +7,7 @@
 //This class is for validating purposes
 package app;
 
-import Controller.validator;
+import Controller.Validator;
 
 /**
  *
@@ -15,7 +15,7 @@ import Controller.validator;
  */
 public class harshana {
     public static void main(String[] args) {
-        validator v=new validator();
+        Validator v=new Validator();
         System.out.println(v.isValidStationID("ST001"));
     }
 }

@@ -1,6 +1,6 @@
 package Controller;
 
-public class validator {
+public class Validator {
 //IT16083424 Perera P.A.H.E     SHU ID=27045240
 public  boolean isValidName(String name){
     return name.matches("[a-zA-Z]+");
