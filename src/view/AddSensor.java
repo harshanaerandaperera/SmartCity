@@ -165,6 +165,7 @@ public class AddSensor extends javax.swing.JFrame {
 
         SensorMonitor ssensormonitor = new SensorMonitor(inSensorId, inInterval, inIsActive, inSensorType);
         SOSM.addSensorMonitor(ssensormonitor);
+        ssensormonitor.getSetOfSensorMonitors(SOSM);
         try {
             Clock clock = Clock.getInstance();
             clock.registerObserver(ssensormonitor);

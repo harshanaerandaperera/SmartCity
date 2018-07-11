@@ -5,11 +5,18 @@
  */
 package Controller;
 
+import Models.EmblishedData;
+import java.util.ArrayList;
+
 /**
  *
  * @author Oshin
  */
-public interface Observer {
-    void update(Object ob,Observer observer);
+public class setOfEmblishedData extends ArrayList<EmblishedData>{
+    public void addEmblishedData(EmblishedData emblishedData){
+            super.add(emblishedData);
+    }
+    
+    
     
 }

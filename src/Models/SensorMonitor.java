@@ -7,6 +7,7 @@ package Models;
 
 import java.util.ArrayList;
 import Controller.*;
+import java.util.Random;
 import java.util.UUID;
 /**
  *
@@ -21,7 +22,7 @@ import java.util.UUID;
  */
 public class SensorMonitor implements Subject,Observer{
 
-   
+    
 
     private String sensorMonitorID;
    //interval is the frequency
@@ -30,13 +31,16 @@ public class SensorMonitor implements Subject,Observer{
     private boolean isActive;
     private Sensor sensor;
     private ArrayList<Observer> Observers;
-    private Integer readingsCount;
-
+    private ArrayList<Double> coords;
     
+    private Data reading;
+    
+
+   private SetOfSensors SOS=new SetOfSensors();
     private SetOfBinSensors SOBS=new SetOfBinSensors();
     private SetOfFloodSensors SOFS=new SetOfFloodSensors();
     private SetOfTrafficSensors SOTS=new SetOfTrafficSensors();
-    
+    private SetOfSensorMonitors SOSM;
     
      /**
      * Constructor for Sensor Monitor object with status , interval , Sensor Type
@@ -59,31 +63,34 @@ public class SensorMonitor implements Subject,Observer{
          if (inSensorType.equals("Bin Sensor")) {
             this.sensor=new BinSensor(inSensorID);
           SOBS.addBinSensor(new BinSensor(inSensorID));
+          SOS.addSensor(sensor);
         } else if (inSensorType.equals("Flood Sensor")) {
             this.sensor = new FloodSensor(inSensorID);
             SOFS.addFloodSensor(new FloodSensor(inSensorID));
+            SOS.addSensor(sensor);
         } else {
             this.sensor = new TrafficSensor(inSensorID);
             SOTS.addTrafficSensor(new TrafficSensor(inSensorID));
+            SOS.addSensor(sensor);
         }
      }
-     public void doTick() {
-        interval--;
-        // System.out.println("Interval is"+interval);
-        if (interval == 0){
-            System.out.println("Interval is "+interval);
-          //  getReadingsCount();
-        }
+     public void getSetOfSensorMonitors(SetOfSensorMonitors SOSM){
+        this.SOSM=SOSM;
     }
+     public void doTick(Observer observer) {
+         System.out.println("Before Interval :" +interval);
+       
+            shouldTakeReading(observer);
+         }
     
     @Override
     public void registerObserver(Observer obs) {
-        Observers.add(obs);
+        getObservers().add(obs);
     }
 
     @Override
     public void unRegisterObserver(Observer obs) {
-        Observers.remove(obs);
+        getObservers().remove(obs);
     }
 
     @Override
@@ -91,10 +98,10 @@ public class SensorMonitor implements Subject,Observer{
     }
 
     @Override
-    public void update(Object ob) {
+    public void update(Object ob,Observer observer) {
        if(ob instanceof Clock){
-      //     System.out.println("This is Clock !");
-           this.doTick();
+          
+           this.doTick(observer);
        }
     }
 
@@ -111,20 +118,32 @@ public class SensorMonitor implements Subject,Observer{
     public boolean isIsActive() {
         return isActive;
     }
- /**
-     * @return the readingsCount
-     */
-    public Integer getReadingsCount() {
-        System.out.println("Reading Count Found");
-        return readingsCount;
-    }
+ 
+    public void shouldTakeReading(Observer observer) {
+        
+        for(int i=0;i<SOSM.size();i++){
+            if(SOSM.get(i)==observer){
+               System.out.println(SOSM.get(i));
+               
+              this.reading=SOSM.get(i).sensor.getData();
+              embellishData(SOSM.get(i).sensor);
+              System.out.println(this.reading.limit);
+           }
+            
+        }
+      }
 
-    /**
-     * @param readingsCount the readingsCount to set
-     */
-    public void setReadingsCount(Integer readingsCount) {
-        this.readingsCount = readingsCount;
+    
+    public EmblishedData embellishData(Sensor senor){
+        Random r = new Random();
+        long timeInMills = r.nextInt(100); 
+        ArrayList<Double> coords = getCoords();
+        String id = sensor.getSensorId();
+        EmblishedData embellishedData = new EmblishedData(reading, timeInMills, coords, id);
+        return embellishedData;
     }
+    
+   
     
 
     /**
@@ -144,9 +163,28 @@ public class SensorMonitor implements Subject,Observer{
 
        
     
+    /**
+     * @return the Observers
+     */
+    public ArrayList<Observer> getObservers() {
+        return Observers;
+    }
+
+  
     
-    
-    
+    /**
+     * @return the coords
+     */
+    public ArrayList<Double> getCoords() {
+        return coords;
+    }
+
+    /**
+     * @param coords the coords to set
+     */
+    public void setCoords(ArrayList<Double> coords) {
+        this.coords = coords;
+    }
     
     
 }
