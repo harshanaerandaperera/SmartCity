@@ -22,9 +22,6 @@ import java.util.UUID;
  */
 public class SensorMonitor implements Subject, Observer {
 
- 
-
-   
     private String sensorMonitorID;
     //interval is the frequency
     private Double interval;
@@ -42,9 +39,9 @@ public class SensorMonitor implements Subject, Observer {
     private SetOfFloodSensors SOFS = new SetOfFloodSensors();
     private SetOfTrafficSensors SOTS = new SetOfTrafficSensors();
     private SetOfEmbelishedData SOED = new SetOfEmbelishedData();
-    SetOFData SOD=SetOFData.getSetOFDataInstance();
- 
- /**
+    SetOFData SOD = SetOFData.getSetOFDataInstance();
+
+    /**
      * Constructor for Sensor Monitor object with status , interval , Sensor
      * Type
      *
@@ -120,29 +117,47 @@ public class SensorMonitor implements Subject, Observer {
     }
 
     public void shouldTakeReading(Observer observer) {
-        AddSensor addsensor=new AddSensor();
-         double count=0.0;
-        //  adsensor.liveSensorMonitor();
+        
+      
+       
         for (int i = 0; i < SOSM.size(); i++) {
             for (int j = 0; j < SOED.size(); j++) {
                 if (SOSM.get(i) == observer) {
 
-                    if (SOSM.get(i).getSensor() == SOED.get(i).getSensor()) {
-                       // System.out.println("--------------------------------------------size"+getSOD().size());
-                       SOED.get(i).setCount(10);
-                        System.out.println("size"+SOD.size());
-//                      for(int k=0;k<SOD.size();k++){
-//                          if(SOD.get(i).getSensorid()==SOSM.get(i).getSensor().getSensorId()){
-//                              count++;
-//                          }
-//                      }
-                      
-                     // SOED.get(i).setCount(count);
-                   }
+                    if (SOSM.get(i).getSensor().getSensorId().equals(SOED.get(j).getSensor().getSensorId())) {
+                        
+                        double count=0;
+                       
+                        for(int k=0;k<SOD.size();k++){
+                            
+                            if(SOSM.get(i).getSensor().getSensorId().equals(SOD.get(k).getSensorid()))
+                              
+                              count++;
+                            
+//                            
+//                            System.out.println("SOSM SID "+SOSM.get(i).getSensor().getSensorId());
+//                            System.out.println("SOD SID "+SOD.get(i).getSensorid());
+                        }
+                        
+                        
+                        System.out.println("----------------------------------count"+count);
+                       SOED.get(j).setCount(count);
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                       // System.out.println("--------------------------------------------------------------------size of sod" + SOD.size());
+                     
+                        
+                         
+                    }
 
                 }
 
-            }
+            //}
 
 //           if(SOSM.get(i)==observer){
 //               System.out.println("i"+i);
@@ -160,6 +175,19 @@ public class SensorMonitor implements Subject, Observer {
 //       // return embellishedData;
 //    }
 //    
+    }
+    public void calculateDataCount(String sid){
+    //    double count=0.0;
+        for(int i=0;i<SOD.size();i++){
+            if(SOD.get(i).getSensorid()==sid){
+                
+                System.out.println("Sensor ID Match -------------------------------------------------------------------------");
+            }
+            
+            
+        }
+        
+    }
 
     public void setSetOfSensorMonitors(SetOfSensorMonitors SOSM) {
         this.SOSM = SOSM;
@@ -213,5 +241,5 @@ public class SensorMonitor implements Subject, Observer {
     public void setSOED(SetOfEmbelishedData SOED) {
         this.SOED = SOED;
     }
-    
+
 }

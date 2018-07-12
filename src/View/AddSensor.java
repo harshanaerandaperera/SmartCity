@@ -76,7 +76,6 @@ public class AddSensor extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         mytesttable = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         sid = new javax.swing.JTextField();
         databutton = new javax.swing.JButton();
 
@@ -158,13 +157,6 @@ public class AddSensor extends javax.swing.JFrame {
         jLabel3.setText("SensorID");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 300, -1, 30));
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 300, -1, -1));
-
         sid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sidActionPerformed(evt);
@@ -229,10 +221,6 @@ public class AddSensor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_sensorAddButtonActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
     private void sidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sidActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_sidActionPerformed
@@ -243,7 +231,7 @@ public class AddSensor extends javax.swing.JFrame {
         data=new Data(sensorid);
         System.out.println(data);
         SOD.addData(data);
-        System.out.println(SOD.size());
+       
         
         
         
@@ -252,7 +240,7 @@ public class AddSensor extends javax.swing.JFrame {
     }//GEN-LAST:event_databuttonActionPerformed
 
     private void mytesttableMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mytesttableMouseMoved
-           DefaultTableModel dtm = (DefaultTableModel) mytesttable.getModel();
+         DefaultTableModel dtm = (DefaultTableModel) mytesttable.getModel();
         dtm.setRowCount(0);
         for (int i = 0; i < SOED.size(); i++) {
 
@@ -317,7 +305,6 @@ public class AddSensor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTable mytesttable;
     private javax.swing.JButton sensorAddButton;
     private javax.swing.JButton sensorCancelButton;

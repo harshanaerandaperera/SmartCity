@@ -11,9 +11,6 @@ package Models;
  */
 public class Data {
 
-    
-
-    //private Double limit=80.0;
     private String Sensorid;
   
     public Data(String sid) {
@@ -34,20 +31,5 @@ public class Data {
     public void setSensorid(String Sensorid) {
         this.Sensorid = Sensorid;
     }
-
-//    /**
-//     * @return the limit
-//     */
-//    public Double getLimit() {
-//   return limit;
-//    }
-//
-//    /**
-//     * @param limit the limit to set
-//     */
-//    public void setLimit(Double limit) {
-//        this.limit = limit;
-//
-//    }
 
 }
