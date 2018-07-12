@@ -57,8 +57,9 @@ public class EmbelishedData {
 
     private String status;
     private double frequency;
+    
     public EmbelishedData(Sensor sensor,String SensorDescription, String status, double frequency) {
-     
+      this.count=0.0;
       this.sensor=sensor;
       this.SensorDescription=SensorDescription;
       this.status=status;

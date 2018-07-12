@@ -7,7 +7,6 @@ package Models;
 
 import java.util.ArrayList;
 import Controller.*;
-import View.AddSensor;
 import java.util.UUID;
 
 /**
@@ -33,12 +32,14 @@ public class SensorMonitor implements Subject, Observer {
 
     private Data reading;
 
-    private SetOfSensorMonitors SOSM;
+    
     private SetOfSensors SOS = new SetOfSensors();
     private SetOfBinSensors SOBS = new SetOfBinSensors();
     private SetOfFloodSensors SOFS = new SetOfFloodSensors();
     private SetOfTrafficSensors SOTS = new SetOfTrafficSensors();
     private SetOfEmbelishedData SOED = new SetOfEmbelishedData();
+    
+    SetOfSensorMonitors SOSM=SetOfSensorMonitors.getSetOfSensorMonitorsInstance();
     SetOFData SOD = SetOFData.getSetOFDataInstance();
 
     /**
@@ -189,9 +190,7 @@ public class SensorMonitor implements Subject, Observer {
         
     }
 
-    public void setSetOfSensorMonitors(SetOfSensorMonitors SOSM) {
-        this.SOSM = SOSM;
-    }
+   
 
     /**
      * @return the sensor
@@ -241,5 +240,6 @@ public class SensorMonitor implements Subject, Observer {
     public void setSOED(SetOfEmbelishedData SOED) {
         this.SOED = SOED;
     }
+   
 
 }

@@ -40,10 +40,7 @@ public class Clock implements Subject,Serializable{
      private Object readResolve (){
         return clock;
     }
-     public void printInstance(){
-      //  System.out.println("Inside print singleton object :"+clock.hashCode());
-        System.out.println("");
-    }
+    
     @Override
     public void registerObserver(Observer obs) {
             Observers.add(obs);

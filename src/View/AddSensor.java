@@ -22,11 +22,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AddSensor extends javax.swing.JFrame {
 
-    private SetOfSensorMonitors SOSM = new SetOfSensorMonitors();
+    
     private SetOfSensors SOS = new SetOfSensors();
     private SetOfEmbelishedData SOED = new SetOfEmbelishedData();
-    
-            
+
+    Clock clock = Clock.getInstance();
+    SetOfSensorMonitors SOSM=SetOfSensorMonitors.getSetOfSensorMonitorsInstance();
 
     private SensorMonitor sensormonitor;
     private EmbelishedData embelishedData;
@@ -36,14 +37,13 @@ public class AddSensor extends javax.swing.JFrame {
         initComponents();
     }
 
-    public void liveSensorMonitor(){
+    public void liveSensorMonitor() {
         DefaultTableModel dtm = (DefaultTableModel) mytesttable.getModel();
         dtm.setRowCount(0);
         for (int i = 0; i < SOED.size(); i++) {
 
             EmbelishedData ed = SOED.get(i);
 
-            
             Vector v = new Vector();
             v.add(ed.getSensor().getSensorId());
             v.add(ed.getSensorDescription());
@@ -53,11 +53,9 @@ public class AddSensor extends javax.swing.JFrame {
             dtm.addRow(v);
 
         }
-        
-        
+
     }
-    
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -195,10 +193,9 @@ public class AddSensor extends javax.swing.JFrame {
         SOSM.addSensorMonitor(sensormonitor);
         embelishedData = new EmbelishedData(sensormonitor.getSensor(), inSensorType, inIsActive, inInterval);
         SOED.addEmblishedData(embelishedData);
-        sensormonitor.setSetOfSensorMonitors(SOSM);
         sensormonitor.setSOED(SOED);
         DefaultTableModel dtm = (DefaultTableModel) mytesttable.getModel();
-        
+
         dtm.setRowCount(0);
         for (int i = 0; i < SOED.size(); i++) {
             EmbelishedData ed = SOED.get(i);
@@ -212,10 +209,7 @@ public class AddSensor extends javax.swing.JFrame {
 
         }
         try {
-            Clock clock = Clock.getInstance();
             clock.registerObserver(sensormonitor);
-
-            // System.out.println(SOED.size());
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -226,27 +220,23 @@ public class AddSensor extends javax.swing.JFrame {
     }//GEN-LAST:event_sidActionPerformed
 
     private void databuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_databuttonActionPerformed
-        SetOFData SOD=SetOFData.getSetOFDataInstance();
-        String sensorid=sid.getText();
-        data=new Data(sensorid);
+        SetOFData SOD = SetOFData.getSetOFDataInstance();
+        String sensorid = sid.getText();
+        data = new Data(sensorid);
         System.out.println(data);
         SOD.addData(data);
-       
-        
-        
-        
-       // sensormonitor.setSOD(SOD);
+
+        // sensormonitor.setSOD(SOD);
 
     }//GEN-LAST:event_databuttonActionPerformed
 
     private void mytesttableMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mytesttableMouseMoved
-         DefaultTableModel dtm = (DefaultTableModel) mytesttable.getModel();
+        DefaultTableModel dtm = (DefaultTableModel) mytesttable.getModel();
         dtm.setRowCount(0);
         for (int i = 0; i < SOED.size(); i++) {
 
             EmbelishedData ed = SOED.get(i);
 
-         
             Vector v = new Vector();
             v.add("jknjkn");
             v.add(ed.getSensorDescription());
