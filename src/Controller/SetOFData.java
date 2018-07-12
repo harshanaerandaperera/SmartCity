@@ -5,7 +5,6 @@
  */
 package Controller;
 
-import Models.BinSensor;
 import Models.Data;
 import java.util.ArrayList;
 

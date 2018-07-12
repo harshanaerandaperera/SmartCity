@@ -37,11 +37,10 @@ public class SensorMonitor implements Subject, Observer {
     private SetOfBinSensors SOBS = new SetOfBinSensors();
     private SetOfFloodSensors SOFS = new SetOfFloodSensors();
     private SetOfTrafficSensors SOTS = new SetOfTrafficSensors();
-    private SetOfEmbelishedData SOED = new SetOfEmbelishedData();
     
     SetOfSensorMonitors SOSM=SetOfSensorMonitors.getSetOfSensorMonitorsInstance();
     SetOFData SOD = SetOFData.getSetOFDataInstance();
-
+    SetOfEmbelishedData SOED=SetOfEmbelishedData.getSetOfEmbelishedDataInstance();
     /**
      * Constructor for Sensor Monitor object with status , interval , Sensor
      * Type
@@ -234,12 +233,6 @@ public class SensorMonitor implements Subject, Observer {
         return SOED;
     }
 
-    /**
-     * @param SOED the SOED to set
-     */
-    public void setSOED(SetOfEmbelishedData SOED) {
-        this.SOED = SOED;
-    }
-   
+
 
 }

@@ -24,11 +24,10 @@ public class AddSensor extends javax.swing.JFrame {
 
     
     private SetOfSensors SOS = new SetOfSensors();
-    private SetOfEmbelishedData SOED = new SetOfEmbelishedData();
-
+    
     Clock clock = Clock.getInstance();
     SetOfSensorMonitors SOSM=SetOfSensorMonitors.getSetOfSensorMonitorsInstance();
-
+    SetOfEmbelishedData SOED=SetOfEmbelishedData.getSetOfEmbelishedDataInstance();
     private SensorMonitor sensormonitor;
     private EmbelishedData embelishedData;
     private Data data;
@@ -193,7 +192,7 @@ public class AddSensor extends javax.swing.JFrame {
         SOSM.addSensorMonitor(sensormonitor);
         embelishedData = new EmbelishedData(sensormonitor.getSensor(), inSensorType, inIsActive, inInterval);
         SOED.addEmblishedData(embelishedData);
-        sensormonitor.setSOED(SOED);
+     
         DefaultTableModel dtm = (DefaultTableModel) mytesttable.getModel();
 
         dtm.setRowCount(0);

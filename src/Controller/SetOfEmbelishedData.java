@@ -16,7 +16,7 @@ public class SetOfEmbelishedData extends ArrayList<EmbelishedData>{
     private static SetOfEmbelishedData SetOfEmbelishedDataInstance;
     private SetOfEmbelishedData(){
     }
-    private static SetOfEmbelishedData getSetOfEmbelishedDataInstance(){
+    public static SetOfEmbelishedData getSetOfEmbelishedDataInstance(){
         if(SetOfEmbelishedDataInstance==null){
             SetOfEmbelishedDataInstance=new SetOfEmbelishedData();
         }
