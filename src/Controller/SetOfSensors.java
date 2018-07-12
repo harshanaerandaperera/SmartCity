@@ -13,6 +13,15 @@ import java.util.ArrayList;
  * @author Oshin
  */
 public class SetOfSensors extends ArrayList<Sensor>{
+    private static SetOfSensors SetOfSensorsInstance;
+    private SetOfSensors(){
+    }
+    public static SetOfSensors getSetOfSensorsInstance(){
+        if(SetOfSensorsInstance==null){
+            SetOfSensorsInstance=new SetOfSensors();
+        }
+        return SetOfSensorsInstance;
+    }
    
     public void addSensor(Sensor sensor){
         super.add(sensor);

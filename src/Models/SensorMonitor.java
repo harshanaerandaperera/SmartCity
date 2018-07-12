@@ -33,14 +33,14 @@ public class SensorMonitor implements Subject, Observer {
     private Data reading;
 
     
-    private SetOfSensors SOS = new SetOfSensors();
-    private SetOfFloodSensors SOFS = new SetOfFloodSensors();
     private SetOfTrafficSensors SOTS = new SetOfTrafficSensors();
     
     SetOfSensorMonitors SOSM=SetOfSensorMonitors.getSetOfSensorMonitorsInstance();
     SetOFData SOD = SetOFData.getSetOFDataInstance();
     SetOfEmbelishedData SOED=SetOfEmbelishedData.getSetOfEmbelishedDataInstance();
     SetOfBinSensors SOBS=SetOfBinSensors.getSetOfBinSensorsInstance();
+    SetOfFloodSensors SOFS=SetOfFloodSensors.getSetOfFloodSensorsInstance();
+    SetOfSensors SOS=SetOfSensors.getSetOfSensorsInstance();
     /**
      * Constructor for Sensor Monitor object with status , interval , Sensor
      * Type
