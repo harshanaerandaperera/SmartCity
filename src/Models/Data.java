@@ -11,15 +11,17 @@ package Models;
  */
 public class Data {
 
-    private Double limit;
-     
-     public Data(){
-        this.limit=1000.0;
+    private Double limit=80.0;
+
+    public Data() {
+
     }
+
     /**
      * @return the limit
      */
     public Double getLimit() {
+
         return limit;
     }
 
@@ -28,7 +30,7 @@ public class Data {
      */
     public void setLimit(Double limit) {
         this.limit = limit;
+
     }
- 
 
 }

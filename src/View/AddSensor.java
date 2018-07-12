@@ -23,17 +23,38 @@ public class AddSensor extends javax.swing.JFrame {
 
     private SetOfSensorMonitors SOSM = new SetOfSensorMonitors();
     private SetOfSensors SOS = new SetOfSensors();
-    private SetOfEmbelishedData SOED=new SetOfEmbelishedData();
-    
-  
+    private SetOfEmbelishedData SOED = new SetOfEmbelishedData();
+
     private SensorMonitor sensormonitor;
     private EmbelishedData embelishedData;
-    
+
     public AddSensor() {
         initComponents();
     }
-  
 
+    public void liveSensorMonitor(){
+        DefaultTableModel dtm = (DefaultTableModel) mytesttable.getModel();
+        dtm.setRowCount(0);
+        for (int i = 0; i < SOED.size(); i++) {
+
+            EmbelishedData ed = SOED.get(i);
+
+            Data data;
+            data = ed.getSensor().getData();
+            Vector v = new Vector();
+            v.add("jknjkn");
+            v.add(ed.getSensorDescription());
+            v.add(ed.getCount());
+            v.add(ed.getStatus());
+            v.add(ed.getFrequency());
+            dtm.addRow(v);
+
+        }
+        
+        
+    }
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -51,37 +72,52 @@ public class AddSensor extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         mytesttable = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        datacount = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        sid = new javax.swing.JTextField();
+        databutton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
         setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Sensor ID");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 54, -1, -1));
+        getContentPane().add(sensorIdText, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 93, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Type");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 110, -1, -1));
 
         sensorStatusText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sensorStatusTextActionPerformed(evt);
             }
         });
+        getContentPane().add(sensorStatusText, new org.netbeans.lib.awtextra.AbsoluteConstraints(153, 180, 90, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Status");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 181, -1, -1));
 
         sensorFrequencyText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sensorFrequencyTextActionPerformed(evt);
             }
         });
+        getContentPane().add(sensorFrequencyText, new org.netbeans.lib.awtextra.AbsoluteConstraints(155, 250, 90, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Freaquency");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 248, -1, -1));
 
         SensortypeCombo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         SensortypeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Select -", "Flood Sensor", "Traffic Sensor", "Bin Sensor" }));
+        getContentPane().add(SensortypeCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 90, -1));
 
         sensorAddButton.setText("Add");
         sensorAddButton.addActionListener(new java.awt.event.ActionListener() {
@@ -89,11 +125,14 @@ public class AddSensor extends javax.swing.JFrame {
                 sensorAddButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(sensorAddButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 427, -1, -1));
 
         sensorCancelButton.setText("Cancel");
+        getContentPane().add(sensorCancelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 420, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel6.setText("Add Sensor");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(507, 24, -1, -1));
 
         mytesttable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -106,9 +145,49 @@ public class AddSensor extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
             }
         ));
+        mytesttable.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                mytesttableMouseMoved(evt);
+            }
+        });
         jScrollPane2.setViewportView(mytesttable);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, 460, -1));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(374, 88, -1, 120));
+
+        jLabel3.setText("SensorID");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 300, -1, 30));
+
+        datacount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                datacountActionPerformed(evt);
+            }
+        });
+        getContentPane().add(datacount, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 370, 90, -1));
+
+        jLabel7.setText("Data Count");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 380, -1, -1));
+
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 300, -1, -1));
+
+        sid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sidActionPerformed(evt);
+            }
+        });
+        getContentPane().add(sid, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 300, 80, -1));
+
+        databutton.setText("Add Data");
+        databutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                databuttonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(databutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 450, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -129,34 +208,83 @@ public class AddSensor extends javax.swing.JFrame {
         Double inInterval = Double.parseDouble(sensorFrequencyText.getText());
         String inSensorType = SensortypeCombo.getSelectedItem().toString();
 
-        embelishedData=new EmbelishedData(inSensorId, inSensorType, inIsActive, inInterval);
-        SOED.addEmblishedData(embelishedData);
-        
         sensormonitor = new SensorMonitor(inSensorId, inInterval, inIsActive, inSensorType);
         SOSM.addSensorMonitor(sensormonitor);
+        embelishedData = new EmbelishedData(sensormonitor.getSensor(), inSensorType, inIsActive, inInterval);
+        SOED.addEmblishedData(embelishedData);
         sensormonitor.setSetOfSensorMonitors(SOSM);
+        sensormonitor.setSOED(SOED);
+        DefaultTableModel dtm = (DefaultTableModel) mytesttable.getModel();
         
-         DefaultTableModel dtm = (DefaultTableModel) mytesttable.getModel();
-            dtm.setRowCount(0);
-            for (int i = 0; i < SOED.size(); i++) {
-                EmbelishedData ed = SOED.get(i);
-                Vector v = new Vector();
-                v.add(ed.getSensorID());
-                v.add(ed.getSensorDescription());
-                v.add(0);
-                v.add(ed.getStatus());
-                v.add(ed.getFrequency());
-                dtm.addRow(v);
-            }
-         try {
+        dtm.setRowCount(0);
+        for (int i = 0; i < SOED.size(); i++) {
+            EmbelishedData ed = SOED.get(i);
+            Vector v = new Vector();
+            v.add(ed.getSensor().getSensorId());
+            v.add(ed.getSensorDescription());
+            v.add(ed.getCount());
+            v.add(ed.getStatus());
+            v.add(ed.getFrequency());
+            dtm.addRow(v);
+
+        }
+        try {
             Clock clock = Clock.getInstance();
             clock.registerObserver(sensormonitor);
-           
-           // System.out.println(SOED.size());
+
+            // System.out.println(SOED.size());
         } catch (Exception e) {
             System.out.println(e);
         }
     }//GEN-LAST:event_sensorAddButtonActionPerformed
+
+    private void datacountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_datacountActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_datacountActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void sidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sidActionPerformed
+
+    private void databuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_databuttonActionPerformed
+
+        String id=sid.getText();
+                
+        Double count=Double.parseDouble(datacount.getText());
+
+        for(int i=0;i<SOS.size();i++){
+            if(SOS.get(i).getSensorId()==id){
+                SOS.get(i).getData().setLimit(count);
+            }
+        }
+
+
+    }//GEN-LAST:event_databuttonActionPerformed
+
+    private void mytesttableMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mytesttableMouseMoved
+           DefaultTableModel dtm = (DefaultTableModel) mytesttable.getModel();
+        dtm.setRowCount(0);
+        for (int i = 0; i < SOED.size(); i++) {
+
+            EmbelishedData ed = SOED.get(i);
+
+            Data data;
+            data = ed.getSensor().getData();
+            Vector v = new Vector();
+            v.add("jknjkn");
+            v.add(ed.getSensorDescription());
+            v.add(ed.getCount());
+            v.add(ed.getStatus());
+            v.add(ed.getFrequency());
+            dtm.addRow(v);
+
+        }
+
+    }//GEN-LAST:event_mytesttableMouseMoved
 
     /**
      * @param args the command line arguments
@@ -196,17 +324,23 @@ public class AddSensor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> SensortypeCombo;
+    private javax.swing.JButton databutton;
+    private javax.swing.JTextField datacount;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JTable mytesttable;
     private javax.swing.JButton sensorAddButton;
     private javax.swing.JButton sensorCancelButton;
     private javax.swing.JTextField sensorFrequencyText;
     private javax.swing.JTextField sensorIdText;
     private javax.swing.JTextField sensorStatusText;
+    private javax.swing.JTextField sid;
     // End of variables declaration//GEN-END:variables
 }
