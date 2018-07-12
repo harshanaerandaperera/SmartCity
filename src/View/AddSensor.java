@@ -7,10 +7,13 @@ import Controller.SetOfSensorMonitors;
 import Controller.SetOfSensors;
 import Controller.SetOfTrafficSensors;
 import Models.Clock;
+import Models.Data;
 import Models.EmbelishedData;
 
 import Models.Sensor;
 import Models.SensorMonitor;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -24,15 +27,12 @@ public class AddSensor extends javax.swing.JFrame {
     
   
     private SensorMonitor sensormonitor;
+    private EmbelishedData embelishedData;
     
     public AddSensor() {
         initComponents();
     }
-    public void display(EmbelishedData e){
-       // System.out.println("current Data Limit"+e.data.getLimit());
-        textArea.setText(e.data.getLimit().toString());
-        
-    }
+  
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -49,9 +49,8 @@ public class AddSensor extends javax.swing.JFrame {
         sensorAddButton = new javax.swing.JButton();
         sensorCancelButton = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        textArea = new javax.swing.JTextArea();
-        get = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        mytesttable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -96,82 +95,20 @@ public class AddSensor extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel6.setText("Add Sensor");
 
-        textArea.setColumns(20);
-        textArea.setRows(5);
-        jScrollPane1.setViewportView(textArea);
-
-        get.setText("Get ");
-        get.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                getActionPerformed(evt);
+        mytesttable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
             }
-        });
+        ));
+        jScrollPane2.setViewportView(mytesttable);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(180, 180, 180)
-                .addComponent(jLabel6))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(72, 72, 72)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sensorIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SensortypeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sensorStatusText, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sensorFrequencyText, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(56, 56, 56)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(580, 580, 580)
-                .addComponent(get))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(sensorCancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(197, 197, 197)
-                .addComponent(sensorAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel6)
-                .addGap(61, 61, 61)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(21, 21, 21)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(91, 91, 91)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(sensorIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(21, 21, 21)
-                                .addComponent(SensortypeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(91, 91, 91)
-                                .addComponent(sensorStatusText, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(51, 51, 51)
-                                .addComponent(sensorFrequencyText, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(1, 1, 1)
-                .addComponent(get)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sensorCancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sensorAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, 460, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -192,27 +129,34 @@ public class AddSensor extends javax.swing.JFrame {
         Double inInterval = Double.parseDouble(sensorFrequencyText.getText());
         String inSensorType = SensortypeCombo.getSelectedItem().toString();
 
+        embelishedData=new EmbelishedData(inSensorId, inSensorType, inIsActive, inInterval);
+        SOED.addEmblishedData(embelishedData);
+        
         sensormonitor = new SensorMonitor(inSensorId, inInterval, inIsActive, inSensorType);
         SOSM.addSensorMonitor(sensormonitor);
         sensormonitor.setSetOfSensorMonitors(SOSM);
-        try {
+        
+         DefaultTableModel dtm = (DefaultTableModel) mytesttable.getModel();
+            dtm.setRowCount(0);
+            for (int i = 0; i < SOED.size(); i++) {
+                EmbelishedData ed = SOED.get(i);
+                Vector v = new Vector();
+                v.add(ed.getSensorID());
+                v.add(ed.getSensorDescription());
+                v.add(0);
+                v.add(ed.getStatus());
+                v.add(ed.getFrequency());
+                dtm.addRow(v);
+            }
+         try {
             Clock clock = Clock.getInstance();
             clock.registerObserver(sensormonitor);
-            sensormonitor.getSetOfEmbellishedData();
-           SOED=sensormonitor.getSetOfEmbellishedData();
+           
            // System.out.println(SOED.size());
         } catch (Exception e) {
             System.out.println(e);
         }
     }//GEN-LAST:event_sensorAddButtonActionPerformed
-
-    private void getActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getActionPerformed
-            SOED=sensormonitor.getSetOfEmbellishedData();    
-            for(int i=0;i<SOED.size();i++){
-                textArea.setText(SOED.get(i).sensorID.toString());
-            }
-
-    }//GEN-LAST:event_getActionPerformed
 
     /**
      * @param args the command line arguments
@@ -252,18 +196,17 @@ public class AddSensor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> SensortypeCombo;
-    private javax.swing.JButton get;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable mytesttable;
     private javax.swing.JButton sensorAddButton;
     private javax.swing.JButton sensorCancelButton;
     private javax.swing.JTextField sensorFrequencyText;
     private javax.swing.JTextField sensorIdText;
     private javax.swing.JTextField sensorStatusText;
-    private javax.swing.JTextArea textArea;
     // End of variables declaration//GEN-END:variables
 }
