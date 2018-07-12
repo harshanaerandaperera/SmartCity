@@ -33,10 +33,13 @@ public class Main extends javax.swing.JFrame implements Serializable {
             jTabbedPaneMainPanel.setEnabledAt(1, false);
         }
         if (selectedIndex == 3) {
-            int answer = JOptionPane.showConfirmDialog(null, "Do you really want to Exit?", "Exit", JOptionPane.YES_NO_OPTION);
+            int answer = JOptionPane.showConfirmDialog(null, "Do you really want to Exit?", "Smart City V.1.0", JOptionPane.YES_NO_OPTION);
             if (answer == 0) {            //yes=0   No=1
                 //call Serialize functions here before exit application
                 this.dispose(); //exit application
+            }
+            if (answer == 1) {
+                jTabbedPaneMainPanel.setSelectedIndex(0);
             }
 
         }
@@ -117,6 +120,7 @@ public class Main extends javax.swing.JFrame implements Serializable {
         btnRemoveSensor = new javax.swing.JButton();
         cmbSelectSensorStation = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(32, 33, 35));
@@ -301,7 +305,7 @@ public class Main extends javax.swing.JFrame implements Serializable {
         jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map.PNG"))); // NOI18N
-        jPanel10.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, -40, 1010, 560));
+        jPanel10.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, -20, 1010, 540));
 
         jTabbedPane4.addTab("             Map              ", jPanel10);
 
@@ -510,15 +514,21 @@ public class Main extends javax.swing.JFrame implements Serializable {
 
         jTabbedPaneMainPanel.addTab("           Station Management         ", jPanel6);
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/endfinalfinal.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1232, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1226, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 542, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPaneMainPanel.addTab("   X   ", jPanel3);
@@ -527,7 +537,9 @@ public class Main extends javax.swing.JFrame implements Serializable {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPaneMainPanel)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPaneMainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -640,6 +652,7 @@ public class Main extends javax.swing.JFrame implements Serializable {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
