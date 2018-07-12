@@ -27,8 +27,8 @@ public String getSensorId() {
  * 
  * @return data
  */
-    public Data getData() {
-        Data data = new Data();
-        return data;
-    }
+//    public Data getData() {
+//        Data data = new Data();
+//        return data;
+//    }
 }

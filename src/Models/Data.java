@@ -11,26 +11,43 @@ package Models;
  */
 public class Data {
 
-    private Double limit=80.0;
+    
 
-    public Data() {
-
+    //private Double limit=80.0;
+    private String Sensorid;
+  
+    public Data(String sid) {
+        this.Sensorid=sid;
+     }
+    
+    
+    /**
+     * @return the Sensorid
+     */
+    public String getSensorid() {
+        return Sensorid;
     }
 
     /**
-     * @return the limit
+     * @param Sensorid the Sensorid to set
      */
-    public Double getLimit() {
-
-        return limit;
+    public void setSensorid(String Sensorid) {
+        this.Sensorid = Sensorid;
     }
 
-    /**
-     * @param limit the limit to set
-     */
-    public void setLimit(Double limit) {
-        this.limit = limit;
-
-    }
+//    /**
+//     * @return the limit
+//     */
+//    public Double getLimit() {
+//   return limit;
+//    }
+//
+//    /**
+//     * @param limit the limit to set
+//     */
+//    public void setLimit(Double limit) {
+//        this.limit = limit;
+//
+//    }
 
 }

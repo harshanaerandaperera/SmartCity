@@ -65,7 +65,7 @@ public class Clock implements Subject,Serializable{
     
      public void waitForTime()
     {
-        double wakeUpTime=10000;
+        double wakeUpTime=15000;
        // System.out.println("waiting....");
         while (wakeUpTime != 0) {
             wakeUpTime--;

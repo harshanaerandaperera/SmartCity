@@ -22,6 +22,9 @@ import java.util.UUID;
  */
 public class SensorMonitor implements Subject, Observer {
 
+ 
+
+   
     private String sensorMonitorID;
     //interval is the frequency
     private Double interval;
@@ -39,8 +42,9 @@ public class SensorMonitor implements Subject, Observer {
     private SetOfFloodSensors SOFS = new SetOfFloodSensors();
     private SetOfTrafficSensors SOTS = new SetOfTrafficSensors();
     private SetOfEmbelishedData SOED = new SetOfEmbelishedData();
-
-    /**
+    SetOFData SOD=SetOFData.getSetOFDataInstance();
+ 
+ /**
      * Constructor for Sensor Monitor object with status , interval , Sensor
      * Type
      *
@@ -116,22 +120,25 @@ public class SensorMonitor implements Subject, Observer {
     }
 
     public void shouldTakeReading(Observer observer) {
-         AddSensor adsensor=new AddSensor();     
-
-          adsensor.liveSensorMonitor();
+        AddSensor addsensor=new AddSensor();
+         double count=0.0;
+        //  adsensor.liveSensorMonitor();
         for (int i = 0; i < SOSM.size(); i++) {
             for (int j = 0; j < SOED.size(); j++) {
                 if (SOSM.get(i) == observer) {
 
                     if (SOSM.get(i).getSensor() == SOED.get(i).getSensor()) {
-                        SOED.get(i).setCount( SOED.get(i).getSensor().getData().getLimit());
-                        System.out.println("Data ccount" + SOED.get(i).getCount());
-                        
-                       
-                        
-                        
-
-                    }
+                       // System.out.println("--------------------------------------------size"+getSOD().size());
+                       SOED.get(i).setCount(10);
+                        System.out.println("size"+SOD.size());
+//                      for(int k=0;k<SOD.size();k++){
+//                          if(SOD.get(i).getSensorid()==SOSM.get(i).getSensor().getSensorId()){
+//                              count++;
+//                          }
+//                      }
+                      
+                     // SOED.get(i).setCount(count);
+                   }
 
                 }
 
@@ -206,5 +213,5 @@ public class SensorMonitor implements Subject, Observer {
     public void setSOED(SetOfEmbelishedData SOED) {
         this.SOED = SOED;
     }
-
+    
 }

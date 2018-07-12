@@ -1,5 +1,6 @@
 package View;
 
+import Controller.SetOFData;
 import Controller.SetOfBinSensors;
 import Controller.SetOfEmbelishedData;
 import Controller.SetOfFloodSensors;
@@ -24,9 +25,12 @@ public class AddSensor extends javax.swing.JFrame {
     private SetOfSensorMonitors SOSM = new SetOfSensorMonitors();
     private SetOfSensors SOS = new SetOfSensors();
     private SetOfEmbelishedData SOED = new SetOfEmbelishedData();
+    
+            
 
     private SensorMonitor sensormonitor;
     private EmbelishedData embelishedData;
+    private Data data;
 
     public AddSensor() {
         initComponents();
@@ -39,10 +43,9 @@ public class AddSensor extends javax.swing.JFrame {
 
             EmbelishedData ed = SOED.get(i);
 
-            Data data;
-            data = ed.getSensor().getData();
+            
             Vector v = new Vector();
-            v.add("jknjkn");
+            v.add(ed.getSensor().getSensorId());
             v.add(ed.getSensorDescription());
             v.add(ed.getCount());
             v.add(ed.getStatus());
@@ -73,8 +76,6 @@ public class AddSensor extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         mytesttable = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-        datacount = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         sid = new javax.swing.JTextField();
         databutton = new javax.swing.JButton();
@@ -157,16 +158,6 @@ public class AddSensor extends javax.swing.JFrame {
         jLabel3.setText("SensorID");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 300, -1, 30));
 
-        datacount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                datacountActionPerformed(evt);
-            }
-        });
-        getContentPane().add(datacount, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 370, 90, -1));
-
-        jLabel7.setText("Data Count");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 380, -1, -1));
-
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -187,7 +178,7 @@ public class AddSensor extends javax.swing.JFrame {
                 databuttonActionPerformed(evt);
             }
         });
-        getContentPane().add(databutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 450, -1, -1));
+        getContentPane().add(databutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 370, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -238,10 +229,6 @@ public class AddSensor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_sensorAddButtonActionPerformed
 
-    private void datacountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_datacountActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_datacountActionPerformed
-
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
@@ -251,17 +238,16 @@ public class AddSensor extends javax.swing.JFrame {
     }//GEN-LAST:event_sidActionPerformed
 
     private void databuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_databuttonActionPerformed
-
-        String id=sid.getText();
-                
-        Double count=Double.parseDouble(datacount.getText());
-
-        for(int i=0;i<SOS.size();i++){
-            if(SOS.get(i).getSensorId()==id){
-                SOS.get(i).getData().setLimit(count);
-            }
-        }
-
+        SetOFData SOD=SetOFData.getSetOFDataInstance();
+        String sensorid=sid.getText();
+        data=new Data(sensorid);
+        System.out.println(data);
+        SOD.addData(data);
+        System.out.println(SOD.size());
+        
+        
+        
+       // sensormonitor.setSOD(SOD);
 
     }//GEN-LAST:event_databuttonActionPerformed
 
@@ -272,8 +258,7 @@ public class AddSensor extends javax.swing.JFrame {
 
             EmbelishedData ed = SOED.get(i);
 
-            Data data;
-            data = ed.getSensor().getData();
+         
             Vector v = new Vector();
             v.add("jknjkn");
             v.add(ed.getSensorDescription());
@@ -325,14 +310,12 @@ public class AddSensor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> SensortypeCombo;
     private javax.swing.JButton databutton;
-    private javax.swing.JTextField datacount;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTable mytesttable;
