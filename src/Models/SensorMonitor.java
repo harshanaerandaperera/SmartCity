@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import Controller.*;
 import java.util.Random;
 import java.util.UUID;
-import view.AddSensor;
+
 /**
  *
  * @author Oshin
@@ -123,20 +123,23 @@ public class SensorMonitor implements Subject,Observer{
            if(SOSM.get(i)==observer){
                System.out.println("i"+i);
                   this.reading=SOSM.get(i).sensor.getData();
-                  EmbelishedData ED=embellishData(SOSM.get(i).sensor);
-                  this.SOED.addEmblishedData(ED);
+                  //for(int j=0;j<)
+                  
+                  
+                  
+                  
                  System.out.println("Reading -------------------------"+this.reading.getLimit());
               }
          }       
 }
-   public EmbelishedData embellishData(Sensor senor){
-        long timeInMills = 10; 
-        ArrayList<Double> coords = getCoords();
-        String id = sensor.getSensorId();
-        EmbelishedData embellishedData = new EmbelishedData(reading, timeInMills, coords, id);
-        return embellishedData;
-    }
-    
+//   public EmbelishedData embellishData(Sensor senor){
+//        long timeInMills = 10; 
+//        ArrayList<Double> coords = getCoords();
+//        String id = sensor.getSensorId();
+//      //  EmbelishedData embellishedData = new EmbelishedData(reading, timeInMills, coords, id);
+//       // return embellishedData;
+//    }
+//    
    
      public void setSetOfSensorMonitors(SetOfSensorMonitors SOSM){
         this.SOSM=SOSM;
