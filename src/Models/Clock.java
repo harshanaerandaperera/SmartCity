@@ -14,38 +14,35 @@ import java.util.ArrayList;
  *
  * @author Oshin
  */
-public class Clock implements Subject,Serializable{
-    
-     private ArrayList<Observer> Observers;
-     private static Clock clock;
-     /**
-      * Time required reach to wakeup clock
-      */
-    // public double wakeUpTime=100;
-     
-     private Clock(){
-         Observers=new ArrayList<>();
-     }
+public class Clock implements Subject, Serializable {
 
-     public static Clock getInstance(){
-          if(clock==null){
-            
-            clock=new Clock();
-            System.out.println("Inside Null Check ,Object is created :"+clock.hashCode());
+    private ArrayList<Observer> Observers;
+    private static Clock clock;
+
+    private Clock() {
+        Observers = new ArrayList<>();
+    }
+
+    public static Clock getInstance() {
+        if (clock == null) {
+
+            clock = new Clock();
+            System.out.println("Inside Null Check ,Object is created :" + clock.hashCode());
             System.out.println("---------------------------------------------------------------------");
         }
         return clock;
-     }
+    }
+
     //Overide readResolve methode in Serializable
-     private Object readResolve (){
+    private Object readResolve() {
         return clock;
     }
-    
+
     @Override
     public void registerObserver(Observer obs) {
-            Observers.add(obs);
-            new Thread(this::trackTime).start();
-           //trackTime();
+        Observers.add(obs);
+        new Thread(this::trackTime).start();
+        //trackTime();
     }
 
     @Override
@@ -56,46 +53,40 @@ public class Clock implements Subject,Serializable{
     @Override
     public void Notify() {
     }
-/**
- * Wait for time to wakes the sensor
- */
-    
-     public void waitForTime()
-    {
-        double wakeUpTime=2;
-       // System.out.println("waiting....");
+
+    /**
+     * Wait for time to wakes the sensor
+     */
+    public void waitForTime() {
+        double wakeUpTime = 2;
         while (wakeUpTime != 0) {
             wakeUpTime--;
-           System.out.println("reduce time..");
+            System.out.println("reduce time..");
         }
     }
-     private void notifyObservers()
-    {
-       
-       for(int i=0; i<Observers.size(); i++){
-           
-           Observers.get(i).update(this,Observers.get(i));
-         
-            }
+
+    private void notifyObservers() {
+
+        for (int i = 0; i < Observers.size(); i++) {
+
+            Observers.get(i).update(this, Observers.get(i));
+
+        }
     }
-     private void trackTime()
-    { 
-       while(Observers.isEmpty() == false){
-              
-                waitForTime();
-                notifyObservers();
-              
-       }
+
+    private void trackTime() {
+        while (Observers.isEmpty() == false) {
+
+            waitForTime();
+            notifyObservers();
+
+        }
 //       for(int i=0;i<Observers.size();i++){
 //        
 //           waitForTime();
 //               notifyObservers();
 //       }
-      
-               
-    } 
 
-   
-     
-     
+    }
+
 }

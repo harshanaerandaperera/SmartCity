@@ -12,17 +12,21 @@ import java.util.ArrayList;
  *
  * @author Oshin
  */
-public class SetOfBinSensors extends ArrayList<BinSensor>{
+public class SetOfBinSensors extends ArrayList<BinSensor> {
+
     private static SetOfBinSensors SetOfBinSensorsInstance;
-    private SetOfBinSensors(){
+
+    private SetOfBinSensors() {
     }
-    public static SetOfBinSensors getSetOfBinSensorsInstance(){
-        if(SetOfBinSensorsInstance==null){
-            SetOfBinSensorsInstance=new SetOfBinSensors();
+
+    public static SetOfBinSensors getSetOfBinSensorsInstance() {
+        if (SetOfBinSensorsInstance == null) {
+            SetOfBinSensorsInstance = new SetOfBinSensors();
         }
         return SetOfBinSensorsInstance;
     }
-    public void addBinSensor(BinSensor binsensor){
+
+    public void addBinSensor(BinSensor binsensor) {
         super.add(binsensor);
         System.out.println("Bin Sensor added !");
     }

@@ -35,12 +35,10 @@ public class SensorStation implements Subject, Observer {
 
     @Override
     public void Notify() {
-
     }
 
     @Override
     public void update(Object ob, Observer observer) {
-    
     }
 
 }
