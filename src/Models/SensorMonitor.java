@@ -7,9 +7,8 @@ package Models;
 
 import java.util.ArrayList;
 import Controller.*;
-import java.util.Random;
 import java.util.UUID;
-import view.AddSensor;
+
 /**
  *
  * @author Oshin
