@@ -15,7 +15,7 @@ import Controller.Validator;
  */
 public class harshana {
     public static void main(String[] args) {
-        Validator v=new Validator();
+        Validator v=Validator.getValidatorInstance();
         System.out.println(v.isValidStationID("ST001"));
     }
 }
