@@ -10,7 +10,6 @@ package Models;
  * @author Oshin
  */
 public class TrafficSensor extends Sensor{
-    
     public TrafficSensor(String TraficSensorId){
         super(TraficSensorId);
     }

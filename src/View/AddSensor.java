@@ -23,8 +23,7 @@ import javax.swing.table.DefaultTableModel;
 public class AddSensor extends javax.swing.JFrame {
 
     
-    private SetOfSensors SOS = new SetOfSensors();
-    
+    SetOfSensors SOS =SetOfSensors.getSetOfSensorsInstance();
     Clock clock = Clock.getInstance();
     SetOfSensorMonitors SOSM=SetOfSensorMonitors.getSetOfSensorMonitorsInstance();
     SetOfEmbelishedData SOED=SetOfEmbelishedData.getSetOfEmbelishedDataInstance();
