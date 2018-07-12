@@ -1,17 +1,13 @@
 package View;
 
 import Controller.SetOFData;
-import Controller.SetOfBinSensors;
 import Controller.SetOfEmbelishedData;
-import Controller.SetOfFloodSensors;
 import Controller.SetOfSensorMonitors;
 import Controller.SetOfSensors;
-import Controller.SetOfTrafficSensors;
 import Models.Clock;
 import Models.Data;
 import Models.EmbelishedData;
 
-import Models.Sensor;
 import Models.SensorMonitor;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
@@ -236,7 +232,7 @@ public class AddSensor extends javax.swing.JFrame {
             EmbelishedData ed = SOED.get(i);
 
             Vector v = new Vector();
-            v.add("jknjkn");
+            v.add(ed.getSensor().getSensorId());
             v.add(ed.getSensorDescription());
             v.add(ed.getCount());
             v.add(ed.getStatus());
