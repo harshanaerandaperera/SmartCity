@@ -1,5 +1,7 @@
 package View;
 
+
+
 import java.io.Serializable;
 import javax.swing.JOptionPane;
 
@@ -8,12 +10,12 @@ import javax.swing.JOptionPane;
  *
  * @author Harshana
  */
-public class Main extends javax.swing.JFrame implements Serializable {
+public class UserInterface extends javax.swing.JFrame implements Serializable {
 
     /**
      * Creates new form View
      */
-    public Main() {
+    public UserInterface() {
         initComponents();
         roleSwitchValidator();
     }
@@ -612,20 +614,21 @@ public class Main extends javax.swing.JFrame implements Serializable {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main().setVisible(true);
+                new UserInterface().setVisible(true);
             }
         });
     }
