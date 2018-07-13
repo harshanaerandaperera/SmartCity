@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/Controller/SetOfSensorMonitors.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>8</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/SHU/CSSD/SmartCity/src/Models/Clock.java</file>
             <file>file:/D:/SHU/CSSD/SmartCity/src/Models/TrafficSensor.java</file>
             <file>file:/D:/SHU/CSSD/SmartCity/src/View/AddSensor.java</file>
@@ -18,6 +28,9 @@
             <file>file:/D:/SHU/CSSD/SmartCity/src/app/Singleton.java</file>
             <file>file:/D:/SHU/CSSD/SmartCity/src/Models/SensorStation.java</file>
             <file>file:/D:/SHU/CSSD/SmartCity/src/Models/EmbelishedData.java</file>
+=======
+
+>>>>>>> ff11c758625ed1aa468a193abe20ce4de51effe0
         </group>
     </open-files>
 </project-private>

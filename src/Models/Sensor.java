@@ -5,6 +5,8 @@
  */
 package Models;
 
+import Controller.SetOFData;
+
 /**
  *
  * @author Oshin
@@ -12,6 +14,7 @@ package Models;
 public class Sensor {
 
  private String sensorId;
+ private SetOFData SOD=SetOFData.getSetOFDataInstance();
    
  public Sensor(String sensorId){
      this.sensorId=sensorId;
@@ -27,8 +30,18 @@ public String getSensorId() {
  * 
  * @return data
  */
-//    public Data getData() {
-//        Data data = new Data();
-//        return data;
-//    }
+    public Double getData() {
+         double count=0;
+       for(int i=0;i<SOD.size();i++){
+           
+          
+           
+           if(SOD.get(i).getSensorid().equals(this.sensorId)){
+               count++;
+           }
+           
+           
+       }
+       return count;
+    }
 }

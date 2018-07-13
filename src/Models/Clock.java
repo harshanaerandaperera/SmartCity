@@ -14,20 +14,21 @@ import java.util.ArrayList;
  *
  * @author Oshin
  */
-public class Clock implements Subject, Serializable {
+public class Clock implements Subject,Serializable{
+    
+     private ArrayList<Observer> Observers;
+     private static Clock clock;
+   
+     
+     private Clock(){
+         Observers=new ArrayList<>();
+     }
 
-    private ArrayList<Observer> Observers;
-    private static Clock clock;
-
-    private Clock() {
-        Observers = new ArrayList<>();
-    }
-
-    public static Clock getInstance() {
-        if (clock == null) {
-
-            clock = new Clock();
-            System.out.println("Inside Null Check ,Object is created :" + clock.hashCode());
+     public static Clock getInstance(){
+          if(clock==null){
+            
+            clock=new Clock();
+            System.out.println("Inside Null Check ,Object is created :"+clock.hashCode());
             System.out.println("---------------------------------------------------------------------");
         }
         return clock;
@@ -73,20 +74,17 @@ public class Clock implements Subject, Serializable {
 
         }
     }
-
-    private void trackTime() {
-        while (Observers.isEmpty() == false) {
-
-            waitForTime();
-            notifyObservers();
-
-        }
-//       for(int i=0;i<Observers.size();i++){
-//        
-//           waitForTime();
-//               notifyObservers();
-//       }
+     private void trackTime()
+    { 
+       while(Observers.isEmpty() == false){
+              
+                waitForTime();
+                notifyObservers();
+              
+       }
+               
+    } 
 
     }
 
-}
+
