@@ -35,17 +35,14 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
             Vector v = new Vector();
             v.add(st.getStationID());
             v.add(st.getStationName());
-            v.add(st.getCoords().get(0));
+            v.add(st.getCoords().get(0)+" , "+st.getCoords().get(1));
             v.add(0);
             dtm.addRow(v);
           }
         }
     
-    private void populateSensorStationDetailsToComboBox(){
-        
-            for(int i=0;i<SOSST.size();i++){
-                cmbSelectSensorStation.addItem(SOSST.get(i).getStationName()+"  ("+SOSST.get(i).getCoords().get(0)+","+SOSST.get(i).getCoords().get(1)+")");
-            }
+    private void populateSensorStationDetailsToComboBox(SensorStation st){
+        cmbSelectSensorStation.addItem(st.getStationName()+"  ("+st.getCoords().get(0)+","+st.getCoords().get(1)+")");
      }
 
     public void roleSwitchValidator() {     //rename to switch screen as class diagram
@@ -613,11 +610,10 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
 
     private void jTabbedPaneSubPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPaneSubPanelMouseClicked
             roleSwitchValidator();
-            int index=jTabbedPaneSubPanel.getSelectedIndex();
-            if(index==2){
-                populateSensorStationDetailsToComboBox();
-            }
-            
+//            int index=jTabbedPaneSubPanel.getSelectedIndex();
+//            if(index==2){
+//                populateSensorStationDetailsToComboBox();
+//            }
             
     }//GEN-LAST:event_jTabbedPaneSubPanelMouseClicked
 
@@ -656,6 +652,7 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         SOSST.addSensorStation(sensorstation);
         populateSensorStationList();
         
+        populateSensorStationDetailsToComboBox(sensorstation);
         
     }//GEN-LAST:event_btnAddSensorStationActionPerformed
 
