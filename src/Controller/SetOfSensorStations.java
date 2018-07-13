@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Debug
+ * @author Harshana
  */
 public class SetOfSensorStations extends ArrayList<SensorStation>{
     
