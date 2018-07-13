@@ -134,10 +134,9 @@ public class SensorMonitor implements Subject, Observer {
     }
 
     public void calculateDataCount(String sid) {
-        //    double count=0.0;
+
         for (int i = 0; i < SOD.size(); i++) {
             if (SOD.get(i).getSensorid() == sid) {
-
                 System.out.println("Sensor ID Match -------------------------------------------------------------------------");
             }
 
