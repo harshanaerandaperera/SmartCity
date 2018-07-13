@@ -32,14 +32,14 @@ public class SensorMonitor implements Subject, Observer {
 
     private Data reading;
 
-    
-    SetOfTrafficSensors SOTS =SetOfTrafficSensors.getSetOfTrafficSensorsInstance();
-    SetOfSensorMonitors SOSM=SetOfSensorMonitors.getSetOfSensorMonitorsInstance();
+    SetOfTrafficSensors SOTS = SetOfTrafficSensors.getSetOfTrafficSensorsInstance();
+    SetOfSensorMonitors SOSM = SetOfSensorMonitors.getSetOfSensorMonitorsInstance();
     SetOFData SOD = SetOFData.getSetOFDataInstance();
-    SetOfEmbelishedData SOED=SetOfEmbelishedData.getSetOfEmbelishedDataInstance();
-    SetOfBinSensors SOBS=SetOfBinSensors.getSetOfBinSensorsInstance();
-    SetOfFloodSensors SOFS=SetOfFloodSensors.getSetOfFloodSensorsInstance();
-    SetOfSensors SOS=SetOfSensors.getSetOfSensorsInstance();
+    SetOfEmbelishedData SOED = SetOfEmbelishedData.getSetOfEmbelishedDataInstance();
+    SetOfBinSensors SOBS = SetOfBinSensors.getSetOfBinSensorsInstance();
+    SetOfFloodSensors SOFS = SetOfFloodSensors.getSetOfFloodSensorsInstance();
+    SetOfSensors SOS = SetOfSensors.getSetOfSensorsInstance();
+
     /**
      * Constructor for Sensor Monitor object with status , interval , Sensor
      * Type
@@ -116,56 +116,14 @@ public class SensorMonitor implements Subject, Observer {
     }
 
     public void shouldTakeReading(Observer observer) {
-        
-      
-       
+
         for (int i = 0; i < SOSM.size(); i++) {
             for (int j = 0; j < SOED.size(); j++) {
                 if (SOSM.get(i) == observer) {
-
-                    if (SOSM.get(i).getSensor().getSensorId().equals(SOED.get(j).getSensor().getSensorId())) {
-                        
-                        double count=0;
-                       
-                        for(int k=0;k<SOD.size();k++){
-                            
-                            if(SOSM.get(i).getSensor().getSensorId().equals(SOD.get(k).getSensorid()))
-                              
-                              count++;
-                            
-//                            
-//                            System.out.println("SOSM SID "+SOSM.get(i).getSensor().getSensorId());
-//                            System.out.println("SOD SID "+SOD.get(i).getSensorid());
-                        }
-                        
-                        
-                        System.out.println("----------------------------------count"+count);
-                       SOED.get(j).setCount(count);
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                       // System.out.println("--------------------------------------------------------------------size of sod" + SOD.size());
-                     
-                        
-                         
+                      SOED.get(j).setCount(SOSM.get(i).getSensor().getData());
                     }
-
-                }
-
-            //}
-
-//           if(SOSM.get(i)==observer){
-//               System.out.println("i"+i);
-//                  this.reading=SOSM.get(i).sensor.getData();
-//                  System.out.println("Reading -------------------------"+this.reading.getLimit());
-//              }
-//            
+            }
         }
-    }
 //   public EmbelishedData embellishData(Sensor senor){
 //        long timeInMills = 10; 
 //        ArrayList<Double> coords = getCoords();
@@ -175,20 +133,18 @@ public class SensorMonitor implements Subject, Observer {
 //    }
 //    
     }
-    public void calculateDataCount(String sid){
-    //    double count=0.0;
-        for(int i=0;i<SOD.size();i++){
-            if(SOD.get(i).getSensorid()==sid){
-                
+
+    public void calculateDataCount(String sid) {
+        //    double count=0.0;
+        for (int i = 0; i < SOD.size(); i++) {
+            if (SOD.get(i).getSensorid() == sid) {
+
                 System.out.println("Sensor ID Match -------------------------------------------------------------------------");
             }
-            
-            
-        }
-        
-    }
 
-   
+        }
+
+    }
 
     /**
      * @return the sensor
@@ -231,7 +187,5 @@ public class SensorMonitor implements Subject, Observer {
     public SetOfEmbelishedData getSOED() {
         return SOED;
     }
-
-
 
 }

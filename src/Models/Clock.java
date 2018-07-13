@@ -18,10 +18,7 @@ public class Clock implements Subject,Serializable{
     
      private ArrayList<Observer> Observers;
      private static Clock clock;
-     /**
-      * Time required reach to wakeup clock
-      */
-    // public double wakeUpTime=100;
+   
      
      private Clock(){
          Observers=new ArrayList<>();
@@ -62,7 +59,7 @@ public class Clock implements Subject,Serializable{
     
      public void waitForTime()
     {
-        double wakeUpTime=2;
+        double wakeUpTime=2;//190000
        // System.out.println("waiting....");
         while (wakeUpTime != 0) {
             wakeUpTime--;
@@ -86,12 +83,6 @@ public class Clock implements Subject,Serializable{
                 notifyObservers();
               
        }
-//       for(int i=0;i<Observers.size();i++){
-//        
-//           waitForTime();
-//               notifyObservers();
-//       }
-      
                
     } 
 
