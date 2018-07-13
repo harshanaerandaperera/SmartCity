@@ -70,7 +70,6 @@ public class AddSensor extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         sid = new javax.swing.JTextField();
         databutton = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -137,7 +136,15 @@ public class AddSensor extends javax.swing.JFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         mytesttable.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 mytesttableMouseMoved(evt);
@@ -149,12 +156,6 @@ public class AddSensor extends javax.swing.JFrame {
 
         jLabel3.setText("SensorID");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 290, -1, 30));
-
-        sid.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sidActionPerformed(evt);
-            }
-        });
         getContentPane().add(sid, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 300, 80, -1));
 
         databutton.setText("Add Data");
@@ -164,14 +165,6 @@ public class AddSensor extends javax.swing.JFrame {
             }
         });
         getContentPane().add(databutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 370, -1, -1));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 440, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -218,10 +211,6 @@ public class AddSensor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_sensorAddButtonActionPerformed
 
-    private void sidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sidActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_sidActionPerformed
-
     private void databuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_databuttonActionPerformed
         SetOFData SOD = SetOFData.getSetOFDataInstance();
         String sensorid = sid.getText();
@@ -251,10 +240,6 @@ public class AddSensor extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_mytesttableMouseMoved
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -295,7 +280,6 @@ public class AddSensor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> SensortypeCombo;
     private javax.swing.JButton databutton;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

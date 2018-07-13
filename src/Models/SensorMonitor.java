@@ -10,10 +10,6 @@ import Controller.*;
 import java.util.UUID;
 
 /**
- *
- * @author Oshin
- */
-/**
  * SensorMonitor class contain details of a Sensor Monitor SensorMonitor class
  * contain Sensor Station as an observer
  *
@@ -120,8 +116,10 @@ public class SensorMonitor implements Subject, Observer {
         for (int i = 0; i < SOSM.size(); i++) {
             for (int j = 0; j < SOED.size(); j++) {
                 if (SOSM.get(i) == observer) {
-                      SOED.get(j).setCount(SOSM.get(i).getSensor().getData());
+                    if (SOSM.get(i).getSensor().getSensorId().equals(SOED.get(j).getSensor().getSensorId())) {
+                        SOED.get(j).setCount(SOSM.get(i).getSensor().getData());
                     }
+                }
             }
         }
 //   public EmbelishedData embellishData(Sensor senor){
@@ -135,10 +133,9 @@ public class SensorMonitor implements Subject, Observer {
     }
 
     public void calculateDataCount(String sid) {
-        //    double count=0.0;
+
         for (int i = 0; i < SOD.size(); i++) {
             if (SOD.get(i).getSensorid() == sid) {
-
                 System.out.println("Sensor ID Match -------------------------------------------------------------------------");
             }
 

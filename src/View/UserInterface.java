@@ -6,7 +6,6 @@ import Controller.SetOfSensorStations;
 import Models.SensorStation;
 import java.io.Serializable;
 import java.util.Vector;
-import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
