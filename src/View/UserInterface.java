@@ -2,8 +2,13 @@ package View;
 
 
 
+import Controller.SetOfSensorStations;
+import Models.SensorStation;
 import java.io.Serializable;
+import java.util.Vector;
+import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 //IT16083424 Perera P.A.H.E     SHU ID=27045240 
 /**
@@ -12,6 +17,8 @@ import javax.swing.JOptionPane;
  */
 public class UserInterface extends javax.swing.JFrame implements Serializable {
 
+    SetOfSensorStations SOSST=SetOfSensorStations.getSetOfSensorStationsInstance();
+    
     /**
      * Creates new form View
      */
@@ -19,8 +26,29 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         initComponents();
         roleSwitchValidator();
     }
+    
+    private void populateSensorStationList(){
+         DefaultTableModel dtm = (DefaultTableModel) tblStationManagement.getModel();
+         dtm.setRowCount(0);
+        for (int i = 0; i < SOSST.size(); i++) {
+            SensorStation st = SOSST.get(i);
+            Vector v = new Vector();
+            v.add(st.getStationID());
+            v.add(st.getStationName());
+            v.add(st.getCoords().get(0));
+            v.add(0);
+            dtm.addRow(v);
+          }
+        }
+    
+    private void populateSensorStationDetailsToComboBox(){
+        
+            for(int i=0;i<SOSST.size();i++){
+                cmbSelectSensorStation.addItem(SOSST.get(i).getStationName()+"  ("+SOSST.get(i).getCoords().get(0)+","+SOSST.get(i).getCoords().get(1)+")");
+            }
+     }
 
-    public void roleSwitchValidator() {
+    public void roleSwitchValidator() {     //rename to switch screen as class diagram
         int selectedIndex = jTabbedPaneMainPanel.getSelectedIndex();
         if (selectedIndex == 0) {
             jTabbedPaneMainPanel.setEnabledAt(1, false);
@@ -84,7 +112,7 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         jSeparator9 = new javax.swing.JSeparator();
         txtUpdateUserName = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
-        jTabbedPane4 = new javax.swing.JTabbedPane();
+        jTabbedPaneSubPanel = new javax.swing.JTabbedPane();
         jPanel10 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -296,10 +324,10 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
 
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTabbedPane4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jTabbedPane4.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTabbedPaneSubPanel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jTabbedPaneSubPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTabbedPane4MouseClicked(evt);
+                jTabbedPaneSubPanelMouseClicked(evt);
             }
         });
 
@@ -309,7 +337,7 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map.PNG"))); // NOI18N
         jPanel10.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, -20, 1010, 540));
 
-        jTabbedPane4.addTab("             Map              ", jPanel10);
+        jTabbedPaneSubPanel.addTab("             Map              ", jPanel10);
 
         jPanel2.setBackground(new java.awt.Color(32, 33, 35));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -391,6 +419,11 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         btnAddSensorStation.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         btnAddSensorStation.setForeground(new java.awt.Color(255, 255, 255));
         btnAddSensorStation.setText("Add Sensor Station");
+        btnAddSensorStation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddSensorStationActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnAddSensorStation, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 30, -1, -1));
 
         jSeparator14.setBackground(new java.awt.Color(255, 255, 255));
@@ -408,7 +441,7 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         jLabel22.setText("Station ID:");
         jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 80, -1));
 
-        jTabbedPane4.addTab("                   Station Management                   ", jPanel2);
+        jTabbedPaneSubPanel.addTab("                   Station Management                   ", jPanel2);
 
         jPanel7.setBackground(new java.awt.Color(32, 33, 35));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -433,7 +466,7 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         });
         jScrollPane4.setViewportView(tblViewSensorStation);
 
-        jPanel7.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 1150, 310));
+        jPanel7.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 1160, 310));
 
         cmbStatus.setForeground(new java.awt.Color(255, 255, 255));
         cmbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Active", "Not-Active" }));
@@ -502,7 +535,12 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         jPanel7.add(btnRemoveSensor, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 450, 260, -1));
 
         cmbSelectSensorStation.setForeground(new java.awt.Color(255, 255, 255));
-        cmbSelectSensorStation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Sensor Station", "Station Name 1, (x,y)", "Station Name 2, (x,y)", "Station Name 3, (x,y)" }));
+        cmbSelectSensorStation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select A Sensor Station" }));
+        cmbSelectSensorStation.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cmbSelectSensorStationMouseClicked(evt);
+            }
+        });
         cmbSelectSensorStation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbSelectSensorStationActionPerformed(evt);
@@ -510,9 +548,9 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         });
         jPanel7.add(cmbSelectSensorStation, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 349, -1));
 
-        jTabbedPane4.addTab("              View Sensor Station             ", jPanel7);
+        jTabbedPaneSubPanel.addTab("              View Sensor Station             ", jPanel7);
 
-        jPanel6.add(jTabbedPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 546));
+        jPanel6.add(jTabbedPaneSubPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 546));
 
         jTabbedPaneMainPanel.addTab("           Station Management         ", jPanel6);
 
@@ -566,18 +604,25 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
 
     private void jTabbedPaneMainPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPaneMainPanelMouseClicked
         roleSwitchValidator();
+        
     }//GEN-LAST:event_jTabbedPaneMainPanelMouseClicked
 
     private void jTabbedPane3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane3MouseClicked
 
     }//GEN-LAST:event_jTabbedPane3MouseClicked
 
-    private void jTabbedPane4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane4MouseClicked
-
-    }//GEN-LAST:event_jTabbedPane4MouseClicked
+    private void jTabbedPaneSubPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPaneSubPanelMouseClicked
+            roleSwitchValidator();
+            int index=jTabbedPaneSubPanel.getSelectedIndex();
+            if(index==2){
+                populateSensorStationDetailsToComboBox();
+            }
+            
+            
+    }//GEN-LAST:event_jTabbedPaneSubPanelMouseClicked
 
     private void cmbSelectSensorStationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSelectSensorStationActionPerformed
-        if (cmbSelectSensorStation.getSelectedIndex() == 0) {
+       if (cmbSelectSensorStation.getSelectedIndex() == 0) {
             System.out.println("index 0");
         } else if (cmbSelectSensorStation.getSelectedIndex() == 1) {
             System.out.println("index 1");
@@ -599,6 +644,24 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         jTabbedPaneMainPanel.setSelectedIndex(1);
         roleSwitchValidator();
     }//GEN-LAST:event_btnRoleUserActionPerformed
+
+    private void btnAddSensorStationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSensorStationActionPerformed
+
+        String stationID=txtStationID.getText();
+        String stationName=txtSensorStationName.getText();
+        Double longitude=Double.parseDouble(txtLongitude.getText());               
+        Double latitude=Double.parseDouble(txtLatitude.getText());   
+        
+        SensorStation sensorstation=new SensorStation(stationID,stationName,longitude,latitude);
+        SOSST.addSensorStation(sensorstation);
+        populateSensorStationList();
+        
+        
+    }//GEN-LAST:event_btnAddSensorStationActionPerformed
+
+    private void cmbSelectSensorStationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbSelectSensorStationMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbSelectSensorStationMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -684,8 +747,8 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane3;
-    private javax.swing.JTabbedPane jTabbedPane4;
     private javax.swing.JTabbedPane jTabbedPaneMainPanel;
+    private javax.swing.JTabbedPane jTabbedPaneSubPanel;
     private javax.swing.JRadioButton radFemale;
     private javax.swing.ButtonGroup radGrpGender;
     private javax.swing.JRadioButton radMale;
