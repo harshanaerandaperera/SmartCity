@@ -13,19 +13,22 @@ import java.util.ArrayList;
  * @author Oshin
  */
 public class SetOfFloodSensors extends ArrayList<FloodSensor> {
+
     private static SetOfFloodSensors SetOfFloodSensorsInstance;
-    private SetOfFloodSensors(){
+
+    private SetOfFloodSensors() {
     }
-    public static SetOfFloodSensors getSetOfFloodSensorsInstance(){
-        if(SetOfFloodSensorsInstance==null){
-            SetOfFloodSensorsInstance=new SetOfFloodSensors();
+
+    public static SetOfFloodSensors getSetOfFloodSensorsInstance() {
+        if (SetOfFloodSensorsInstance == null) {
+            SetOfFloodSensorsInstance = new SetOfFloodSensors();
         }
         return SetOfFloodSensorsInstance;
     }
-    
-    public void addFloodSensor(FloodSensor floodsensor){
+
+    public void addFloodSensor(FloodSensor floodsensor) {
         super.add(floodsensor);
         System.out.println("Flood Sensor Added !");
     }
-    
+
 }

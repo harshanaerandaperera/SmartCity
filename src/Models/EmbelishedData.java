@@ -5,8 +5,6 @@
  */
 package Models;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author Oshin
@@ -48,25 +46,22 @@ public class EmbelishedData {
         this.sensor = sensor;
     }
 
-   
-   
     private double count;
     private Sensor sensor;
     private String SensorDescription;
-   // private Data data=new Data();
+    // private Data data=new Data();
 
     private String status;
     private double frequency;
-    
-    public EmbelishedData(Sensor sensor,String SensorDescription, String status, double frequency) {
-      this.count=0.0;
-      this.sensor=sensor;
-      this.SensorDescription=SensorDescription;
-      this.status=status;
-      this.frequency=frequency;
+
+    public EmbelishedData(Sensor sensor, String SensorDescription, String status, double frequency) {
+        this.count = 0.0;
+        this.sensor = sensor;
+        this.SensorDescription = SensorDescription;
+        this.status = status;
+        this.frequency = frequency;
     }
-    
-    
+
     /**
      * @return the SensorDescription
      */
@@ -88,13 +83,13 @@ public class EmbelishedData {
 //    public void setData(Data data) {
 //        this.data = data;
 //    }
-
     /**
      * @return the status
      */
     public String getStatus() {
         return status;
     }
+
     /**
      * @return the frequency
      */
@@ -102,6 +97,4 @@ public class EmbelishedData {
         return frequency;
     }
 
-    
-  
 }

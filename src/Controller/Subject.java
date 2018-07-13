@@ -10,10 +10,11 @@ package Controller;
  * @author Oshin
  */
 public interface Subject {
-    
+
     public void registerObserver(Observer obs);
+
     public void unRegisterObserver(Observer obs);
+
     public void Notify();
-    
-    
+
 }

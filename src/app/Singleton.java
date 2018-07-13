@@ -5,8 +5,6 @@
  */
 package app;
 
-import java.io.*;
-import java.io.ObjectStreamException;
 import java.io.Serializable;
 
 /**

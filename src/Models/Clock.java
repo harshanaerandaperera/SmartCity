@@ -32,17 +32,18 @@ public class Clock implements Subject,Serializable{
             System.out.println("---------------------------------------------------------------------");
         }
         return clock;
-     }
+    }
+
     //Overide readResolve methode in Serializable
-     private Object readResolve (){
+    private Object readResolve() {
         return clock;
     }
-    
+
     @Override
     public void registerObserver(Observer obs) {
-            Observers.add(obs);
-            new Thread(this::trackTime).start();
-           //trackTime();
+        Observers.add(obs);
+        new Thread(this::trackTime).start();
+        //trackTime();
     }
 
     @Override
@@ -53,27 +54,25 @@ public class Clock implements Subject,Serializable{
     @Override
     public void Notify() {
     }
-/**
- * Wait for time to wakes the sensor
- */
-    
-     public void waitForTime()
-    {
-        double wakeUpTime=2;//190000
-       // System.out.println("waiting....");
+
+    /**
+     * Wait for time to wakes the sensor
+     */
+    public void waitForTime() {
+        double wakeUpTime = 2;
         while (wakeUpTime != 0) {
             wakeUpTime--;
-           System.out.println("reduce time..");
+            System.out.println("reduce time..");
         }
     }
-     private void notifyObservers()
-    {
-       
-       for(int i=0; i<Observers.size(); i++){
-           
-           Observers.get(i).update(this,Observers.get(i));
-         
-            }
+
+    private void notifyObservers() {
+
+        for (int i = 0; i < Observers.size(); i++) {
+
+            Observers.get(i).update(this, Observers.get(i));
+
+        }
     }
      private void trackTime()
     { 
@@ -86,7 +85,6 @@ public class Clock implements Subject,Serializable{
                
     } 
 
-   
-     
-     
-}
+    }
+
+

@@ -10,17 +10,18 @@ import java.util.Observer;
 
 /**
  *
- * @author Oshin
+ * @author Harshana
  */
-public class MotherShip implements Observer{
+public class MotherShip implements Observer {
+
     String ID;
-    public MotherShip(String ID){
-        this.ID=ID;
+
+    public MotherShip(String ID) {
+        this.ID = ID;
     }
 
     @Override
     public void update(Observable o, Object o1) {
-
     }
-    
+
 }

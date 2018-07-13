@@ -9,8 +9,9 @@ package Models;
  *
  * @author Oshin
  */
-public class FloodSensor extends Sensor{
-    public FloodSensor(String floodSensorId){
+public class FloodSensor extends Sensor {
+
+    public FloodSensor(String floodSensorId) {
         super(floodSensorId);
     }
 }

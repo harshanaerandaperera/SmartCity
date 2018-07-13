@@ -12,21 +12,22 @@ import java.util.ArrayList;
  *
  * @author Oshin
  */
-public class SetOfEmbelishedData extends ArrayList<EmbelishedData>{
+public class SetOfEmbelishedData extends ArrayList<EmbelishedData> {
+
     private static SetOfEmbelishedData SetOfEmbelishedDataInstance;
-    private SetOfEmbelishedData(){
+
+    private SetOfEmbelishedData() {
     }
-    public static SetOfEmbelishedData getSetOfEmbelishedDataInstance(){
-        if(SetOfEmbelishedDataInstance==null){
-            SetOfEmbelishedDataInstance=new SetOfEmbelishedData();
+
+    public static SetOfEmbelishedData getSetOfEmbelishedDataInstance() {
+        if (SetOfEmbelishedDataInstance == null) {
+            SetOfEmbelishedDataInstance = new SetOfEmbelishedData();
         }
         return SetOfEmbelishedDataInstance;
     }
-    
-    public void addEmblishedData(EmbelishedData emblishedData){
-            super.add(emblishedData);
+
+    public void addEmblishedData(EmbelishedData emblishedData) {
+        super.add(emblishedData);
     }
-    
-   
-    
+
 }
