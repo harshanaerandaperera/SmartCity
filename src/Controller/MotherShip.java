@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author Harshana
  */
-public class MotherShip {
+public class MotherShip implements Observer {
     //private {id} ID;
     private ArrayList<SensorStation> sensorStations ;
     
@@ -27,8 +27,9 @@ public class MotherShip {
      * 
      * @param aStation 
      */
-    public void addNewSensorStation(SensorStation aStation){
-        sensorStations.add(aStation);
+    public void addNewSensorStation(SensorStation currentSensorStation){
+        sensorStations.add(currentSensorStation);
+        currentSensorStation.registerObserver((Observer) this);
     }
     /**
      * 
@@ -62,4 +63,9 @@ public class MotherShip {
     {
         //todo
     }
+
+    @Override
+    public void update(Object ob, Observer observer) {
+    }
+    
 }

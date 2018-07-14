@@ -5,6 +5,7 @@ package View;
 import Controller.MotherShip;
 import Models.SensorStation;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -16,7 +17,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class UserInterface extends javax.swing.JFrame implements Serializable {
 
-    MotherShip mothership=new MotherShip();
+    private MotherShip mothership=new MotherShip();
+    private ArrayList<SensorStation> sensorStations;
+    SensorStation currentSensorStation;
     
     /**
      * Creates new form View
@@ -29,7 +32,8 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
     private void populateSensorStationList(){
          DefaultTableModel dtm = (DefaultTableModel) tblStationManagement.getModel();
          dtm.setRowCount(0);
-        for (int i = 0; i < mothership.getSensorStations().size(); i++) {
+         sensorStations=mothership.getSensorStations();
+        for (int i = 0; i < sensorStations.size(); i++) {
             SensorStation st = mothership.getSensorStations().get(i);
             Vector v = new Vector();
             v.add(st.getStationID());
@@ -602,11 +606,7 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
 
     private void jTabbedPaneStationMgtSubPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPaneStationMgtSubPanelMouseClicked
             switchScreens();
-//            int index=jTabbedPaneSubPanel.getSelectedIndex();
-//            if(index==2){
-//                populateSensorStationDetailsToComboBox();
-//            }
-            
+
     }//GEN-LAST:event_jTabbedPaneStationMgtSubPanelMouseClicked
 
     private void cmbSelectSensorStationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSelectSensorStationActionPerformed
@@ -641,10 +641,10 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         Double longitude=Double.parseDouble(txtLongitude.getText());               
 
         
-        SensorStation sensorstation=new SensorStation(stationID,stationName,latitude,longitude);
-        mothership.addNewSensorStation(sensorstation);
+        currentSensorStation=new SensorStation(stationID,stationName,latitude,longitude);
+        mothership.addNewSensorStation(currentSensorStation);
         populateSensorStationList();
-        populateSensorStationDetailsToComboBox(sensorstation);
+        populateSensorStationDetailsToComboBox(currentSensorStation);
         
     }//GEN-LAST:event_btnAddSensorStationActionPerformed
 

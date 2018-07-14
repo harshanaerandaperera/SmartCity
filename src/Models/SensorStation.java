@@ -20,8 +20,8 @@ public class SensorStation implements Subject, Observer {
     //As thiis is an Association relationship with location contain an object from the location class
     private Location location;
     private ArrayList<Double> coords = new ArrayList<>();
-    private ArrayList<Observer> Observers;
-
+    //Hrere is one single observer
+    private Observer observer;
     public SensorStation(){
         
     }
@@ -30,7 +30,6 @@ public class SensorStation implements Subject, Observer {
         this.stationID = instationID;
         this.stationName=instationName;
         location=new Location(inlatitude,inlongitude);
-        Observers = new ArrayList<>();
     }
 
     /**
@@ -39,12 +38,13 @@ public class SensorStation implements Subject, Observer {
      */
     @Override
     public void registerObserver(Observer obs) {
-        Observers.add(obs);
+       observer=obs;
+       System.out.println(obs);
     }
 
     @Override
     public void unRegisterObserver(Observer obs) {
-        Observers.remove(obs);
+        observer=null;
     }
 
     @Override
