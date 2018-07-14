@@ -22,6 +22,10 @@ public class SensorStation implements Subject, Observer {
     private ArrayList<Double> coords = new ArrayList<>();
     private ArrayList<Observer> Observers;
 
+    public SensorStation(){
+        
+    }
+    
     public SensorStation(String instationID,String instationName,Double inlatitude,Double inlongitude) {
         this.stationID = instationID;
         this.stationName=instationName;

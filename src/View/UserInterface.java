@@ -2,7 +2,7 @@ package View;
 
 
 
-import Controller.SetOfSensorStations;
+import Controller.MotherShip;
 import Models.SensorStation;
 import java.io.Serializable;
 import java.util.Vector;
@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class UserInterface extends javax.swing.JFrame implements Serializable {
 
-    SetOfSensorStations SOSST=SetOfSensorStations.getSetOfSensorStationsInstance();
+    MotherShip mothership=new MotherShip();
     
     /**
      * Creates new form View
@@ -29,8 +29,8 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
     private void populateSensorStationList(){
          DefaultTableModel dtm = (DefaultTableModel) tblStationManagement.getModel();
          dtm.setRowCount(0);
-        for (int i = 0; i < SOSST.size(); i++) {
-            SensorStation st = SOSST.get(i);
+        for (int i = 0; i < mothership.getSensorStations().size(); i++) {
+            SensorStation st = mothership.getSensorStations().get(i);
             Vector v = new Vector();
             v.add(st.getStationID());
             v.add(st.getStationName());
@@ -642,9 +642,8 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
 
         
         SensorStation sensorstation=new SensorStation(stationID,stationName,latitude,longitude);
-        SOSST.addSensorStation(sensorstation);
+        mothership.addNewSensorStation(sensorstation);
         populateSensorStationList();
-        
         populateSensorStationDetailsToComboBox(sensorstation);
         
     }//GEN-LAST:event_btnAddSensorStationActionPerformed
