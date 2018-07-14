@@ -34,14 +34,14 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
             Vector v = new Vector();
             v.add(st.getStationID());
             v.add(st.getStationName());
-            v.add(st.getCoords().get(0)+" , "+st.getCoords().get(1));
+            v.add(st.getLocation().getCoords().get(0)+" , "+st.getLocation().getCoords().get(1));
             v.add(0);
             dtm.addRow(v);
           }
         }
     
     private void populateSensorStationDetailsToComboBox(SensorStation st){
-        cmbSelectSensorStation.addItem(st.getStationName()+"  ("+st.getCoords().get(0)+","+st.getCoords().get(1)+")");
+        cmbSelectSensorStation.addItem(st.getStationName()+"  ("+st.getLocation().getCoords().get(0)+" , "+st.getLocation().getCoords().get(1)+")");
      }
 
     
@@ -139,6 +139,9 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         jPanelParamedic = new javax.swing.JPanel();
         jPanelWasteCollector = new javax.swing.JPanel();
         jPanelDummyData = new javax.swing.JPanel();
+        btnAddGarbage = new javax.swing.JButton();
+        cmbAvailableBinSensorDummy = new javax.swing.JComboBox<>();
+        txtBinDummy = new javax.swing.JTextField();
         jPanelExit = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -331,33 +334,33 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
 
         jSeparator11.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator11.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 60, 100, 10));
+        jPanel2.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 60, 100, 10));
 
         txtLongitude.setBackground(new java.awt.Color(32, 33, 35));
         txtLongitude.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         txtLongitude.setForeground(new java.awt.Color(255, 255, 255));
         txtLongitude.setBorder(null);
-        jPanel2.add(txtLongitude, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 40, 100, -1));
+        jPanel2.add(txtLongitude, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 40, 100, -1));
 
         jLabel16.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Longitude:");
-        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 40, 80, -1));
+        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 40, 80, -1));
 
         jSeparator12.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator12.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 60, 100, 10));
+        jPanel2.add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 60, 100, 10));
 
         txtLatitude.setBackground(new java.awt.Color(32, 33, 35));
         txtLatitude.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         txtLatitude.setForeground(new java.awt.Color(255, 255, 255));
         txtLatitude.setBorder(null);
-        jPanel2.add(txtLatitude, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 40, 100, -1));
+        jPanel2.add(txtLatitude, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 40, 100, -1));
 
         jLabel17.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Latitude:");
-        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 40, 70, -1));
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 40, 70, -1));
 
         btnRemoveSensorStation.setBackground(new java.awt.Color(38, 50, 56));
         btnRemoveSensorStation.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
@@ -535,17 +538,14 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         jTabbedPaneMainPanel.addTab("  WASTE COLLECTOR  ", jPanelWasteCollector);
 
         jPanelDummyData.setBackground(new java.awt.Color(32, 33, 35));
+        jPanelDummyData.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanelDummyDataLayout = new javax.swing.GroupLayout(jPanelDummyData);
-        jPanelDummyData.setLayout(jPanelDummyDataLayout);
-        jPanelDummyDataLayout.setHorizontalGroup(
-            jPanelDummyDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1340, Short.MAX_VALUE)
-        );
-        jPanelDummyDataLayout.setVerticalGroup(
-            jPanelDummyDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 542, Short.MAX_VALUE)
-        );
+        btnAddGarbage.setText("add garbage");
+        jPanelDummyData.add(btnAddGarbage, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 310, -1, -1));
+
+        cmbAvailableBinSensorDummy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Available bin sensors to add garbage" }));
+        jPanelDummyData.add(cmbAvailableBinSensorDummy, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, -1, -1));
+        jPanelDummyData.add(txtBinDummy, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, 160, -1));
 
         jTabbedPaneMainPanel.addTab("  DUMMY DATA  ", jPanelDummyData);
 
@@ -637,10 +637,11 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
 
         String stationID=txtStationID.getText();
         String stationName=txtSensorStationName.getText();
-        Double longitude=Double.parseDouble(txtLongitude.getText());               
         Double latitude=Double.parseDouble(txtLatitude.getText());   
+        Double longitude=Double.parseDouble(txtLongitude.getText());               
+
         
-        SensorStation sensorstation=new SensorStation(stationID,stationName,longitude,latitude);
+        SensorStation sensorstation=new SensorStation(stationID,stationName,latitude,longitude);
         SOSST.addSensorStation(sensorstation);
         populateSensorStationList();
         
@@ -686,6 +687,7 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddGarbage;
     private javax.swing.JButton btnAddSensor;
     private javax.swing.JButton btnAddSensorStation;
     private javax.swing.JButton btnRemoveSensor;
@@ -695,6 +697,7 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
     private javax.swing.JButton btnRoleUser;
     private javax.swing.JButton btnRoleWasteCollector;
     private javax.swing.JButton btnUpdateSelectedSensor;
+    private javax.swing.JComboBox<String> cmbAvailableBinSensorDummy;
     private javax.swing.JComboBox<String> cmbSelectSensorStation;
     private javax.swing.JComboBox<String> cmbSensorType;
     private javax.swing.JComboBox<String> cmbStatus;
@@ -736,6 +739,7 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
     private javax.swing.JTable tblStationManagement;
     private javax.swing.JTable tblViewSensorStation;
     private javax.swing.JTextField txtAge;
+    private javax.swing.JTextField txtBinDummy;
     private javax.swing.JTextField txtFrequency;
     private javax.swing.JTextField txtHeight;
     private javax.swing.JTextField txtLatitude;

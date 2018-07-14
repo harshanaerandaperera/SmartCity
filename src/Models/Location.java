@@ -5,15 +5,37 @@
  */
 package Models;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Harshana
  */
 public class Location {
 
+  
     private double latitude;
     private double longitude;
 
+    public Location(double alatitude ,double alongitude  ){
+       this.latitude=alatitude;
+        this.longitude=alongitude;
+         
+      }
+    
+   public ArrayList<Double> getCoords() {
+        ArrayList<Double> coords = new ArrayList<>();
+        
+        coords.add(latitude);
+        coords.add(longitude);
+        
+        return coords;
+    } 
+   
+   public void toAddress(){
+     //todo   
+    }
+      
     /**
      * @return the latitude
      */

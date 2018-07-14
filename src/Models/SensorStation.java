@@ -15,18 +15,17 @@ import java.util.ArrayList;
  */
 public class SensorStation implements Subject, Observer {
 
-   
     private String stationID;
     private String stationName;
+    //As thiis is an Association relationship with location contain an object from the location class
+    private Location location;
     private ArrayList<Double> coords = new ArrayList<>();
-    
     private ArrayList<Observer> Observers;
 
-    public SensorStation(String instationID,String instationName,Double inlongitude,Double inlatitude) {
+    public SensorStation(String instationID,String instationName,Double inlatitude,Double inlongitude) {
         this.stationID = instationID;
         this.stationName=instationName;
-        this.coords.add(inlongitude);
-        this.coords.add(inlatitude);
+        location=new Location(inlatitude,inlongitude);
         Observers = new ArrayList<>();
     }
 
@@ -87,18 +86,18 @@ public class SensorStation implements Subject, Observer {
         this.stationName = stationName;
     }
 
-    /**
-     * @return the coords
+ /**
+     * @return the location
      */
-    public ArrayList<Double> getCoords() {
-        return coords;
+    public Location getLocation() {
+        return location;
     }
 
     /**
-     * @param coords the coords to set
+     * @param location the location to set
      */
-    public void setCoords(ArrayList<Double> coords) {
-        this.coords = coords;
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
 }
