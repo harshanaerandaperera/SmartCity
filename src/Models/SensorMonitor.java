@@ -70,6 +70,10 @@ public class SensorMonitor implements Subject, Observer {
         }
     }
 
+    SensorMonitor() {
+
+    }
+
     public void doTick(Observer observer) {
 
         System.out.println("take readings------------------------------------------------------------------------------------------------------------");

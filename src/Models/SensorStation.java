@@ -14,7 +14,8 @@ import java.util.ArrayList;
  * @author Harshana
  */
 public class SensorStation implements Subject, Observer {
-
+    
+    private ArrayList<SensorMonitor> sensormonitors=new ArrayList<SensorMonitor>() ;
     private String stationID;
     private String stationName;
     //As thiis is an Association relationship with location contain an object from the location class
@@ -31,6 +32,28 @@ public class SensorStation implements Subject, Observer {
         this.stationName=instationName;
         location=new Location(inlatitude,inlongitude);
     }
+    
+    public void addNewSensorMonitor(SensorMonitor aSensorMonitor){
+        sensormonitors.add(aSensorMonitor);
+    }
+    public void removeSensorMonitor(SensorMonitor aSensorMonitor){
+        sensormonitors.remove(aSensorMonitor);
+    }
+    public SensorMonitor getSensorMonitor(String sensorMonitorId){
+       SensorMonitor sensormonitor=new SensorMonitor();
+        for(int i=0;i<sensormonitors.size();i++){
+            if(sensormonitors.get(i).getSensorMonitorID().equals(sensorMonitorId)){
+                sensormonitor=sensormonitors.get(i);
+            }
+        }
+        return sensormonitor;
+        
+    }
+    
+    public ArrayList<SensorMonitor> getSensorMonitors(){
+        return sensormonitors;
+    }
+    
 
     /**
      * Override Subject Interface Methods
