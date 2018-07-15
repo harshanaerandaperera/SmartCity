@@ -126,25 +126,26 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
 
         radGrpGender = new javax.swing.ButtonGroup();
         jTabbedPaneMainPanel = new javax.swing.JTabbedPane();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jTabbedPaneHome = new javax.swing.JTabbedPane();
         jPanelWelcome = new javax.swing.JPanel();
         btnRoleAdmin = new javax.swing.JButton();
         btnRoleParamedic = new javax.swing.JButton();
         btnRoleUser = new javax.swing.JButton();
         btnRoleWasteCollector = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblWelcomeImage = new javax.swing.JLabel();
         jPanelUser = new javax.swing.JPanel();
-        jTabbedPaneUserMgtSubPanel = new javax.swing.JTabbedPane();
-        jPanel4 = new javax.swing.JPanel();
-        txtWeight = new javax.swing.JTextField();
-        txtHeight = new javax.swing.JTextField();
-        txtAge = new javax.swing.JTextField();
-        jPanel8 = new javax.swing.JPanel();
+        jTabbedPaneUserSubPanel = new javax.swing.JTabbedPane();
+        jPanelUserFloodNotify = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tblUserFloodAlerts = new javax.swing.JTable();
+        jPanelUserTrafficMonitor = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tblUserTraffic = new javax.swing.JTable();
         jPanelCityCouncil = new javax.swing.JPanel();
         jTabbedPaneStationMgtSubPanel = new javax.swing.JTabbedPane();
-        jPanel10 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        jPanelMayorMap = new javax.swing.JPanel();
+        lblMap = new javax.swing.JLabel();
+        jPanelMayorStationManagement = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblStationManagement = new javax.swing.JTable();
         jSeparator10 = new javax.swing.JSeparator();
@@ -161,7 +162,7 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         jSeparator14 = new javax.swing.JSeparator();
         txtStationID = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
+        jPanelMayorSensorStation = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblViewSensorStation = new javax.swing.JTable();
         cmbStatus = new javax.swing.JComboBox<>();
@@ -179,22 +180,20 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         btnRemoveSensor = new javax.swing.JButton();
         cmbSelectSensorStation = new javax.swing.JComboBox<>();
         jPanelParamedic = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tblParamedicTraffic = new javax.swing.JTable();
         jPanelWasteCollector = new javax.swing.JPanel();
         jPanelDummyData = new javax.swing.JPanel();
         btnAddGarbage = new javax.swing.JButton();
         cmbAvailableBinSensorDummy = new javax.swing.JComboBox<>();
         txtBinDummy = new javax.swing.JTextField();
         jPanelExit = new javax.swing.JPanel();
+        lblExitImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(32, 33, 35));
         setUndecorated(true);
         setResizable(false);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
-            }
-        });
 
         jTabbedPaneMainPanel.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jTabbedPaneMainPanel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -203,12 +202,7 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
             }
         });
 
-        jTabbedPane1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTabbedPane1MouseClicked(evt);
-            }
-        });
+        jTabbedPaneHome.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
         jPanelWelcome.setBackground(new java.awt.Color(32, 33, 35));
         jPanelWelcome.setVerifyInputWhenFocusTarget(false);
@@ -224,14 +218,14 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
                 btnRoleAdminActionPerformed(evt);
             }
         });
-        jPanelWelcome.add(btnRoleAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, 450, 360));
+        jPanelWelcome.add(btnRoleAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, 260, 260));
 
         btnRoleParamedic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/ambulance256.png"))); // NOI18N
         btnRoleParamedic.setBorder(null);
         btnRoleParamedic.setContentAreaFilled(false);
         btnRoleParamedic.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/ambulance128.png"))); // NOI18N
         btnRoleParamedic.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/ambulancerollover.png"))); // NOI18N
-        jPanelWelcome.add(btnRoleParamedic, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 160, -1, -1));
+        jPanelWelcome.add(btnRoleParamedic, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 150, -1, -1));
 
         btnRoleUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/user256.png"))); // NOI18N
         btnRoleUser.setBorder(null);
@@ -243,76 +237,87 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
                 btnRoleUserActionPerformed(evt);
             }
         });
-        jPanelWelcome.add(btnRoleUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
+        jPanelWelcome.add(btnRoleUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
 
         btnRoleWasteCollector.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/recycling-truck256.png"))); // NOI18N
         btnRoleWasteCollector.setBorder(null);
         btnRoleWasteCollector.setContentAreaFilled(false);
         btnRoleWasteCollector.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/recycling-truck128.png"))); // NOI18N
         btnRoleWasteCollector.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/recycling-truckrollover.png"))); // NOI18N
-        jPanelWelcome.add(btnRoleWasteCollector, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 170, -1, -1));
+        jPanelWelcome.add(btnRoleWasteCollector, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 150, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/smartcity3.jpg"))); // NOI18N
-        jPanelWelcome.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1330, 510));
+        lblWelcomeImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/smartcitywelcome.jpg"))); // NOI18N
+        jPanelWelcome.add(lblWelcomeImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1310, 510));
 
-        jTabbedPane1.addTab("                                                                               Welcome To Smart City - Select a Role To Proceed                                                                         ", jPanelWelcome);
+        jTabbedPaneHome.addTab("                                                                               Welcome To Smart City - Select a Role To Proceed                                                                         ", jPanelWelcome);
 
-        jTabbedPaneMainPanel.addTab("  HOME  ", jTabbedPane1);
+        jTabbedPaneMainPanel.addTab("  HOME  ", jTabbedPaneHome);
 
-        jTabbedPaneUserMgtSubPanel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jTabbedPaneUserMgtSubPanel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTabbedPaneUserMgtSubPanelMouseClicked(evt);
+        jTabbedPaneUserSubPanel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+
+        jPanelUserFloodNotify.setBackground(new java.awt.Color(32, 33, 35));
+        jPanelUserFloodNotify.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tblUserFloodAlerts.setBackground(new java.awt.Color(32, 33, 35));
+        tblUserFloodAlerts.setForeground(new java.awt.Color(255, 255, 255));
+        tblUserFloodAlerts.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Location", "Flood Level", "Recommendation"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
+        jScrollPane5.setViewportView(tblUserFloodAlerts);
 
-        jPanel4.setBackground(new java.awt.Color(32, 33, 35));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanelUserFloodNotify.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 1230, 450));
 
-        txtWeight.setBackground(new java.awt.Color(32, 33, 35));
-        txtWeight.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
-        txtWeight.setForeground(new java.awt.Color(255, 255, 255));
-        txtWeight.setBorder(null);
-        jPanel4.add(txtWeight, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 116, 125, -1));
+        jTabbedPaneUserSubPanel.addTab("                                        Flood Alerts                                             ", jPanelUserFloodNotify);
 
-        txtHeight.setBackground(new java.awt.Color(32, 33, 35));
-        txtHeight.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
-        txtHeight.setForeground(new java.awt.Color(255, 255, 255));
-        txtHeight.setBorder(null);
-        jPanel4.add(txtHeight, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 171, 125, -1));
+        jPanelUserTrafficMonitor.setBackground(new java.awt.Color(32, 33, 35));
+        jPanelUserTrafficMonitor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtAge.setBackground(new java.awt.Color(32, 33, 35));
-        txtAge.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
-        txtAge.setForeground(new java.awt.Color(255, 255, 255));
-        txtAge.setBorder(null);
-        jPanel4.add(txtAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 40, 125, -1));
+        tblUserTraffic.setBackground(new java.awt.Color(32, 33, 35));
+        tblUserTraffic.setForeground(new java.awt.Color(255, 255, 255));
+        tblUserTraffic.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        jTabbedPaneUserMgtSubPanel.addTab("                                        Flood Alerts                                             ", jPanel4);
+            },
+            new String [] {
+                "Location", "Traffic Level"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
 
-        jPanel8.setBackground(new java.awt.Color(32, 33, 35));
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane6.setViewportView(tblUserTraffic);
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1338, Short.MAX_VALUE)
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 508, Short.MAX_VALUE)
-        );
+        jPanelUserTrafficMonitor.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 1230, 450));
 
-        jTabbedPaneUserMgtSubPanel.addTab("                                     Traffic Information                                  ", jPanel8);
+        jTabbedPaneUserSubPanel.addTab("                                     Traffic Information                                  ", jPanelUserTrafficMonitor);
 
         javax.swing.GroupLayout jPanelUserLayout = new javax.swing.GroupLayout(jPanelUser);
         jPanelUser.setLayout(jPanelUserLayout);
         jPanelUserLayout.setHorizontalGroup(
             jPanelUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPaneUserMgtSubPanel, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jTabbedPaneUserSubPanel, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanelUserLayout.setVerticalGroup(
             jPanelUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPaneUserMgtSubPanel, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jTabbedPaneUserSubPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 510, Short.MAX_VALUE)
         );
 
         jTabbedPaneMainPanel.addTab("  USER  ", jPanelUser);
@@ -326,16 +331,16 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
             }
         });
 
-        jPanel10.setBackground(new java.awt.Color(32, 33, 35));
-        jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanelMayorMap.setBackground(new java.awt.Color(32, 33, 35));
+        jPanelMayorMap.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map.PNG"))); // NOI18N
-        jPanel10.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, -20, 1130, 540));
+        lblMap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map.PNG"))); // NOI18N
+        jPanelMayorMap.add(lblMap, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, -10, 1100, 530));
 
-        jTabbedPaneStationMgtSubPanel.addTab("             Map              ", jPanel10);
+        jTabbedPaneStationMgtSubPanel.addTab("             Map              ", jPanelMayorMap);
 
-        jPanel2.setBackground(new java.awt.Color(32, 33, 35));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanelMayorStationManagement.setBackground(new java.awt.Color(32, 33, 35));
+        jPanelMayorStationManagement.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblStationManagement.setBackground(new java.awt.Color(32, 33, 35));
         tblStationManagement.setForeground(new java.awt.Color(255, 255, 255));
@@ -357,58 +362,58 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         });
         jScrollPane3.setViewportView(tblStationManagement);
 
-        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 1270, 310));
+        jPanelMayorStationManagement.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 1220, 310));
 
         jSeparator10.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator10.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 60, 188, 10));
+        jPanelMayorStationManagement.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 188, 10));
 
         txtSensorStationName.setBackground(new java.awt.Color(32, 33, 35));
         txtSensorStationName.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         txtSensorStationName.setForeground(new java.awt.Color(255, 255, 255));
         txtSensorStationName.setBorder(null);
-        jPanel2.add(txtSensorStationName, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 40, 190, -1));
+        jPanelMayorStationManagement.add(txtSensorStationName, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, 190, -1));
 
         jLabel15.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Sensor Station Name:");
-        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 150, -1));
+        jPanelMayorStationManagement.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, 150, -1));
 
         jSeparator11.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator11.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 60, 100, 10));
+        jPanelMayorStationManagement.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 60, 100, 10));
 
         txtLongitude.setBackground(new java.awt.Color(32, 33, 35));
         txtLongitude.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         txtLongitude.setForeground(new java.awt.Color(255, 255, 255));
         txtLongitude.setBorder(null);
-        jPanel2.add(txtLongitude, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 40, 100, -1));
+        jPanelMayorStationManagement.add(txtLongitude, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 40, 100, -1));
 
         jLabel16.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Longitude:");
-        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 40, 80, -1));
+        jPanelMayorStationManagement.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 40, 80, -1));
 
         jSeparator12.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator12.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 60, 100, 10));
+        jPanelMayorStationManagement.add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 60, 100, 10));
 
         txtLatitude.setBackground(new java.awt.Color(32, 33, 35));
         txtLatitude.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         txtLatitude.setForeground(new java.awt.Color(255, 255, 255));
         txtLatitude.setBorder(null);
-        jPanel2.add(txtLatitude, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 40, 100, -1));
+        jPanelMayorStationManagement.add(txtLatitude, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 40, 100, -1));
 
         jLabel17.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Latitude:");
-        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 40, 70, -1));
+        jPanelMayorStationManagement.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 40, 70, -1));
 
         btnRemoveSensorStation.setBackground(new java.awt.Color(38, 50, 56));
         btnRemoveSensorStation.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         btnRemoveSensorStation.setForeground(new java.awt.Color(255, 255, 255));
         btnRemoveSensorStation.setText("Remove Sensor Station");
-        jPanel2.add(btnRemoveSensorStation, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 450, 210, -1));
+        jPanelMayorStationManagement.add(btnRemoveSensorStation, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 450, 210, -1));
 
         btnAddSensorStation.setBackground(new java.awt.Color(38, 50, 56));
         btnAddSensorStation.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
@@ -419,32 +424,27 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
                 btnAddSensorStationActionPerformed(evt);
             }
         });
-        jPanel2.add(btnAddSensorStation, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 30, 180, -1));
+        jPanelMayorStationManagement.add(btnAddSensorStation, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 30, 180, -1));
 
         jSeparator14.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator14.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator14, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 90, 10));
+        jPanelMayorStationManagement.add(jSeparator14, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 90, 10));
 
         txtStationID.setBackground(new java.awt.Color(32, 33, 35));
         txtStationID.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         txtStationID.setForeground(new java.awt.Color(255, 255, 255));
         txtStationID.setBorder(null);
-        jPanel2.add(txtStationID, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 90, -1));
+        jPanelMayorStationManagement.add(txtStationID, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 90, -1));
 
         jLabel22.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("Station ID:");
-        jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 80, -1));
+        jPanelMayorStationManagement.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 80, -1));
 
-        jTabbedPaneStationMgtSubPanel.addTab("                   Station Management                   ", jPanel2);
+        jTabbedPaneStationMgtSubPanel.addTab("                   Station Management                   ", jPanelMayorStationManagement);
 
-        jPanel7.setBackground(new java.awt.Color(32, 33, 35));
-        jPanel7.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                jPanel7MouseMoved(evt);
-            }
-        });
-        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanelMayorSensorStation.setBackground(new java.awt.Color(32, 33, 35));
+        jPanelMayorSensorStation.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblViewSensorStation.setBackground(new java.awt.Color(32, 33, 35));
         tblViewSensorStation.setForeground(new java.awt.Color(255, 255, 255));
@@ -471,52 +471,52 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         });
         jScrollPane4.setViewportView(tblViewSensorStation);
 
-        jPanel7.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 1270, 310));
+        jPanelMayorSensorStation.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 1220, 310));
 
         cmbStatus.setForeground(new java.awt.Color(255, 255, 255));
         cmbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Active", "Not-Active" }));
-        jPanel7.add(cmbStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 60, 100, -1));
+        jPanelMayorSensorStation.add(cmbStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 60, 100, -1));
 
         btnUpdateSelectedSensor.setBackground(new java.awt.Color(38, 50, 56));
         btnUpdateSelectedSensor.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         btnUpdateSelectedSensor.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdateSelectedSensor.setText("Update Selected Sensor");
-        jPanel7.add(btnUpdateSelectedSensor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 220, -1));
+        jPanelMayorSensorStation.add(btnUpdateSelectedSensor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 220, -1));
 
         jSeparator13.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator13.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel7.add(jSeparator13, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 90, 10));
+        jPanelMayorSensorStation.add(jSeparator13, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 90, 10));
 
         txtSensorId.setBackground(new java.awt.Color(32, 33, 35));
         txtSensorId.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         txtSensorId.setForeground(new java.awt.Color(255, 255, 255));
         txtSensorId.setBorder(null);
-        jPanel7.add(txtSensorId, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 90, -1));
+        jPanelMayorSensorStation.add(txtSensorId, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 90, -1));
 
         jLabel18.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Sensor ID:");
-        jPanel7.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
+        jPanelMayorSensorStation.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
 
         jLabel19.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Sensor Description:");
-        jPanel7.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 140, -1));
+        jPanelMayorSensorStation.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 140, -1));
 
         jSeparator15.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator15.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel7.add(jSeparator15, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 80, 100, 10));
+        jPanelMayorSensorStation.add(jSeparator15, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 80, 100, 10));
 
         txtFrequency.setBackground(new java.awt.Color(32, 33, 35));
         txtFrequency.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         txtFrequency.setForeground(new java.awt.Color(255, 255, 255));
         txtFrequency.setBorder(null);
-        jPanel7.add(txtFrequency, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 60, 100, -1));
+        jPanelMayorSensorStation.add(txtFrequency, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 60, 100, -1));
 
         jLabel20.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("Status:");
-        jPanel7.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 60, 50, -1));
+        jPanelMayorSensorStation.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 60, 50, -1));
 
         btnAddSensor.setBackground(new java.awt.Color(38, 50, 56));
         btnAddSensor.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
@@ -527,22 +527,22 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
                 btnAddSensorActionPerformed(evt);
             }
         });
-        jPanel7.add(btnAddSensor, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 50, 130, -1));
+        jPanelMayorSensorStation.add(btnAddSensor, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 50, 130, -1));
 
         jLabel21.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Frequency:");
-        jPanel7.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 60, 80, -1));
+        jPanelMayorSensorStation.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 60, 80, -1));
 
         cmbSensorType.setForeground(new java.awt.Color(255, 255, 255));
         cmbSensorType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select  Sensor Type", "Bin Sensor", "Flood Sensor", "Traffic Sensor" }));
-        jPanel7.add(cmbSensorType, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 60, 150, -1));
+        jPanelMayorSensorStation.add(cmbSensorType, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 60, 150, -1));
 
         btnRemoveSensor.setBackground(new java.awt.Color(38, 50, 56));
         btnRemoveSensor.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         btnRemoveSensor.setForeground(new java.awt.Color(255, 255, 255));
         btnRemoveSensor.setText("Remove Sensor");
-        jPanel7.add(btnRemoveSensor, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 450, 260, -1));
+        jPanelMayorSensorStation.add(btnRemoveSensor, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 450, 260, -1));
 
         cmbSelectSensorStation.setForeground(new java.awt.Color(255, 255, 255));
         cmbSelectSensorStation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select A Sensor Station" }));
@@ -556,81 +556,81 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
                 cmbSelectSensorStationActionPerformed(evt);
             }
         });
-        jPanel7.add(cmbSelectSensorStation, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 349, -1));
+        jPanelMayorSensorStation.add(cmbSelectSensorStation, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 349, -1));
 
-        jTabbedPaneStationMgtSubPanel.addTab("              View Sensor Station             ", jPanel7);
+        jTabbedPaneStationMgtSubPanel.addTab("              View Sensor Station             ", jPanelMayorSensorStation);
 
-        jPanelCityCouncil.add(jTabbedPaneStationMgtSubPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1340, 546));
+        jPanelCityCouncil.add(jTabbedPaneStationMgtSubPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1300, 546));
 
         jTabbedPaneMainPanel.addTab("  MAYOR-CITY COUNCIL  ", jPanelCityCouncil);
 
         jPanelParamedic.setBackground(new java.awt.Color(32, 33, 35));
+        jPanelParamedic.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanelParamedicLayout = new javax.swing.GroupLayout(jPanelParamedic);
-        jPanelParamedic.setLayout(jPanelParamedicLayout);
-        jPanelParamedicLayout.setHorizontalGroup(
-            jPanelParamedicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1340, Short.MAX_VALUE)
-        );
-        jPanelParamedicLayout.setVerticalGroup(
-            jPanelParamedicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 542, Short.MAX_VALUE)
-        );
+        tblParamedicTraffic.setBackground(new java.awt.Color(32, 33, 35));
+        tblParamedicTraffic.setForeground(new java.awt.Color(255, 255, 255));
+        tblParamedicTraffic.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Location", "Traffic Level"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane7.setViewportView(tblParamedicTraffic);
+
+        jPanelParamedic.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 1230, 450));
 
         jTabbedPaneMainPanel.addTab("  PARAMEDIC  ", jPanelParamedic);
 
         jPanelWasteCollector.setBackground(new java.awt.Color(32, 33, 35));
-
-        javax.swing.GroupLayout jPanelWasteCollectorLayout = new javax.swing.GroupLayout(jPanelWasteCollector);
-        jPanelWasteCollector.setLayout(jPanelWasteCollectorLayout);
-        jPanelWasteCollectorLayout.setHorizontalGroup(
-            jPanelWasteCollectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1340, Short.MAX_VALUE)
-        );
-        jPanelWasteCollectorLayout.setVerticalGroup(
-            jPanelWasteCollectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 542, Short.MAX_VALUE)
-        );
-
+        jPanelWasteCollector.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jTabbedPaneMainPanel.addTab("  WASTE COLLECTOR  ", jPanelWasteCollector);
 
         jPanelDummyData.setBackground(new java.awt.Color(32, 33, 35));
         jPanelDummyData.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnAddGarbage.setText("add garbage");
+        btnAddGarbage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/recycle-bin256.png"))); // NOI18N
+        btnAddGarbage.setBorder(null);
+        btnAddGarbage.setContentAreaFilled(false);
+        btnAddGarbage.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/recycle-bin128.png"))); // NOI18N
+        btnAddGarbage.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/recycle-binrollover.png"))); // NOI18N
         btnAddGarbage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddGarbageActionPerformed(evt);
             }
         });
-        jPanelDummyData.add(btnAddGarbage, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 310, -1, -1));
+        jPanelDummyData.add(btnAddGarbage, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, -1, -1));
 
         cmbAvailableBinSensorDummy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Available bin sensors to add garbage" }));
-        jPanelDummyData.add(cmbAvailableBinSensorDummy, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, -1, -1));
-        jPanelDummyData.add(txtBinDummy, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, 160, -1));
+        jPanelDummyData.add(cmbAvailableBinSensorDummy, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, -1));
+        jPanelDummyData.add(txtBinDummy, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 160, -1));
 
         jTabbedPaneMainPanel.addTab("  DUMMY DATA  ", jPanelDummyData);
 
         jPanelExit.setBackground(new java.awt.Color(32, 33, 35));
+        jPanelExit.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanelExitLayout = new javax.swing.GroupLayout(jPanelExit);
-        jPanelExit.setLayout(jPanelExitLayout);
-        jPanelExitLayout.setHorizontalGroup(
-            jPanelExitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1340, Short.MAX_VALUE)
-        );
-        jPanelExitLayout.setVerticalGroup(
-            jPanelExitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 542, Short.MAX_VALUE)
-        );
+        lblExitImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/SmartCityexit.jpg"))); // NOI18N
+        jPanelExit.add(lblExitImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1300, -1));
 
-        jTabbedPaneMainPanel.addTab("  X  ", jPanelExit);
+        jTabbedPaneMainPanel.addTab("", new javax.swing.ImageIcon(getClass().getResource("/Images/logout.png")), jPanelExit); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPaneMainPanel)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPaneMainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -641,26 +641,14 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
 
         jTabbedPaneMainPanel.getAccessibleContext().setAccessibleName("     Me     ");
 
-        setSize(new java.awt.Dimension(1333, 585));
+        setSize(new java.awt.Dimension(1291, 585));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-
-    }//GEN-LAST:event_formWindowClosing
-
-    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
-
-    }//GEN-LAST:event_jTabbedPane1MouseClicked
 
     private void jTabbedPaneMainPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPaneMainPanelMouseClicked
         switchScreens();
         
     }//GEN-LAST:event_jTabbedPaneMainPanelMouseClicked
-
-    private void jTabbedPaneUserMgtSubPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPaneUserMgtSubPanelMouseClicked
-
-    }//GEN-LAST:event_jTabbedPaneUserMgtSubPanelMouseClicked
 
     private void jTabbedPaneStationMgtSubPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPaneStationMgtSubPanelMouseClicked
             switchScreens();
@@ -725,10 +713,6 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         }
     }//GEN-LAST:event_btnAddSensorActionPerformed
 
-    private void jPanel7MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseMoved
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPanel7MouseMoved
-
     private void tblViewSensorStationMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblViewSensorStationMouseMoved
              populateSensorMonitorList();
     }//GEN-LAST:event_tblViewSensorStationMouseMoved
@@ -789,7 +773,6 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
     private javax.swing.JComboBox<String> cmbSelectSensorStation;
     private javax.swing.JComboBox<String> cmbSensorType;
     private javax.swing.JComboBox<String> cmbStatus;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
@@ -798,44 +781,49 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanelCityCouncil;
     private javax.swing.JPanel jPanelDummyData;
     private javax.swing.JPanel jPanelExit;
+    private javax.swing.JPanel jPanelMayorMap;
+    private javax.swing.JPanel jPanelMayorSensorStation;
+    private javax.swing.JPanel jPanelMayorStationManagement;
     private javax.swing.JPanel jPanelParamedic;
     private javax.swing.JPanel jPanelUser;
+    private javax.swing.JPanel jPanelUserFloodNotify;
+    private javax.swing.JPanel jPanelUserTrafficMonitor;
     private javax.swing.JPanel jPanelWasteCollector;
     private javax.swing.JPanel jPanelWelcome;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator12;
     private javax.swing.JSeparator jSeparator13;
     private javax.swing.JSeparator jSeparator14;
     private javax.swing.JSeparator jSeparator15;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPaneHome;
     private javax.swing.JTabbedPane jTabbedPaneMainPanel;
     private javax.swing.JTabbedPane jTabbedPaneStationMgtSubPanel;
-    private javax.swing.JTabbedPane jTabbedPaneUserMgtSubPanel;
+    private javax.swing.JTabbedPane jTabbedPaneUserSubPanel;
+    private javax.swing.JLabel lblExitImage;
+    private javax.swing.JLabel lblMap;
+    private javax.swing.JLabel lblWelcomeImage;
     private javax.swing.ButtonGroup radGrpGender;
+    private javax.swing.JTable tblParamedicTraffic;
     private javax.swing.JTable tblStationManagement;
+    private javax.swing.JTable tblUserFloodAlerts;
+    private javax.swing.JTable tblUserTraffic;
     private javax.swing.JTable tblViewSensorStation;
-    private javax.swing.JTextField txtAge;
     private javax.swing.JTextField txtBinDummy;
     private javax.swing.JTextField txtFrequency;
-    private javax.swing.JTextField txtHeight;
     private javax.swing.JTextField txtLatitude;
     private javax.swing.JTextField txtLongitude;
     private javax.swing.JTextField txtSensorId;
     private javax.swing.JTextField txtSensorStationName;
     private javax.swing.JTextField txtStationID;
-    private javax.swing.JTextField txtWeight;
     // End of variables declaration//GEN-END:variables
 
 }
