@@ -59,7 +59,7 @@ public class Clock implements Subject,Serializable{
      * Wait for time to wakes the sensor
      */
     public void waitForTime() {
-        double wakeUpTime = 2;
+        double wakeUpTime =2;
         while (wakeUpTime != 0) {
             wakeUpTime--;
             System.out.println("reduce time..");

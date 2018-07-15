@@ -27,9 +27,9 @@ public class MotherShip implements Observer {
      * 
      * @param aStation 
      */
-    public void addNewSensorStation(SensorStation currentSensorStation){
-        sensorStations.add(currentSensorStation);
-        currentSensorStation.registerObserver((Observer) this);
+    public void addNewSensorStation(SensorStation newStation){
+        sensorStations.add(newStation);
+        newStation.registerObserver((Observer) this);
     }
     /**
      * 

@@ -35,6 +35,7 @@ public class SensorStation implements Subject, Observer {
     
     public void addNewSensorMonitor(SensorMonitor aSensorMonitor){
         sensormonitors.add(aSensorMonitor);
+        aSensorMonitor.registerObserver((Observer)this);
     }
     public void removeSensorMonitor(SensorMonitor aSensorMonitor){
         sensormonitors.remove(aSensorMonitor);
@@ -62,7 +63,6 @@ public class SensorStation implements Subject, Observer {
     @Override
     public void registerObserver(Observer obs) {
        observer=obs;
-       System.out.println(obs);
     }
 
     @Override

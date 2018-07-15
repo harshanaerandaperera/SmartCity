@@ -18,16 +18,22 @@ import java.util.UUID;
  */
 public class SensorMonitor implements Subject, Observer {
 
+   
+    
     private String sensorMonitorID;
-    //interval is the frequency
-    private Double interval;
-    //isActive is status(active/not active)
+    // TODO- private ArrayList<Double> coords;
+    //isActive is status(active/not active) 
     private boolean isActive;
-    private Sensor sensor;
-    private ArrayList<Observer> Observers;
-    private ArrayList<Double> coords;
-
-    private Data reading;
+    //interval is the frequency
+     private Double interval;
+     //Here Observer Array List Type is Observer for future purpose
+     private ArrayList<Observer> Observers;
+ 
+    //TOdo - private Long lastReadingTime;
+     public double readingsCount;
+     private Sensor sensor;
+     //Todo-public Data reading;
+    
 
     SetOfTrafficSensors SOTS = SetOfTrafficSensors.getSetOfTrafficSensorsInstance();
     SetOfSensorMonitors SOSM = SetOfSensorMonitors.getSetOfSensorMonitorsInstance();
@@ -45,9 +51,9 @@ public class SensorMonitor implements Subject, Observer {
      * @param inIsActive
      * @param inSensorType
      */
-    public SensorMonitor(String inSensorID, Double inInterval, String inIsActive, String inSensorType) {
+    public SensorMonitor(String inSensorID,  String inIsActive,Double inInterval,String inSensorType) {
         this.sensorMonitorID = UUID.randomUUID().toString();
-
+        Observers=new ArrayList<>();
         this.interval = inInterval;
         if (inIsActive.equals("Active")) {
             this.isActive = true;
@@ -83,7 +89,8 @@ public class SensorMonitor implements Subject, Observer {
     @Override
     public void registerObserver(Observer obs) {
         getObservers().add(obs);
-    }
+        
+       }
 
     @Override
     public void unRegisterObserver(Observer obs) {
@@ -117,16 +124,30 @@ public class SensorMonitor implements Subject, Observer {
     }
 
     public void shouldTakeReading(Observer observer) {
-
+        
+       
         for (int i = 0; i < SOSM.size(); i++) {
-            for (int j = 0; j < SOED.size(); j++) {
+    
                 if (SOSM.get(i) == observer) {
-                    if (SOSM.get(i).getSensor().getSensorId().equals(SOED.get(j).getSensor().getSensorId())) {
-                        SOED.get(j).setCount(SOSM.get(i).getSensor().getData());
-                    }
+                   
+                    
+                       // SOED.get(i).setCount(SOSM.get(i).getSensor().getData());
+                    //test
+                    SOSM.get(i).readingsCount=SOSM.get(i).getSensor().getData();
+                    
                 }
-            }
+            
         }
+
+//        for (int i = 0; i < SOSM.size(); i++) {
+//            for (int j = 0; j < SOED.size(); j++) {
+//                if (SOSM.get(i) == observer) {
+//                    if (SOSM.get(i).getSensor().getSensorId().equals(SOED.get(j).getSensor().getSensorId())) {
+//                        SOED.get(j).setCount(SOSM.get(i).getSensor().getData());
+//                    }
+//                }
+//            }
+//        }
 //   public EmbelishedData embellishData(Sensor senor){
 //        long timeInMills = 10; 
 //        ArrayList<Double> coords = getCoords();
@@ -169,25 +190,14 @@ public class SensorMonitor implements Subject, Observer {
         return Observers;
     }
 
-    /**
-     * @return the coords
-     */
-    public ArrayList<Double> getCoords() {
-        return coords;
-    }
-
-    /**
-     * @param coords the coords to set
-     */
-    public void setCoords(ArrayList<Double> coords) {
-        this.coords = coords;
-    }
-
+  
     /**
      * @return the SOED
      */
     public SetOfEmbelishedData getSOED() {
         return SOED;
     }
+    
+  
 
 }

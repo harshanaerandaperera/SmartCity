@@ -185,7 +185,7 @@ public class AddSensor extends javax.swing.JFrame {
         Double inInterval = Double.parseDouble(sensorFrequencyText.getText());
         String inSensorType = SensortypeCombo.getSelectedItem().toString();
 
-        sensormonitor = new SensorMonitor(inSensorId, inInterval, inIsActive, inSensorType);
+    //    sensormonitor = new SensorMonitor(inSensorId, inInterval, inIsActive, inSensorType);
         SOSM.addSensorMonitor(sensormonitor);
         embelishedData = new EmbelishedData(sensormonitor.getSensor(), inSensorType, inIsActive, inInterval);
         SOED.addEmblishedData(embelishedData);
