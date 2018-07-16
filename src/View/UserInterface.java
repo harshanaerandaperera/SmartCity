@@ -587,7 +587,7 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         });
         jScrollPane7.setViewportView(tblParamedicTraffic);
 
-        jPanelParamedic.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 1230, 450));
+        jPanelParamedic.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 1230, 480));
 
         jTabbedPaneMainPanel.addTab("  PARAMEDIC  ", jPanelParamedic);
 
