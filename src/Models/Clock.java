@@ -45,7 +45,7 @@ public class Clock implements Subject,Serializable{
         Observers.add(obs);
         System.out.println("size of observers in clock--------------------------------------------"+Observers.size());
         new Thread(this::trackTime).start();
-       // trackTime();
+       //trackTime();
     }
 
     @Override
@@ -53,9 +53,7 @@ public class Clock implements Subject,Serializable{
         Observers.remove(obs);
     }
 
-    @Override
-    public void Notify() {
-    }
+  
 
     /**
      * Wait for time to wakes the sensor
@@ -68,7 +66,8 @@ public class Clock implements Subject,Serializable{
         }
     }
 
-    private void notifyObservers() {
+     @Override
+    public void notifyObservers() {
 
         for (int i = 0; i < Observers.size(); i++) {
 

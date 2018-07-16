@@ -11,6 +11,7 @@ import Models.SensorStation;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Vector;
+import java.util.regex.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,8 +29,9 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
     
    //Additional
      SetOfSensorMonitors SOSM=SetOfSensorMonitors.getSetOfSensorMonitorsInstance();
-   
+ 
          private Data data;
+         
     /**
      * Creates new form View
      */
@@ -103,13 +105,21 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         }
 //This is a additional methode we used to load data to combo box    
     public void populateSensorStationDetailsToComboBox(SensorStation st){
-      //  cmbSelectSensorStation.addItem(st.getStationName()+"  ("+st.getLocation().getCoords().get(0)+" , "+st.getLocation().getCoords().get(1)+")");
-      cmbSelectSensorStation.addItem(st.getStationID());
+        cmbSelectSensorStation.addItem(st.getStationName()+"  "+st.getStationID()+"  ("+st.getLocation().getCoords().get(0)+" , "+st.getLocation().getCoords().get(1)+")");
+     // cmbSelectSensorStation.addItem(st.getStationID());
     }
 
+    //Filter Station Id
     
-    
-    
+    public String getMatchedStationId(String cmbValue){
+        Pattern p=Pattern.compile("[ST]{2}[0-9]{3}");
+        Matcher m=p.matcher(cmbValue);
+        if(m.find()){
+            return m.group();
+        }else{
+            return null;
+        }
+  }
    
 
     /**
@@ -739,9 +749,8 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
 //        } else {
 //            System.out.println("err");
 //        }
-           selectSensorStation(cmbSelectSensorStation.getSelectedItem().toString());
-            populateSensorMonitorList();
-
+           selectSensorStation(getMatchedStationId(cmbSelectSensorStation.getSelectedItem().toString())); 
+           populateSensorMonitorList();
     }//GEN-LAST:event_cmbSelectSensorStationActionPerformed
 
     private void btnRoleAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRoleAdminActionPerformed
@@ -774,10 +783,15 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
     }//GEN-LAST:event_cmbSelectSensorStationMouseClicked
 
     private void btnAddSensorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSensorActionPerformed
-      SensorMonitor sensormonitor = new SensorMonitor(txtSensorId.getText(), cmbStatus.getSelectedItem().toString(), Double.parseDouble(txtFrequency.getText()), cmbSensorType.getSelectedItem().toString());
+        
+        SensorMonitor sensormonitor = new SensorMonitor(txtSensorId.getText(), cmbStatus.getSelectedItem().toString(), Double.parseDouble(txtFrequency.getText()), cmbSensorType.getSelectedItem().toString());
         currentSensorStation.addNewSensorMonitor(sensormonitor);
         sensormonitor.setCoords(currentSensorStation.getLocation().getCoords());
         SOSM.addSensorMonitor(sensormonitor);
+        
+        
+        
+        
         populateSensorMonitorList();
     }//GEN-LAST:event_btnAddSensorActionPerformed
 
