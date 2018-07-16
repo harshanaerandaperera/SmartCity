@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Oshin/Documents/SmartCity/src/Models/SensorMonitor.java</file>
             <file>file:/C:/Users/Oshin/Documents/SmartCity/src/View/UserInterface.java</file>
-            <file>file:/C:/Users/Oshin/Documents/SmartCity/src/Controller/SetOfEmbelishedData.java</file>
             <file>file:/C:/Users/Oshin/Documents/SmartCity/src/Controller/PublicInterface.java</file>
-            <file>file:/C:/Users/Oshin/Documents/SmartCity/src/Models/SensorStation.java</file>
             <file>file:/C:/Users/Oshin/Documents/SmartCity/src/Controller/MotherShip.java</file>
+            <file>file:/C:/Users/Oshin/Documents/SmartCity/src/Models/Clock.java</file>
         </group>
     </open-files>
 </project-private>

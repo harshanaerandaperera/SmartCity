@@ -41,8 +41,7 @@ public class SensorMonitor implements Subject, Observer {
      private String sensorDescription;
      //As one observer for a one sensor monitor we implemented as this
      private Observer observer;
-     private EmbelishedData embellishedData; 
-     public int count=0;
+     private EmbelishedData embellishedData;
      
      
     SetOfTrafficSensors SOTS = SetOfTrafficSensors.getSetOfTrafficSensorsInstance();
@@ -144,36 +143,18 @@ public class SensorMonitor implements Subject, Observer {
     public void shouldTakeReading(Observer observer) {
        
         for (int i = 0; i < SOSM.size(); i++) {
-              if (SOSM.get(i) == observer) { 
-                   
+              if (SOSM.get(i) == observer) {             
                   SOSM.get(i).readingsCount=SOSM.get(i).getSensor().getData();
-                   
-                  for(int j=0;j<SOSM.size();j++){
-                      
-                         if(SOSM.get(i).readingsCount>SOSM.get(i).getInterval()){
+                    if(SOSM.get(i).readingsCount>SOSM.get(i).getInterval()){
                         embellishData(SOSM.get(i).getSensor());
                     notifyObservers();  
                     }
                     
-                  }
-                  
-                  
-               
                 }
             
         }
 
-//        for (int i = 0; i < SOSM.size(); i++) {
-//            for (int j = 0; j < SOED.size(); j++) {
-//                if (SOSM.get(i) == observer) {
-//                    if (SOSM.get(i).getSensor().getSensorId().equals(SOED.get(j).getSensor().getSensorId())) {
-//                        SOED.get(j).setCount(SOSM.get(i).getSensor().getData());
-//                    }
-//                }
-//            }
-//        }
 
-//    
     }
     
        public void embellishData(Sensor senor){
