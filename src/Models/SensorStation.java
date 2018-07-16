@@ -6,6 +6,7 @@
 package Models;
 
 import Controller.Observer;
+import Controller.PublicInterface;
 import Controller.Subject;
 import java.util.ArrayList;
 
@@ -71,8 +72,10 @@ public class SensorStation implements Subject, Observer {
     }
 
     @Override
-    public void Notify() {
+    public void notifyObservers() {
     }
+
+   
 /**
  * Override Observer Methods
  * @param ob
@@ -80,9 +83,15 @@ public class SensorStation implements Subject, Observer {
  */
     @Override
     public void update(Object ob, Observer observer) {
+         receiveSensorData((EmbelishedData)ob);
+       
     }
 
-   
+   public void receiveSensorData(EmbelishedData aEmbelishedData){
+      
+       observer.update(aEmbelishedData, this.observer);
+       
+   }
      //getters and setters starts here
     
      /**
@@ -126,5 +135,6 @@ public class SensorStation implements Subject, Observer {
     public void setLocation(Location location) {
         this.location = location;
     }
-
+    
+     
 }

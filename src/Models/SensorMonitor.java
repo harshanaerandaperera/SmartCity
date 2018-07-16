@@ -28,7 +28,7 @@ public class SensorMonitor implements Subject, Observer {
     //interval is the frequency
      private Double interval;
      //Here Observer Array List Type is Observer for future purpose
-     private ArrayList<Observer> Observers;
+    // private ArrayList<Observer> Observers;
  
     //TOdo - private Long lastReadingTime;
      public double readingsCount;
@@ -39,8 +39,9 @@ public class SensorMonitor implements Subject, Observer {
      
      private String status;
      private String sensorDescription;
-     
-     
+     //As one observer for a one sensor monitor we implemented as this
+     private Observer observer;
+     private EmbelishedData embellishedData; 
 
     SetOfTrafficSensors SOTS = SetOfTrafficSensors.getSetOfTrafficSensorsInstance();
     SetOfSensorMonitors SOSM = SetOfSensorMonitors.getSetOfSensorMonitorsInstance();
@@ -60,7 +61,7 @@ public class SensorMonitor implements Subject, Observer {
      */
     public SensorMonitor(String inSensorID,  String inIsActive,Double inInterval,String inSensorType) {
         this.sensorMonitorID = UUID.randomUUID().toString();
-        Observers=new ArrayList<>();
+       // Observers=new ArrayList<>();
         this.interval = inInterval;
         if (inIsActive.equals("Active")) {
             this.isActive = true;
@@ -103,16 +104,16 @@ public class SensorMonitor implements Subject, Observer {
 
     @Override
     public void registerObserver(Observer obs) {
-        getObservers().add(obs);
-        
+        //getObservers().add(obs);
+         setObserver(obs);
        }
 
     @Override
     public void unRegisterObserver(Observer obs) {
-        getObservers().remove(obs);
+      //  getObservers().remove(obs);
+         setObserver(null);
     }
 
-    @Override
     public void Notify() {
     }
 
@@ -143,9 +144,13 @@ public class SensorMonitor implements Subject, Observer {
        
         for (int i = 0; i < SOSM.size(); i++) {
               if (SOSM.get(i) == observer) {             
-                    SOSM.get(i).readingsCount=SOSM.get(i).getSensor().getData();
-                    embellishData(SOSM.get(i).getSensor());
-                  //  System.out.println(embellishData(SOSM.get(i).getSensor()).getSensorID());
+                  SOSM.get(i).readingsCount=SOSM.get(i).getSensor().getData();
+                    //SOED.addEmblishedData(embellishData(SOSM.get(i).getSensor()));
+                    if(SOSM.get(i).readingsCount>3){
+                        embellishData(SOSM.get(i).getSensor());
+                    notifyObservers();  
+                    }
+                    
                 }
             
         }
@@ -163,12 +168,11 @@ public class SensorMonitor implements Subject, Observer {
 //    
     }
     
-       public EmbelishedData embellishData(Sensor senor){
+       public void embellishData(Sensor senor){
         long timeInMills = 10; 
         ArrayList<Double> coords = getCoords();
         String id = sensor.getSensorId();
-        EmbelishedData embellishedData = new EmbelishedData(readingsCount, timeInMills, coords, id);
-        return embellishedData;
+        embellishedData = new EmbelishedData(readingsCount, timeInMills, coords, id);
     }
 
     public void calculateDataCount(String sid) {
@@ -181,9 +185,6 @@ public class SensorMonitor implements Subject, Observer {
         }
 
     }
-    
-    
-
     /**
      * @return the sensor
      */
@@ -198,12 +199,12 @@ public class SensorMonitor implements Subject, Observer {
         return interval;
     }
 
-    /**
-     * @return the Observers
-     */
-    public ArrayList<Observer> getObservers() {
-        return Observers;
-    }
+//    /**
+//     * @return the Observers
+//     */
+//    public ArrayList<Observer> getObservers() {
+//        return Observers;
+//    }
 
   
     /**
@@ -255,6 +256,28 @@ public class SensorMonitor implements Subject, Observer {
         this.coords = coords;
     }
 
+    @Override
+    public void notifyObservers() {
+
+      observer.update(this.embellishedData, this.observer);
+
+
+    }
+/**
+     * @return the observer
+     */
+    public Observer getObserver() {
+        return observer;
+    }
+
+    /**
+     * @param observer the observer to set
+     */
+    public void setObserver(Observer observer) {
+        this.observer = observer;
+    }
+
+    
    
 
 }

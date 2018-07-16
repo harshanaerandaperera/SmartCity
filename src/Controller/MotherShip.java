@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Models.EmbelishedData;
 import Models.SensorStation;
 import java.util.ArrayList;
 
@@ -59,13 +60,17 @@ public class MotherShip implements Observer {
     public ArrayList<SensorStation> getSensorStations(){
          return sensorStations;
     }
-    public void receiveStationData()
+    public PublicInterface receiveStationData()
     {
-        //todo
+          PublicInterface publicInterface = new PublicInterface();
+          return publicInterface;
     }
 
     @Override
     public void update(Object ob, Observer observer) {
-    }
+        System.out.println("------------------------------"+(EmbelishedData)ob);
+        receiveStationData().uploadData((EmbelishedData)ob);
+       //receiveStationData().getAllChangedData();
+     }
     
 }
