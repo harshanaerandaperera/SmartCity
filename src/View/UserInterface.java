@@ -183,10 +183,18 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         jScrollPane7 = new javax.swing.JScrollPane();
         tblParamedicTraffic = new javax.swing.JTable();
         jPanelWasteCollector = new javax.swing.JPanel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        tblWasteCollectorBinDetails = new javax.swing.JTable();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        tblWasteCollectorTraffic = new javax.swing.JTable();
+        btnAddSensor1 = new javax.swing.JButton();
         jPanelDummyData = new javax.swing.JPanel();
         btnAddGarbage = new javax.swing.JButton();
         cmbAvailableBinSensorDummy = new javax.swing.JComboBox<>();
         txtBinDummy = new javax.swing.JTextField();
+        btnMakeFlood = new javax.swing.JButton();
+        cmbAvailableFloodSensorDummy = new javax.swing.JComboBox<>();
+        txtFloodDummy = new javax.swing.JTextField();
         jPanelExit = new javax.swing.JPanel();
         lblExitImage = new javax.swing.JLabel();
 
@@ -307,7 +315,7 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
 
         jPanelUserTrafficMonitor.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 1230, 450));
 
-        jTabbedPaneUserSubPanel.addTab("                                     Traffic Information                                  ", jPanelUserTrafficMonitor);
+        jTabbedPaneUserSubPanel.addTab("                                     Road Traffic Information                                  ", jPanelUserTrafficMonitor);
 
         javax.swing.GroupLayout jPanelUserLayout = new javax.swing.GroupLayout(jPanelUser);
         jPanelUser.setLayout(jPanelUserLayout);
@@ -593,6 +601,62 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
 
         jPanelWasteCollector.setBackground(new java.awt.Color(32, 33, 35));
         jPanelWasteCollector.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tblWasteCollectorBinDetails.setBackground(new java.awt.Color(32, 33, 35));
+        tblWasteCollectorBinDetails.setForeground(new java.awt.Color(255, 255, 255));
+        tblWasteCollectorBinDetails.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Bin Sensor ID", "Bin Location"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane8.setViewportView(tblWasteCollectorBinDetails);
+
+        jPanelWasteCollector.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, 500, 480));
+
+        tblWasteCollectorTraffic.setBackground(new java.awt.Color(32, 33, 35));
+        tblWasteCollectorTraffic.setForeground(new java.awt.Color(255, 255, 255));
+        tblWasteCollectorTraffic.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Location", "Traffic Level"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane9.setViewportView(tblWasteCollectorTraffic);
+
+        jPanelWasteCollector.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 500, 480));
+
+        btnAddSensor1.setBackground(new java.awt.Color(38, 50, 56));
+        btnAddSensor1.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        btnAddSensor1.setForeground(new java.awt.Color(255, 255, 255));
+        btnAddSensor1.setText("Empty Bin");
+        btnAddSensor1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddSensor1ActionPerformed(evt);
+            }
+        });
+        jPanelWasteCollector.add(btnAddSensor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 260, 130, -1));
+
         jTabbedPaneMainPanel.addTab("  WASTE COLLECTOR  ", jPanelWasteCollector);
 
         jPanelDummyData.setBackground(new java.awt.Color(32, 33, 35));
@@ -611,8 +675,19 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         jPanelDummyData.add(btnAddGarbage, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, -1, -1));
 
         cmbAvailableBinSensorDummy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Available bin sensors to add garbage" }));
-        jPanelDummyData.add(cmbAvailableBinSensorDummy, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, -1));
-        jPanelDummyData.add(txtBinDummy, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 160, -1));
+        jPanelDummyData.add(cmbAvailableBinSensorDummy, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, -1, -1));
+        jPanelDummyData.add(txtBinDummy, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 160, -1));
+
+        btnMakeFlood.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/makeFlood256.png"))); // NOI18N
+        btnMakeFlood.setBorder(null);
+        btnMakeFlood.setContentAreaFilled(false);
+        btnMakeFlood.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/makeFlood128.png"))); // NOI18N
+        btnMakeFlood.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/makeFloodrollover.png"))); // NOI18N
+        jPanelDummyData.add(btnMakeFlood, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 240, -1, -1));
+
+        cmbAvailableFloodSensorDummy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Available Flood sensors to Make Flood" }));
+        jPanelDummyData.add(cmbAvailableFloodSensorDummy, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 60, -1, -1));
+        jPanelDummyData.add(txtFloodDummy, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 150, 160, -1));
 
         jTabbedPaneMainPanel.addTab("  DUMMY DATA  ", jPanelDummyData);
 
@@ -725,6 +800,10 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         SOD.addData(data);
     }//GEN-LAST:event_btnAddGarbageActionPerformed
 
+    private void btnAddSensor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSensor1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddSensor1ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -761,7 +840,9 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddGarbage;
     private javax.swing.JButton btnAddSensor;
+    private javax.swing.JButton btnAddSensor1;
     private javax.swing.JButton btnAddSensorStation;
+    private javax.swing.JButton btnMakeFlood;
     private javax.swing.JButton btnRemoveSensor;
     private javax.swing.JButton btnRemoveSensorStation;
     private javax.swing.JButton btnRoleAdmin;
@@ -770,6 +851,7 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
     private javax.swing.JButton btnRoleWasteCollector;
     private javax.swing.JButton btnUpdateSelectedSensor;
     private javax.swing.JComboBox<String> cmbAvailableBinSensorDummy;
+    private javax.swing.JComboBox<String> cmbAvailableFloodSensorDummy;
     private javax.swing.JComboBox<String> cmbSelectSensorStation;
     private javax.swing.JComboBox<String> cmbSensorType;
     private javax.swing.JComboBox<String> cmbStatus;
@@ -798,6 +880,8 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator12;
@@ -817,7 +901,10 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
     private javax.swing.JTable tblUserFloodAlerts;
     private javax.swing.JTable tblUserTraffic;
     private javax.swing.JTable tblViewSensorStation;
+    private javax.swing.JTable tblWasteCollectorBinDetails;
+    private javax.swing.JTable tblWasteCollectorTraffic;
     private javax.swing.JTextField txtBinDummy;
+    private javax.swing.JTextField txtFloodDummy;
     private javax.swing.JTextField txtFrequency;
     private javax.swing.JTextField txtLatitude;
     private javax.swing.JTextField txtLongitude;
