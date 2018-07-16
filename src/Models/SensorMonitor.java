@@ -7,6 +7,7 @@ package Models;
 
 import java.util.ArrayList;
 import Controller.*;
+import java.util.Random;
 import java.util.UUID;
 
 
@@ -18,10 +19,10 @@ import java.util.UUID;
  */
 public class SensorMonitor implements Subject, Observer {
 
-   
+    
     
     private String sensorMonitorID;
-    // TODO- private ArrayList<Double> coords;
+    private ArrayList<Double> coords;
     //isActive is status(active/not active) 
     private boolean isActive;
     //interval is the frequency
@@ -34,6 +35,12 @@ public class SensorMonitor implements Subject, Observer {
      private Sensor sensor;
      //Todo-public Data reading;
     
+     //extra
+     
+     private String status;
+     private String sensorDescription;
+     
+     
 
     SetOfTrafficSensors SOTS = SetOfTrafficSensors.getSetOfTrafficSensorsInstance();
     SetOfSensorMonitors SOSM = SetOfSensorMonitors.getSetOfSensorMonitorsInstance();
@@ -57,23 +64,31 @@ public class SensorMonitor implements Subject, Observer {
         this.interval = inInterval;
         if (inIsActive.equals("Active")) {
             this.isActive = true;
+            this.status="Active";
         } else {
             this.isActive = false;
+            this.status="Not-Active";
+                    
         }
 
         if (inSensorType.equals("Bin Sensor")) {
             this.sensor = new BinSensor(inSensorID);
             SOBS.addBinSensor(new BinSensor(inSensorID));
             SOS.addSensor(sensor);
+            this.sensorDescription="Bin Sensor";
         } else if (inSensorType.equals("Flood Sensor")) {
             this.sensor = new FloodSensor(inSensorID);
             SOFS.addFloodSensor(new FloodSensor(inSensorID));
             SOS.addSensor(sensor);
+            this.sensorDescription="Flood Sensor";
         } else {
             this.sensor = new TrafficSensor(inSensorID);
             SOTS.addTrafficSensor(new TrafficSensor(inSensorID));
             SOS.addSensor(sensor);
+            this.sensorDescription="Traffic Sensor";
         }
+         Clock clock = Clock.getInstance();
+        clock.registerObserver((Observer)this);
     }
 
     SensorMonitor() {
@@ -127,14 +142,10 @@ public class SensorMonitor implements Subject, Observer {
         
        
         for (int i = 0; i < SOSM.size(); i++) {
-    
-                if (SOSM.get(i) == observer) {
-                   
-                    
-                       // SOED.get(i).setCount(SOSM.get(i).getSensor().getData());
-                    //test
+              if (SOSM.get(i) == observer) {             
                     SOSM.get(i).readingsCount=SOSM.get(i).getSensor().getData();
-                    
+                    embellishData(SOSM.get(i).getSensor());
+                  //  System.out.println(embellishData(SOSM.get(i).getSensor()).getSensorID());
                 }
             
         }
@@ -148,14 +159,16 @@ public class SensorMonitor implements Subject, Observer {
 //                }
 //            }
 //        }
-//   public EmbelishedData embellishData(Sensor senor){
-//        long timeInMills = 10; 
-//        ArrayList<Double> coords = getCoords();
-//        String id = sensor.getSensorId();
-//      //  EmbelishedData embellishedData = new EmbelishedData(reading, timeInMills, coords, id);
-//       // return embellishedData;
-//    }
+
 //    
+    }
+    
+       public EmbelishedData embellishData(Sensor senor){
+        long timeInMills = 10; 
+        ArrayList<Double> coords = getCoords();
+        String id = sensor.getSensorId();
+        EmbelishedData embellishedData = new EmbelishedData(readingsCount, timeInMills, coords, id);
+        return embellishedData;
     }
 
     public void calculateDataCount(String sid) {
@@ -168,6 +181,8 @@ public class SensorMonitor implements Subject, Observer {
         }
 
     }
+    
+    
 
     /**
      * @return the sensor
@@ -198,6 +213,48 @@ public class SensorMonitor implements Subject, Observer {
         return SOED;
     }
     
-  
+   /**
+     * @return the status
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    /**
+     * @return the sensorDescription
+     */
+    public String getSensorDescription() {
+        return sensorDescription;
+    }
+
+    /**
+     * @param sensorDescription the sensorDescription to set
+     */
+    public void setSensorDescription(String sensorDescription) {
+        this.sensorDescription = sensorDescription;
+    }
+
+   /**
+     * @return the coords
+     */
+    public ArrayList<Double> getCoords() {
+        return coords;
+    }
+
+    /**
+     * @param coords the coords to set
+     */
+    public void setCoords(ArrayList<Double> coords) {
+        this.coords = coords;
+    }
+
+   
 
 }

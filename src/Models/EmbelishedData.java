@@ -5,96 +5,81 @@
  */
 package Models;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Oshin
  */
 public class EmbelishedData {
 
-    /**
-     * @return the count
-     */
-    public double getCount() {
-        return count;
+
+     private double data;
+     private Long timeInMillis;
+     private ArrayList<Double> location;
+     private String sensorID;
+     
+    public EmbelishedData(double data, Long timeInMillis, ArrayList<Double> location ,String sensorID)
+    {
+        this.data = data;
+        this.timeInMillis = timeInMillis;
+        this.location = location;
+        this.sensorID = sensorID;
     }
 
     /**
-     * @param count the count to set
+     * @return the data
      */
-    public void setCount(double count) {
-        this.count = count;
+    public double getData() {
+        return data;
     }
 
     /**
-     * @param SensorDescription the SensorDescription to set
+     * @param data the data to set
      */
-    public void setSensorDescription(String SensorDescription) {
-        this.SensorDescription = SensorDescription;
+    public void setData(double data) {
+        this.data = data;
     }
 
     /**
-     * @return the sensor
+     * @return the timeInMillis
      */
-    public Sensor getSensor() {
-        return sensor;
+    public Long getTimeInMillis() {
+        return timeInMillis;
     }
 
     /**
-     * @param sensor the sensor to set
+     * @param timeInMillis the timeInMillis to set
      */
-    public void setSensor(Sensor sensor) {
-        this.sensor = sensor;
-    }
-
-    private double count;
-    private Sensor sensor;
-    private String SensorDescription;
-    // private Data data=new Data();
-
-    private String status;
-    private double frequency;
-
-    public EmbelishedData(Sensor sensor, String SensorDescription, String status, double frequency) {
-        this.count = 0.0;
-        this.sensor = sensor;
-        this.SensorDescription = SensorDescription;
-        this.status = status;
-        this.frequency = frequency;
+    public void setTimeInMillis(Long timeInMillis) {
+        this.timeInMillis = timeInMillis;
     }
 
     /**
-     * @return the SensorDescription
+     * @return the location
      */
-    public String getSensorDescription() {
-        return SensorDescription;
-    }
-
-//
-//    /**
-//     * @return the data
-//     */
-//    public Data getData() {
-//        return data;
-//    }
-//
-//    /**
-//     * @param data the data to set
-//     */
-//    public void setData(Data data) {
-//        this.data = data;
-//    }
-    /**
-     * @return the status
-     */
-    public String getStatus() {
-        return status;
+    public ArrayList<Double> getLocation() {
+        return location;
     }
 
     /**
-     * @return the frequency
+     * @param location the location to set
      */
-    public double getFrequency() {
-        return frequency;
+    public void setLocation(ArrayList<Double> location) {
+        this.location = location;
     }
 
+    /**
+     * @return the sensorID
+     */
+    public String getSensorID() {
+        return sensorID;
+    }
+
+    /**
+     * @param sensorID the sensorID to set
+     */
+    public void setSensorID(String sensorID) {
+        this.sensorID = sensorID;
+    }
 }

@@ -13,6 +13,9 @@ public class Data {
 
     private String Sensorid;
   
+    public Data(){
+        
+    }
     public Data(String sid) {
         this.Sensorid=sid;
      }

@@ -4,11 +4,8 @@ package View;
 
 import Controller.MotherShip;
 import Controller.SetOFData;
-import Controller.SetOfEmbelishedData;
 import Controller.SetOfSensorMonitors;
-import Models.Clock;
 import Models.Data;
-import Models.EmbelishedData;
 import Models.SensorMonitor;
 import Models.SensorStation;
 import java.io.Serializable;
@@ -29,11 +26,10 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
     SensorStation currentSensorStation;
     
     
-    //Additional
+   //Additional
      SetOfSensorMonitors SOSM=SetOfSensorMonitors.getSetOfSensorMonitorsInstance();
-       Clock clock = Clock.getInstance();
+   
          private Data data;
-       
     /**
      * Creates new form View
      */
@@ -75,19 +71,20 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
             }
          
      }
-      private void populateSensorMonitorList(){
+       private void populateSensorMonitorList(){
           sensorMonitors=currentSensorStation.getSensorMonitors();
           DefaultTableModel dtm = (DefaultTableModel) tblViewSensorStation.getModel();
           dtm.setRowCount(0);
         for(SensorMonitor sensormonitor:sensorMonitors){
-              Vector v = new Vector();
+            Vector v = new Vector();
             v.add(sensormonitor.getSensor().getSensorId());
+            v.add(sensormonitor.getSensorDescription());
             v.add(sensormonitor.readingsCount);
+            v.add(sensormonitor.getStatus());
             v.add(sensormonitor.getInterval());
             dtm.addRow(v);
         }    
       }
-     
      
      
     public void populateSensorStationList(){
@@ -187,7 +184,7 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         tblWasteCollectorBinDetails = new javax.swing.JTable();
         jScrollPane9 = new javax.swing.JScrollPane();
         tblWasteCollectorTraffic = new javax.swing.JTable();
-        btnAddSensor1 = new javax.swing.JButton();
+        btnEmptyBin = new javax.swing.JButton();
         jPanelDummyData = new javax.swing.JPanel();
         btnAddGarbage = new javax.swing.JButton();
         cmbAvailableBinSensorDummy = new javax.swing.JComboBox<>();
@@ -646,16 +643,16 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
 
         jPanelWasteCollector.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 500, 480));
 
-        btnAddSensor1.setBackground(new java.awt.Color(38, 50, 56));
-        btnAddSensor1.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        btnAddSensor1.setForeground(new java.awt.Color(255, 255, 255));
-        btnAddSensor1.setText("Empty Bin");
-        btnAddSensor1.addActionListener(new java.awt.event.ActionListener() {
+        btnEmptyBin.setBackground(new java.awt.Color(38, 50, 56));
+        btnEmptyBin.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        btnEmptyBin.setForeground(new java.awt.Color(255, 255, 255));
+        btnEmptyBin.setText("Empty Bin");
+        btnEmptyBin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddSensor1ActionPerformed(evt);
+                btnEmptyBinActionPerformed(evt);
             }
         });
-        jPanelWasteCollector.add(btnAddSensor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 260, 130, -1));
+        jPanelWasteCollector.add(btnEmptyBin, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 260, 130, -1));
 
         jTabbedPaneMainPanel.addTab("  WASTE COLLECTOR  ", jPanelWasteCollector);
 
@@ -743,7 +740,7 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
 //            System.out.println("err");
 //        }
            selectSensorStation(cmbSelectSensorStation.getSelectedItem().toString());
-            
+            populateSensorMonitorList();
 
     }//GEN-LAST:event_cmbSelectSensorStationActionPerformed
 
@@ -777,15 +774,11 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
     }//GEN-LAST:event_cmbSelectSensorStationMouseClicked
 
     private void btnAddSensorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSensorActionPerformed
-       SensorMonitor sensormonitor = new SensorMonitor(txtSensorId.getText(), cmbStatus.getSelectedItem().toString(), Double.parseDouble(txtFrequency.getText()), cmbSensorType.getSelectedItem().toString());
+      SensorMonitor sensormonitor = new SensorMonitor(txtSensorId.getText(), cmbStatus.getSelectedItem().toString(), Double.parseDouble(txtFrequency.getText()), cmbSensorType.getSelectedItem().toString());
         currentSensorStation.addNewSensorMonitor(sensormonitor);
+        sensormonitor.setCoords(currentSensorStation.getLocation().getCoords());
         SOSM.addSensorMonitor(sensormonitor);
         populateSensorMonitorList();
-        try {
-        clock.registerObserver(sensormonitor);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
     }//GEN-LAST:event_btnAddSensorActionPerformed
 
     private void tblViewSensorStationMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblViewSensorStationMouseMoved
@@ -800,9 +793,9 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         SOD.addData(data);
     }//GEN-LAST:event_btnAddGarbageActionPerformed
 
-    private void btnAddSensor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSensor1ActionPerformed
+    private void btnEmptyBinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmptyBinActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddSensor1ActionPerformed
+    }//GEN-LAST:event_btnEmptyBinActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -840,8 +833,8 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddGarbage;
     private javax.swing.JButton btnAddSensor;
-    private javax.swing.JButton btnAddSensor1;
     private javax.swing.JButton btnAddSensorStation;
+    private javax.swing.JButton btnEmptyBin;
     private javax.swing.JButton btnMakeFlood;
     private javax.swing.JButton btnRemoveSensor;
     private javax.swing.JButton btnRemoveSensorStation;

@@ -16,7 +16,8 @@ import java.util.ArrayList;
  */
 public class Clock implements Subject,Serializable{
     
-     private ArrayList<Observer> Observers;
+     public ArrayList<Observer> Observers;
+   //Todo-public double notifyFrequency;
      private static Clock clock;
    
      
@@ -42,8 +43,9 @@ public class Clock implements Subject,Serializable{
     @Override
     public void registerObserver(Observer obs) {
         Observers.add(obs);
+        System.out.println("size of observers in clock--------------------------------------------"+Observers.size());
         new Thread(this::trackTime).start();
-        //trackTime();
+       // trackTime();
     }
 
     @Override

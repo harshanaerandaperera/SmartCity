@@ -13,9 +13,15 @@ import Controller.SetOFData;
  */
 public class Sensor {
 
+    
+
  private String sensorId;
+ 
  private SetOFData SOD=SetOFData.getSetOFDataInstance();
-   
+
+ public Sensor(){
+     
+ } 
  public Sensor(String sensorId){
      this.sensorId=sensorId;
  } 
@@ -44,4 +50,6 @@ public String getSensorId() {
        }
        return count;
     }
+    
+   
 }
