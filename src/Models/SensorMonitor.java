@@ -7,6 +7,7 @@ package Models;
 
 import java.util.ArrayList;
 import Controller.*;
+import java.io.Serializable;
 import java.util.Random;
 import java.util.UUID;
 
@@ -17,7 +18,7 @@ import java.util.UUID;
  *
  * @author Oshin
  */
-public class SensorMonitor implements Subject, Observer {
+public class SensorMonitor implements Subject, Observer ,Serializable{
 
     
     
@@ -61,7 +62,7 @@ public class SensorMonitor implements Subject, Observer {
      * @param inSensorType
      */
     public SensorMonitor(String inSensorID,String insensorStationName,String inIsActive,Double inInterval,String inSensorType) {
-        this.sensorMonitorID = UUID.randomUUID().toString();
+        this.sensorMonitorID = inSensorID;
         this.stationName=insensorStationName;
         // Observers=new ArrayList<>();
         this.interval = inInterval;

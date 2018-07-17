@@ -5,13 +5,14 @@
  */
 package Models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Harshana
  */
-public class Location {
+public class Location implements Serializable{
 
   
     private double latitude;

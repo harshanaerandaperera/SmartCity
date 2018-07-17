@@ -8,13 +8,14 @@ package Models;
 import Controller.Observer;
 import Controller.PublicInterface;
 import Controller.Subject;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Harshana
  */
-public class SensorStation implements Subject, Observer {
+public class SensorStation implements Subject, Observer ,Serializable{
     
     private ArrayList<SensorMonitor> sensormonitors=new ArrayList<SensorMonitor>() ;
     private String stationID;

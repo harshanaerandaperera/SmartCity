@@ -7,13 +7,14 @@ package Controller;
 
 import Models.EmbelishedData;
 import Models.SensorStation;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Harshana
  */
-public class MotherShip implements Observer {
+public class MotherShip implements Observer,Serializable{
     //private {id} ID;
     private ArrayList<SensorStation> sensorStations ;
     
