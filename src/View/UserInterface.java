@@ -32,12 +32,13 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
     private ArrayList<SensorMonitor> sensorMonitors;
     SensorStation currentSensorStation;
     BinSensor Currentbinsensor;
+    FloodSensor Currentfloodsensor;
 
     //Additional
     SetOfSensorMonitors SOSM = SetOfSensorMonitors.getSetOfSensorMonitorsInstance();
     SetOfBinSensors SOBS = SetOfBinSensors.getSetOfBinSensorsInstance();
     SetOfFloodSensors SOFS = SetOfFloodSensors.getSetOfFloodSensorsInstance();
-    SetOfTrafficSensors SOTS=SetOfTrafficSensors.getSetOfTrafficSensorsInstance();
+    SetOfTrafficSensors SOTS = SetOfTrafficSensors.getSetOfTrafficSensorsInstance();
     PublicInterface publicInterface = new PublicInterface();
     private Data data;
 
@@ -84,18 +85,24 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         }
 
     }
-    
-     public void selectBinSensor(String id) {
+
+    public void selectBinSensor(String id) {
         for (BinSensor binsensor : SOBS) {
             if (binsensor.getSensorId().equals(id)) {
                 Currentbinsensor = binsensor;
-                txtBinDummy.setText(id);
             }
         }
 
     }
 
-    
+    public void selectFloodSensor(String id) {
+        for (FloodSensor floodsensor : SOFS) {
+            if (floodsensor.getSensorId().equals(id)) {
+                Currentfloodsensor = floodsensor;
+            }
+        }
+
+    }
 
     private void populateSensorMonitorList() {
         sensorMonitors = currentSensorStation.getSensorMonitors();
@@ -126,31 +133,24 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
             dtm.addRow(v);
         }
     }
-    
-    
-//This is a additional methode we used to load data to combo box    
 
+//This is a additional methode we used to load data to combo box    
     public void populateSensorStationDetailsToComboBox(SensorStation st) {
         cmbSelectSensorStation.addItem(st.getStationName() + "  " + st.getStationID() + "  (" + st.getLocation().getCoords().get(0) + " , " + st.getLocation().getCoords().get(1) + ")");
         // cmbSelectSensorStation.addItem(st.getStationID());
     }
-     public void populateBinSensorsDetailsToComboBox(String id) {
-         //for(BinSensor binsensor:SOBS){
-           cmbAvailableBinSensorDummy.addItem(id);
-         //}
-        // cmbSelectSensorStation.addItem(st.getStationID());
+
+    public void populateBinSensorsDetailsToComboBox(String id) {
+        cmbAvailableBinSensorDummy.addItem(id);
+
     }
-      public void populateFloodSensorsDetailsToComboBox() {
-         for(FloodSensor floodsensor:SOFS){
-                     cmbAvailableFloodSensorDummy.addItem(floodsensor.getSensorId());
-         }
-        // cmbSelectSensorStation.addItem(st.getStationID());
+
+    public void populateFloodSensorsDetailsToComboBox(String id) {
+        cmbAvailableFloodSensorDummy.addItem(id);
     }
-     public void populateTrafficSensorsDetailsToComboBox() {
-         for(TrafficSensor trafficSensor:SOTS){
-                     cmbAvailableTrafficSensorDummy.addItem(trafficSensor.getSensorId());
-         }
-        // cmbSelectSensorStation.addItem(st.getStationID());
+
+    public void populateTrafficSensorsDetailsToComboBox(String id) {
+        cmbAvailableTrafficSensorDummy.addItem(id);
     }
 
     //Populate Alert Details Starts Here
@@ -200,7 +200,7 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         }
     }
 
-     public void populateTrafficLightAlertDetails() {
+    public void populateTrafficLightAlertDetails() {
         DefaultTableModel dtm = (DefaultTableModel) tblUserTraffic.getModel();
         dtm.setRowCount(0);
         // sensorStations=mothership.getSensorStations();
@@ -211,7 +211,7 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
                     Vector v = new Vector();
                     v.add(embelishedData.getStationName());
                     v.add(embelishedData.getData());
-                   
+
                     v.add(0);
                     dtm.addRow(v);
                 }
@@ -219,7 +219,7 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         }
     }
 
-     public void populateNearestRoadAlertDetails() {
+    public void populateNearestRoadAlertDetails() {
         DefaultTableModel dtm = (DefaultTableModel) tblWasteCollectorTraffic.getModel();
         dtm.setRowCount(0);
         // sensorStations=mothership.getSensorStations();
@@ -230,15 +230,14 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
                     Vector v = new Vector();
                     v.add(embelishedData.getStationName());
                     v.add(embelishedData.getData());
-                   
+
                     v.add(0);
                     dtm.addRow(v);
                 }
             }
         }
     }
-     
-    
+
 //      public void populateNearestRoadAlertDetails() {
 //        DefaultTableModel dtm = (DefaultTableModel) tblWasteCollectorTraffic.getModel();
 //        dtm.setRowCount(0);
@@ -269,8 +268,6 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
 //    }
 //
 //    
-    
-    
     //Filter Station Id
     public String getMatchedStationId(String cmbValue) {
         Pattern p = Pattern.compile("[ST]{2}[0-9]{3}");
@@ -358,10 +355,8 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         jPanelDummyData = new javax.swing.JPanel();
         btnAddGarbage = new javax.swing.JButton();
         cmbAvailableBinSensorDummy = new javax.swing.JComboBox<>();
-        txtBinDummy = new javax.swing.JTextField();
         btnMakeFlood = new javax.swing.JButton();
         cmbAvailableFloodSensorDummy = new javax.swing.JComboBox<>();
-        txtFloodDummy = new javax.swing.JTextField();
         btnIncreaseTraffic = new javax.swing.JButton();
         cmbAvailableTrafficSensorDummy = new javax.swing.JComboBox<>();
         txtTrafficDummy = new javax.swing.JTextField();
@@ -877,18 +872,16 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         });
         jPanelDummyData.add(cmbAvailableBinSensorDummy, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, -1));
 
-        txtBinDummy.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBinDummyActionPerformed(evt);
-            }
-        });
-        jPanelDummyData.add(txtBinDummy, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 160, -1));
-
         btnMakeFlood.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/makeFlood256.png"))); // NOI18N
         btnMakeFlood.setBorder(null);
         btnMakeFlood.setContentAreaFilled(false);
         btnMakeFlood.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/makeFlood128.png"))); // NOI18N
         btnMakeFlood.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/makeFloodrollover.png"))); // NOI18N
+        btnMakeFlood.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMakeFloodActionPerformed(evt);
+            }
+        });
         jPanelDummyData.add(btnMakeFlood, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 240, -1, -1));
 
         cmbAvailableFloodSensorDummy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Available Flood sensors to Make Flood" }));
@@ -898,7 +891,6 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
             }
         });
         jPanelDummyData.add(cmbAvailableFloodSensorDummy, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 50, -1, -1));
-        jPanelDummyData.add(txtFloodDummy, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 160, 160, -1));
 
         btnIncreaseTraffic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/trafficlights256.png"))); // NOI18N
         btnIncreaseTraffic.setBorder(null);
@@ -944,7 +936,7 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
 
     private void jTabbedPaneMainPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPaneMainPanelMouseClicked
         switchScreens();
-       
+
     }//GEN-LAST:event_jTabbedPaneMainPanelMouseClicked
 
     private void jTabbedPaneStationMgtSubPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPaneStationMgtSubPanelMouseClicked
@@ -989,7 +981,7 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         mothership.addNewSensorStation(aSensorStation);
         populateSensorStationList();
         populateSensorStationDetailsToComboBox(aSensorStation);
-       
+
 
     }//GEN-LAST:event_btnAddSensorStationActionPerformed
 
@@ -1004,17 +996,21 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         sensormonitor.setCoords(currentSensorStation.getLocation().getCoords());
         SOSM.addSensorMonitor(sensormonitor);
         populateSensorMonitorList();
-        if( cmbSensorType.getSelectedItem().toString()=="Bin Sensor"){
-           populateBinSensorsDetailsToComboBox(txtSensorId.getText());
-           }
-        
-        
-    //    populateFloodSensorsDetailsToComboBox(txtSensorId.getText());
-     //   populateTrafficSensorsDetailsToComboBox(txtSensorId.getText());
-        
-         populateBinAlertDetails();
+        if (cmbSensorType.getSelectedItem().toString() == "Bin Sensor") {
+            populateBinSensorsDetailsToComboBox(txtSensorId.getText());
+        }
+        if (cmbSensorType.getSelectedItem().toString() == "Flood Sensor") {
+            populateFloodSensorsDetailsToComboBox(txtSensorId.getText());
+        }
+        if (cmbSensorType.getSelectedItem().toString() == "Traffic Sensor") {
+            populateTrafficSensorsDetailsToComboBox(txtSensorId.getText());
+        }
+
+        //    populateFloodSensorsDetailsToComboBox(txtSensorId.getText());
+        //   populateTrafficSensorsDetailsToComboBox(txtSensorId.getText());
+        populateBinAlertDetails();
         populateTrafficLightAlertDetails();
-         populateNearestRoadAlertDetails();
+        populateNearestRoadAlertDetails();
 
     }//GEN-LAST:event_btnAddSensorActionPerformed
 
@@ -1028,7 +1024,7 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         data = new Data(binSensorid);
         SOD.addData(data);
         populateBinAlertDetails();
-        
+
     }//GEN-LAST:event_btnAddGarbageActionPerformed
 
     private void btnEmptyBinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmptyBinActionPerformed
@@ -1036,7 +1032,7 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
     }//GEN-LAST:event_btnEmptyBinActionPerformed
 
     private void jTabbedPaneMainPanelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPaneMainPanelMouseMoved
-       
+
     }//GEN-LAST:event_jTabbedPaneMainPanelMouseMoved
 
     private void jTabbedPaneUserSubPanelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPaneUserSubPanelMouseMoved
@@ -1046,11 +1042,11 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
     }//GEN-LAST:event_jTabbedPaneUserSubPanelMouseMoved
 
     private void tblUserTrafficMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUserTrafficMouseMoved
-          
+
     }//GEN-LAST:event_tblUserTrafficMouseMoved
 
     private void jPanelWasteCollectorMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelWasteCollectorMouseMoved
-       
+
     }//GEN-LAST:event_jPanelWasteCollectorMouseMoved
 
     private void cmbAvailableBinSensorDummyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAvailableBinSensorDummyActionPerformed
@@ -1061,18 +1057,23 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
     }//GEN-LAST:event_cmbAvailableBinSensorDummyActionPerformed
 
     private void cmbAvailableFloodSensorDummyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAvailableFloodSensorDummyActionPerformed
-         
-
+        selectFloodSensor(cmbAvailableFloodSensorDummy.getSelectedItem().toString());
 
     }//GEN-LAST:event_cmbAvailableFloodSensorDummyActionPerformed
-
-    private void txtBinDummyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBinDummyActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBinDummyActionPerformed
 
     private void btnRemoveSensorStationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveSensorStationActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRemoveSensorStationActionPerformed
+
+    private void btnMakeFloodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMakeFloodActionPerformed
+        SetOFData SOD = SetOFData.getSetOFDataInstance();
+        String floodsensorid = Currentfloodsensor.getSensorId();
+        data = new Data(floodsensorid);
+        SOD.addData(data);
+        populateFloodAlertDetails();
+
+
+    }//GEN-LAST:event_btnMakeFloodActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -1175,8 +1176,6 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
     private javax.swing.JTable tblViewSensorStation;
     private javax.swing.JTable tblWasteCollectorBinDetails;
     private javax.swing.JTable tblWasteCollectorTraffic;
-    private javax.swing.JTextField txtBinDummy;
-    private javax.swing.JTextField txtFloodDummy;
     private javax.swing.JTextField txtFrequency;
     private javax.swing.JTextField txtLatitude;
     private javax.swing.JTextField txtLongitude;
