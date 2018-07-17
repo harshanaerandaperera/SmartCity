@@ -179,7 +179,7 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
             v.add(st.getStationID());
             v.add(st.getStationName());
             v.add(st.getLocation().getCoords().get(0) + " , " + st.getLocation().getCoords().get(1));
-            v.add(0);
+            v.add(st.getSensorMonitors().size());
             dtm.addRow(v);
         }
     }
@@ -485,7 +485,6 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         jSeparator14 = new javax.swing.JSeparator();
         txtStationID = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
-        btn = new javax.swing.JButton();
         jPanelMayorSensorStation = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblViewSensorStation = new javax.swing.JTable();
@@ -787,14 +786,6 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("Station ID:");
         jPanelMayorStationManagement.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 80, -1));
-
-        btn.setText("jButton1");
-        btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActionPerformed(evt);
-            }
-        });
-        jPanelMayorStationManagement.add(btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 450, -1, -1));
 
         jTabbedPaneStationMgtSubPanel.addTab("                   Station Management                   ", jPanelMayorStationManagement);
 
@@ -1158,6 +1149,7 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         populateUserTrafficAlertDetails();
         populateWasteCollectorTrafficAlertDetails();
         populateFloodAlertDetails();
+         populateSensorStationList();
     }//GEN-LAST:event_btnAddSensorActionPerformed
 
     private void tblViewSensorStationMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblViewSensorStationMouseMoved
@@ -1242,13 +1234,6 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
 
     }//GEN-LAST:event_formWindowClosing
 
-    private void btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionPerformed
-          populateSensorStationList2();
-
-
-
-    }//GEN-LAST:event_btnActionPerformed
-
     private void btnRemoveSensorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveSensorActionPerformed
         selectSensorMonitor();
             currentSensorStation.removeSensorMonitor(currentSensorMonitor);
@@ -1293,7 +1278,6 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn;
     private javax.swing.JButton btnAddGarbage;
     private javax.swing.JButton btnAddSensor;
     private javax.swing.JButton btnAddSensorStation;
