@@ -26,6 +26,10 @@ public class Validator {
     public boolean isValidSensorID(String sID) {
         return sID.matches("^[S]{1}[0-9]{3}$");
     }
+    
+    public boolean isValidNumber(String num) {
+        return num.matches("[0-9]{1,13}(\\.[0-9]*)?");
+    }
 
     public boolean isValidEmail(String email) {
         return email.matches("^([\\w\\.\\-]+)@([\\w\\-]+)((\\.(\\w){2,3})+)$");
