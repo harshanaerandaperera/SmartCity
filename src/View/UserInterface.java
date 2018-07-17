@@ -246,6 +246,28 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
             }
         }
     }
+    
+    public void populateParamedicTraffiAlertDetails() {
+        DefaultTableModel dtm = (DefaultTableModel) tblParamedicTraffic.getModel();
+        dtm.setRowCount(0);
+        // sensorStations=mothership.getSensorStations();
+        for (EmbelishedData embelishedData : publicInterface.getAllChangedData()) {
+
+            for (TrafficSensor trfficSensor : SOTS) {
+                if (trfficSensor.getSensorId().equals(embelishedData.getSensorID())) {
+                    Vector v = new Vector();
+                    v.add(embelishedData.getStationName());
+                    v.add(embelishedData.getData());
+                    v.add(0);
+                    dtm.addRow(v);
+                }
+            }
+        }
+    }
+    
+    
+    
+    
 
 //      public void populateNearestRoadAlertDetails() {
 //        DefaultTableModel dtm = (DefaultTableModel) tblWasteCollectorTraffic.getModel();
@@ -747,11 +769,6 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
 
         cmbSelectSensorStation.setForeground(new java.awt.Color(255, 255, 255));
         cmbSelectSensorStation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select A Sensor Station" }));
-        cmbSelectSensorStation.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cmbSelectSensorStationMouseClicked(evt);
-            }
-        });
         cmbSelectSensorStation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbSelectSensorStationActionPerformed(evt);
@@ -1002,10 +1019,6 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
 
     }//GEN-LAST:event_btnAddSensorStationActionPerformed
 
-    private void cmbSelectSensorStationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbSelectSensorStationMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbSelectSensorStationMouseClicked
-
     private void btnAddSensorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSensorActionPerformed
 
         SensorMonitor sensormonitor = new SensorMonitor(txtSensorId.getText(), currentSensorStation.getStationName(), cmbStatus.getSelectedItem().toString(), Double.parseDouble(txtFrequency.getText()), cmbSensorType.getSelectedItem().toString());
@@ -1053,8 +1066,8 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
     }//GEN-LAST:event_jTabbedPaneMainPanelMouseMoved
 
     private void jTabbedPaneUserSubPanelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPaneUserSubPanelMouseMoved
-        populateFloodAlertDetails();
-        populateTrafficLightAlertDetails();
+       // populateFloodAlertDetails();
+       // populateTrafficLightAlertDetails();
 
     }//GEN-LAST:event_jTabbedPaneUserSubPanelMouseMoved
 
@@ -1093,6 +1106,8 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         data = new Data(trafficsensorid);
         SOD.addData(data);
         populateTrafficLightAlertDetails();
+        populateNearestRoadAlertDetails();
+        populateParamedicTraffiAlertDetails();
     }//GEN-LAST:event_btnIncreaseTrafficActionPerformed
 
     private void cmbAvailableTrafficSensorDummyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAvailableTrafficSensorDummyActionPerformed
