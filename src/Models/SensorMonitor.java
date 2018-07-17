@@ -42,7 +42,7 @@ public class SensorMonitor implements Subject, Observer {
      //As one observer for a one sensor monitor we implemented as this
      private Observer observer;
      private EmbelishedData embellishedData;
-     
+     private String stationName;
      
     SetOfTrafficSensors SOTS = SetOfTrafficSensors.getSetOfTrafficSensorsInstance();
     SetOfSensorMonitors SOSM = SetOfSensorMonitors.getSetOfSensorMonitorsInstance();
@@ -60,9 +60,10 @@ public class SensorMonitor implements Subject, Observer {
      * @param inIsActive
      * @param inSensorType
      */
-    public SensorMonitor(String inSensorID,  String inIsActive,Double inInterval,String inSensorType) {
+    public SensorMonitor(String inSensorID,String insensorStationName,String inIsActive,Double inInterval,String inSensorType) {
         this.sensorMonitorID = UUID.randomUUID().toString();
-       // Observers=new ArrayList<>();
+        this.stationName=insensorStationName;
+        // Observers=new ArrayList<>();
         this.interval = inInterval;
         if (inIsActive.equals("Active")) {
             this.isActive = true;
@@ -145,11 +146,19 @@ public class SensorMonitor implements Subject, Observer {
         for (int i = 0; i < SOSM.size(); i++) {
               if (SOSM.get(i) == observer) {             
                   SOSM.get(i).readingsCount=SOSM.get(i).getSensor().getData();
-                    if(SOSM.get(i).readingsCount>SOSM.get(i).getInterval()){
-                        embellishData(SOSM.get(i).getSensor());
-                    notifyObservers();  
+                    if(SOSM.get(i).status.equals("Active")){
+                        System.out.println("--------------------Active");
+                       // System.out.println("-------------------Reading Count-----"+SOSM.get(i).getInterval());
+                        if(SOSM.get(i).readingsCount>SOSM.get(i).getInterval()){
+                                 SOSM.get(i).status="Not-Active";
+                    //    System.out.println("##################################################"+SOSM.get(i).getInterval());
+                        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+                        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+                        embellishData(SOSM.get(i).getSensor(),SOSM.get(i).readingsCount);
+                        notifyObservers();
+                        }
                     }
-                    
+                   // System.out.println("-----------"+SOSM.get(i).readingsCount);
                 }
             
         }
@@ -157,11 +166,11 @@ public class SensorMonitor implements Subject, Observer {
 
     }
     
-       public void embellishData(Sensor senor){
+       public void embellishData(Sensor senor,double count){
         long timeInMills = 10; 
         ArrayList<Double> coords = getCoords();
         String id = sensor.getSensorId();
-        embellishedData = new EmbelishedData(readingsCount, timeInMills, coords, id);
+        embellishedData = new EmbelishedData(count,this.stationName,this.interval, timeInMills, coords, id);
     }
 
     public void calculateDataCount(String sid) {

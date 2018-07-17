@@ -70,7 +70,7 @@ public class MotherShip implements Observer {
     public void update(Object ob, Observer observer) {
        // System.out.println("------------------------------"+(EmbelishedData)ob);
         receiveStationData().uploadData((EmbelishedData)ob);
-       //receiveStationData().getAllChangedData();
+       receiveStationData().getAllChangedData();
      }
     
 }

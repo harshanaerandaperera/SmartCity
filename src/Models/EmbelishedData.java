@@ -12,17 +12,21 @@ import java.util.ArrayList;
  * @author Oshin
  */
 public class EmbelishedData {
-
-
      private double data;
      private Long timeInMillis;
      private ArrayList<Double> location;
      private String sensorID;
      
-    public EmbelishedData(double data, Long timeInMillis, ArrayList<Double> location ,String sensorID)
+     //additional
+     private String stationName;
+     private Double interval;
+   
+     public EmbelishedData(double data,String stationName,Double interval, Long timeInMillis, ArrayList<Double> location ,String sensorID)
     {
         this.data = data;
-        this.timeInMillis = timeInMillis;
+        this.stationName=stationName;
+        this.interval=interval;
+        this.timeInMillis =timeInMillis;
         this.location = location;
         this.sensorID = sensorID;
     }
@@ -82,4 +86,31 @@ public class EmbelishedData {
     public void setSensorID(String sensorID) {
         this.sensorID = sensorID;
     }
+ /**
+     * @return the stationName
+     */
+    public String getStationName() {
+        return stationName;
+    }
+
+    /**
+     * @param stationName the stationName to set
+     */
+    public void setStationName(String stationName) {
+        this.stationName = stationName;
+    }
+    /**
+     * @return the interval
+     */
+    public Double getInterval() {
+        return interval;
+    }
+
+    /**
+     * @param interval the interval to set
+     */
+    public void setInterval(Double interval) {
+        this.interval = interval;
+    }
+
 }
