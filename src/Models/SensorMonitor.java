@@ -65,6 +65,7 @@ public class SensorMonitor implements Subject, Observer {
         this.stationName=insensorStationName;
         // Observers=new ArrayList<>();
         this.interval = inInterval;
+
         if (inIsActive.equals("Active")) {
             this.isActive = true;
             this.status="Active";
@@ -75,18 +76,21 @@ public class SensorMonitor implements Subject, Observer {
         }
 
         if (inSensorType.equals("Bin Sensor")) {
-            this.sensor = new BinSensor(inSensorID);
-            SOBS.addBinSensor(new BinSensor(inSensorID));
+            this.sensor = new BinSensor(inSensorID,inInterval);
+          //  this.sensor.setFrequency(inInterval);
+            SOBS.addBinSensor(new BinSensor(inSensorID,inInterval));
             SOS.addSensor(sensor);
             this.sensorDescription="Bin Sensor";
         } else if (inSensorType.equals("Flood Sensor")) {
-            this.sensor = new FloodSensor(inSensorID);
-            SOFS.addFloodSensor(new FloodSensor(inSensorID));
+            this.sensor = new FloodSensor(inSensorID,inInterval);
+           // this.sensor.setFrequency(inInterval);
+            SOFS.addFloodSensor(new FloodSensor(inSensorID,inInterval));
             SOS.addSensor(sensor);
             this.sensorDescription="Flood Sensor";
         } else {
-            this.sensor = new TrafficSensor(inSensorID);
-            SOTS.addTrafficSensor(new TrafficSensor(inSensorID));
+            this.sensor = new TrafficSensor(inSensorID,inInterval);
+            //this.sensor.setFrequency(inInterval);
+            SOTS.addTrafficSensor(new TrafficSensor(inSensorID,inInterval));
             SOS.addSensor(sensor);
             this.sensorDescription="Traffic Sensor";
         }
@@ -147,9 +151,9 @@ public class SensorMonitor implements Subject, Observer {
               if (SOSM.get(i) == observer) {             
                   SOSM.get(i).readingsCount=SOSM.get(i).getSensor().getData();
                     if(SOSM.get(i).status.equals("Active")){
-                        System.out.println("--------------------Active");
+                       // System.out.println("--------------------Active");
                        // System.out.println("-------------------Reading Count-----"+SOSM.get(i).getInterval());
-                        if(SOSM.get(i).readingsCount>SOSM.get(i).getInterval()){
+                        if(SOSM.get(i).readingsCount==SOSM.get(i).getInterval()){
                                  SOSM.get(i).status="Not-Active";
                     //    System.out.println("##################################################"+SOSM.get(i).getInterval());
                         System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++");

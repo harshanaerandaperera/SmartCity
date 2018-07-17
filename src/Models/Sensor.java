@@ -14,16 +14,19 @@ import Controller.SetOFData;
 public class Sensor {
 
     
+    
 
  private String sensorId;
+ private double frequency;
  
  private SetOFData SOD=SetOFData.getSetOFDataInstance();
 
  public Sensor(){
      
  } 
- public Sensor(String sensorId){
+ public Sensor(String sensorId,double freq){
      this.sensorId=sensorId;
+     this.frequency=freq;
  } 
  
  /**
@@ -50,6 +53,19 @@ public String getSensorId() {
        }
        return count;
     }
-    
+  /**
+     * @return the frequency
+     */
+    public double getFrequency() {
+        return frequency;
+    }
+
+    /**
+     * @param frequency the frequency to set
+     */
+    public void setFrequency(double frequency) {
+        this.frequency = frequency;
+    }
+  
    
 }

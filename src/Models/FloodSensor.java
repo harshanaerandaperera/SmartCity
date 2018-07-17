@@ -11,7 +11,7 @@ package Models;
  */
 public class FloodSensor extends Sensor {
 
-    public FloodSensor(String floodSensorId) {
-        super(floodSensorId);
+    public FloodSensor(String floodSensorId,double freq) {
+        super(floodSensorId,freq);
     }
 }
