@@ -77,11 +77,13 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         if (selectedIndex == 0) {
             jTabbedPaneMainPanel.setEnabledAt(1, false);
             jTabbedPaneMainPanel.setEnabledAt(2, false);
+            jTabbedPaneMainPanel.setEnabledAt(3, false);
+            jTabbedPaneMainPanel.setEnabledAt(4, false);
         }
         if (selectedIndex == 1) {
             jTabbedPaneMainPanel.setEnabledAt(1, true);
             jTabbedPaneMainPanel.setEnabledAt(2, false);
-             jTabbedPaneMainPanel.setEnabledAt(3, false);
+            jTabbedPaneMainPanel.setEnabledAt(3, false);
             jTabbedPaneMainPanel.setEnabledAt(4, false);
         }
         if (selectedIndex == 2) {
