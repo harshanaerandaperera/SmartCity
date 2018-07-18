@@ -59,7 +59,6 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
     /**
      * Creates new form View
      */
-    
     public UserInterface() {
         initComponents();
         DeserializeMotherShip();
@@ -82,9 +81,26 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         if (selectedIndex == 1) {
             jTabbedPaneMainPanel.setEnabledAt(1, true);
             jTabbedPaneMainPanel.setEnabledAt(2, false);
+             jTabbedPaneMainPanel.setEnabledAt(3, false);
+            jTabbedPaneMainPanel.setEnabledAt(4, false);
         }
         if (selectedIndex == 2) {
             jTabbedPaneMainPanel.setEnabledAt(2, true);
+            jTabbedPaneMainPanel.setEnabledAt(1, false);
+            jTabbedPaneMainPanel.setEnabledAt(3, false);
+            jTabbedPaneMainPanel.setEnabledAt(4, false);
+
+        }
+        if (selectedIndex == 3) {
+            jTabbedPaneMainPanel.setEnabledAt(3, true);
+            jTabbedPaneMainPanel.setEnabledAt(2, false);
+            jTabbedPaneMainPanel.setEnabledAt(4, false);
+            jTabbedPaneMainPanel.setEnabledAt(1, false);
+        }
+        if (selectedIndex == 4) {
+            jTabbedPaneMainPanel.setEnabledAt(4, true);
+            jTabbedPaneMainPanel.setEnabledAt(2, false);
+            jTabbedPaneMainPanel.setEnabledAt(3, false);
             jTabbedPaneMainPanel.setEnabledAt(1, false);
         }
         if (selectedIndex == 6) {
@@ -560,6 +576,11 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         btnRoleParamedic.setContentAreaFilled(false);
         btnRoleParamedic.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/ambulance128.png"))); // NOI18N
         btnRoleParamedic.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/ambulancerollover.png"))); // NOI18N
+        btnRoleParamedic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRoleParamedicActionPerformed(evt);
+            }
+        });
         jPanelWelcome.add(btnRoleParamedic, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 150, -1, -1));
 
         btnRoleUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/user256.png"))); // NOI18N
@@ -579,6 +600,11 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         btnRoleWasteCollector.setContentAreaFilled(false);
         btnRoleWasteCollector.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/recycling-truck128.png"))); // NOI18N
         btnRoleWasteCollector.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/recycling-truckrollover.png"))); // NOI18N
+        btnRoleWasteCollector.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRoleWasteCollectorActionPerformed(evt);
+            }
+        });
         jPanelWelcome.add(btnRoleWasteCollector, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 150, -1, -1));
 
         lblWelcomeImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/smartcitywelcome.jpg"))); // NOI18N
@@ -1287,9 +1313,9 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         //  populateSensorMonitorList();
         //currentSensorMonitor = null;
         //  selectSensorMonitor();
-       // currentSensorStation.removeSensorMonitor(currentSensorMonitor);
+        // currentSensorStation.removeSensorMonitor(currentSensorMonitor);
         // populateSensorMonitorList();
-       // currentSensorMonitor = null;
+        // currentSensorMonitor = null;
 
 //        
 //        if(i == -1)
@@ -1313,8 +1339,17 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
 //        populateSensorMonitorList();
 
 
-
     }//GEN-LAST:event_btnUpdateSelectedSensorActionPerformed
+
+    private void btnRoleParamedicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRoleParamedicActionPerformed
+        jTabbedPaneMainPanel.setSelectedIndex(3);
+        switchScreens();
+    }//GEN-LAST:event_btnRoleParamedicActionPerformed
+
+    private void btnRoleWasteCollectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRoleWasteCollectorActionPerformed
+        jTabbedPaneMainPanel.setSelectedIndex(4);
+        switchScreens();
+    }//GEN-LAST:event_btnRoleWasteCollectorActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
