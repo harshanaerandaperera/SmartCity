@@ -18,14 +18,20 @@ public class SetOfSensors extends ArrayList<Sensor> {
 
     private SetOfSensors() {
     }
-
+/**
+ * 
+ * @return SetOfSensorsInstance
+ */
     public static SetOfSensors getSetOfSensorsInstance() {
         if (SetOfSensorsInstance == null) {
             SetOfSensorsInstance = new SetOfSensors();
         }
         return SetOfSensorsInstance;
     }
-
+/**
+ * 
+ * @param sensor 
+ */
     public void addSensor(Sensor sensor) {
         super.add(sensor);
     }

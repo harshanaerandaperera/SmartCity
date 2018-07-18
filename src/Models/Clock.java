@@ -24,7 +24,10 @@ public class Clock implements Subject,Serializable{
      private Clock(){
          Observers=new ArrayList<>();
      }
-
+/**
+ * 
+ * @return clock 
+ */
      public static Clock getInstance(){
           if(clock==null){
             
@@ -34,12 +37,18 @@ public class Clock implements Subject,Serializable{
         }
         return clock;
     }
-
+/**
+ * 
+ * @return clock
+ */
     //Overide readResolve methode in Serializable
     private Object readResolve() {
         return clock;
     }
-
+/**
+ * 
+ * @param obs 
+ */
     @Override
     public void registerObserver(Observer obs) {
         Observers.add(obs);
@@ -47,7 +56,10 @@ public class Clock implements Subject,Serializable{
         new Thread(this::trackTime).start();
        //trackTime();
     }
-
+/**
+ * 
+ * @param obs 
+ */
     @Override
     public void unRegisterObserver(Observer obs) {
         Observers.remove(obs);
@@ -58,6 +70,8 @@ public class Clock implements Subject,Serializable{
     /**
      * Wait for time to wakes the sensor
      */
+    
+    
     public void waitForTime() {
         double wakeUpTime =2;
         while (wakeUpTime != 0) {
@@ -75,6 +89,7 @@ public class Clock implements Subject,Serializable{
 
         }
     }
+    
      private void trackTime()
     { 
        while(Observers.isEmpty() == false){

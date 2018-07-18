@@ -18,14 +18,20 @@ public class SetOfSensorMonitors extends ArrayList<SensorMonitor> {
 
     private SetOfSensorMonitors() {
     }
-
+/**
+ * 
+ * @return SetOfSensorMonitorsInstance
+ */
     public static SetOfSensorMonitors getSetOfSensorMonitorsInstance() {
         if (SetOfSensorMonitorsInstance == null) {
             SetOfSensorMonitorsInstance = new SetOfSensorMonitors();
         }
         return SetOfSensorMonitorsInstance;
     }
-
+/**
+ * 
+ * @param aSensorMonitor 
+ */
     public void addSensorMonitor(SensorMonitor aSensorMonitor) {
         super.add(aSensorMonitor);
         System.out.println("Sensor Monitor Added");

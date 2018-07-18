@@ -18,14 +18,20 @@ public class SetOFData extends ArrayList<Data> {
 
     private SetOFData() {
     }
-
+/**
+ * 
+ * @return SetOFDataInstance
+ */
     public static SetOFData getSetOFDataInstance() {
         if (SetOFDataInstance == null) {
             SetOFDataInstance = new SetOFData();
         }
         return SetOFDataInstance;
     }
-
+/**
+ * 
+ * @param data 
+ */
     public void addData(Data data) {
         super.add(data);
         System.out.println("Data added !");

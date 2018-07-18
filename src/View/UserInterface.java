@@ -59,6 +59,7 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
     /**
      * Creates new form View
      */
+    
     public UserInterface() {
         initComponents();
         DeserializeMotherShip();
@@ -156,7 +157,7 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         dtm.setRowCount(0);
         for (SensorMonitor sensormonitor : sensorMonitors) {
             Vector v = new Vector();
-            v.add(sensormonitor.getSensor().getSensorId() + sensormonitor.getSensorMonitorID());
+            v.add(sensormonitor.getSensor().getSensorId());
             v.add(sensormonitor.getSensorDescription());
             v.add(sensormonitor.readingsCount);
             v.add(sensormonitor.getStatus());
@@ -232,7 +233,7 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
                     if (embelishedData.getData() == embelishedData.getInterval() * 0.25) {
                         v.add("Flood Risk");
                     } else {
-                        v.add("No flood risk");
+                        v.add("Flood Risk");
                     }
                     v.add(0);
                     dtm.addRow(v);
@@ -498,7 +499,6 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         cmbSensorType = new javax.swing.JComboBox<>();
         btnRemoveSensor = new javax.swing.JButton();
         cmbSelectSensorStation = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
         jPanelParamedic = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
         tblParamedicTraffic = new javax.swing.JTable();
@@ -508,6 +508,8 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         jScrollPane9 = new javax.swing.JScrollPane();
         tblWasteCollectorTraffic = new javax.swing.JTable();
         btnEmptyBin = new javax.swing.JButton();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
         jPanelDummyData = new javax.swing.JPanel();
         btnAddGarbage = new javax.swing.JButton();
         cmbAvailableBinSensorDummy = new javax.swing.JComboBox<>();
@@ -824,6 +826,11 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         btnUpdateSelectedSensor.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         btnUpdateSelectedSensor.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdateSelectedSensor.setText("Update Selected Sensor");
+        btnUpdateSelectedSensor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateSelectedSensorActionPerformed(evt);
+            }
+        });
         jPanelMayorSensorStation.add(btnUpdateSelectedSensor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 220, -1));
 
         jSeparator13.setBackground(new java.awt.Color(255, 255, 255));
@@ -901,14 +908,6 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         });
         jPanelMayorSensorStation.add(cmbSelectSensorStation, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 349, -1));
 
-        jButton1.setText("Refresh");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanelMayorSensorStation.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 460, -1, -1));
-
         jTabbedPaneStationMgtSubPanel.addTab("              View Sensor Station             ", jPanelMayorSensorStation);
 
         jPanelCityCouncil.add(jTabbedPaneStationMgtSubPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1300, 546));
@@ -965,7 +964,7 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         });
         jScrollPane8.setViewportView(tblWasteCollectorBinDetails);
 
-        jPanelWasteCollector.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, 500, 480));
+        jPanelWasteCollector.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 60, 500, 450));
 
         tblWasteCollectorTraffic.setBackground(new java.awt.Color(32, 33, 35));
         tblWasteCollectorTraffic.setForeground(new java.awt.Color(255, 255, 255));
@@ -987,7 +986,7 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
         });
         jScrollPane9.setViewportView(tblWasteCollectorTraffic);
 
-        jPanelWasteCollector.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 500, 480));
+        jPanelWasteCollector.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 500, 450));
 
         btnEmptyBin.setBackground(new java.awt.Color(38, 50, 56));
         btnEmptyBin.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
@@ -999,6 +998,16 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
             }
         });
         jPanelWasteCollector.add(btnEmptyBin, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 260, 130, -1));
+
+        jLabel23.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel23.setText("Traffic Monitor");
+        jPanelWasteCollector.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 200, -1));
+
+        jLabel24.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel24.setText("Garbage Full Bin Locations");
+        jPanelWasteCollector.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, 200, -1));
 
         jTabbedPaneMainPanel.addTab("  WASTE COLLECTOR  ", jPanelWasteCollector);
 
@@ -1105,8 +1114,11 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
     }//GEN-LAST:event_jTabbedPaneStationMgtSubPanelMouseClicked
 
     private void cmbSelectSensorStationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSelectSensorStationActionPerformed
-        selectSensorStation(getMatchedStationId(cmbSelectSensorStation.getSelectedItem().toString()));
-        populateSensorMonitorList();
+        if (cmbSelectSensorStation.getSelectedIndex() != 0) {
+            selectSensorStation(getMatchedStationId(cmbSelectSensorStation.getSelectedItem().toString()));
+            populateSensorMonitorList();
+        }
+
     }//GEN-LAST:event_cmbSelectSensorStationActionPerformed
 
     private void btnRoleAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRoleAdminActionPerformed
@@ -1149,7 +1161,7 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
     }
     private void btnAddSensorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSensorActionPerformed
 
-          if ((v.isValidSensorID(txtSensorId.getText())) && (v.isValidNumber(txtFrequency.getText())) && cmbSelectSensorStation.getSelectedIndex() != 0 && cmbSensorType.getSelectedIndex() != 0) {
+        if ((v.isValidSensorID(txtSensorId.getText())) && (v.isValidNumber(txtFrequency.getText())) && cmbSelectSensorStation.getSelectedIndex() != 0 && cmbSensorType.getSelectedIndex() != 0) {
             SensorMonitor sensormonitor = new SensorMonitor(txtSensorId.getText(), currentSensorStation.getStationName(), cmbStatus.getSelectedItem().toString(), Double.parseDouble(txtFrequency.getText()), cmbSensorType.getSelectedItem().toString());
             currentSensorStation.addNewSensorMonitor(sensormonitor);
             sensormonitor.setCoords(currentSensorStation.getLocation().getCoords());
@@ -1217,7 +1229,9 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
     }//GEN-LAST:event_cmbAvailableFloodSensorDummyActionPerformed
 
     private void btnRemoveSensorStationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveSensorStationActionPerformed
-        // TODO add your handling code here:
+//DefaultTableModel d1 = (DefaultTableModel) tblViewSensorStation.getModel();
+//        int i = tblViewSensorStation.getSelectedRow();  //get the selected row index    
+//        String sensormonitorID = d1.getValueAt(0, 0).toString();
     }//GEN-LAST:event_btnRemoveSensorStationActionPerformed
 
     private void btnMakeFloodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMakeFloodActionPerformed
@@ -1262,20 +1276,20 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
 
     private void btnRemoveSensorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveSensorActionPerformed
         // selectSensorMonitor();
-        DefaultTableModel d1 = (DefaultTableModel) tblViewSensorStation.getModel();
-        int i = tblViewSensorStation.getSelectedRow();  //get the selected row index    
-        String sensormonitorID = d1.getValueAt(0, 0).toString();
-
-        currentSensorMonitor = currentSensorStation.getSensorMonitor(sensormonitorID); //wait
-
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + this.currentSensorMonitor);
+//        DefaultTableModel d1 = (DefaultTableModel) tblViewSensorStation.getModel();
+//        int i = tblViewSensorStation.getSelectedRow();  //get the selected row index    
+//        String sensormonitorID = d1.getValueAt(0, 0).toString();
+//
+//        currentSensorMonitor = currentSensorStation.getSensorMonitor(sensormonitorID); //wait
+//
+//        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + this.currentSensorMonitor);
         // currentSensorStation.removeSensorMonitor(currentSensorMonitor);
         //  populateSensorMonitorList();
         //currentSensorMonitor = null;
         //  selectSensorMonitor();
-        currentSensorStation.removeSensorMonitor(currentSensorMonitor);
+       // currentSensorStation.removeSensorMonitor(currentSensorMonitor);
         // populateSensorMonitorList();
-        currentSensorMonitor = null;
+       // currentSensorMonitor = null;
 
 //        
 //        if(i == -1)
@@ -1291,9 +1305,16 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
 
     }//GEN-LAST:event_btnRemoveSensorActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        populateSensorMonitorList();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnUpdateSelectedSensorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateSelectedSensorActionPerformed
+//        currentSensorMonitor.setFrequency(frequencyUpdateField);
+//        currentSensorMonitor = null;
+//        sensorMonitorUpdateFrame.dispose();
+//        switchScreen("SensorStation");
+//        populateSensorMonitorList();
+
+
+
+    }//GEN-LAST:event_btnUpdateSelectedSensorActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -1348,7 +1369,6 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
     private javax.swing.JComboBox<String> cmbSelectSensorStation;
     private javax.swing.JComboBox<String> cmbSensorType;
     private javax.swing.JComboBox<String> cmbStatus;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
@@ -1357,6 +1377,8 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JPanel jPanelCityCouncil;
     private javax.swing.JPanel jPanelDummyData;
     private javax.swing.JPanel jPanelExit;

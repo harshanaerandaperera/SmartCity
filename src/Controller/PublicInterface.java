@@ -22,12 +22,20 @@ public class PublicInterface {
     public PublicInterface(){
         
     }
+    /**
+     * 
+     * @param dataT 
+     */
     public void uploadData(EmbelishedData dataT)
     {
         this.data.add(dataT);
        //System.out.println("-------------------------------Limit Exceed....!!---------------");
 
     }
+    /**
+     * 
+     * @return data
+     */
      public ArrayList<EmbelishedData> getAllChangedData()
     {
        // System.out.println("-------------------------------Limit Exceeded....!!---------------"+data.size());

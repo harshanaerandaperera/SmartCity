@@ -8,8 +8,7 @@ package Models;
 import java.util.ArrayList;
 import Controller.*;
 import java.io.Serializable;
-import java.util.Random;
-import java.util.UUID;
+
 
 
 /**
@@ -53,14 +52,14 @@ public class SensorMonitor implements Subject, Observer ,Serializable{
     SetOfFloodSensors SOFS = SetOfFloodSensors.getSetOfFloodSensorsInstance();
     SetOfSensors SOS = SetOfSensors.getSetOfSensorsInstance();
 
-    /**
-     * Constructor for Sensor Monitor object with status , interval , Sensor
-     * Type
-     *
-     * @param inInterval
-     * @param inIsActive
-     * @param inSensorType
-     */
+   /**
+    * 
+    * @param inSensorID
+    * @param insensorStationName
+    * @param inIsActive
+    * @param inInterval
+    * @param inSensorType 
+    */
     public SensorMonitor(String inSensorID,String insensorStationName,String inIsActive,Double inInterval,String inSensorType) {
         this.sensorMonitorID = inSensorID;
         this.stationName=insensorStationName;
@@ -102,19 +101,28 @@ public class SensorMonitor implements Subject, Observer ,Serializable{
     SensorMonitor() {
 
     }
-
+/**
+ * 
+ * @param observer 
+ */
     public void doTick(Observer observer) {
 
         System.out.println("take readings------------------------------------------------------------------------------------------------------------");
         shouldTakeReading(observer);
     }
-
+/**
+ * 
+ * @param obs 
+ */
     @Override
     public void registerObserver(Observer obs) {
         //getObservers().add(obs);
          setObserver(obs);
        }
-
+/**
+ * 
+ * @param obs 
+ */
     @Override
     public void unRegisterObserver(Observer obs) {
       //  getObservers().remove(obs);
@@ -123,7 +131,11 @@ public class SensorMonitor implements Subject, Observer ,Serializable{
 
     public void Notify() {
     }
-
+/**
+ * 
+ * @param ob
+ * @param observer 
+ */
     @Override
     public void update(Object ob, Observer observer) {
         if (ob instanceof Clock) {
@@ -132,44 +144,48 @@ public class SensorMonitor implements Subject, Observer ,Serializable{
         }
     }
 
-    /**
-     * @return the sensorMonitorID
-     */
+   /**
+    * 
+    * @return sensorMonitorID
+    */
     public String getSensorMonitorID() {
         return sensorMonitorID;
     }
 
-    /**
-     * @return the isActive
-     */
+   /**
+    * 
+    * @return isActive
+    */
     public boolean isIsActive() {
         return isActive;
     }
-
+/**
+ * 
+ * @param observer 
+ */
     public void shouldTakeReading(Observer observer) {
        
         for (int i = 0; i < SOSM.size(); i++) {
               if (SOSM.get(i) == observer) {             
                   SOSM.get(i).readingsCount=SOSM.get(i).getSensor().getData();
                     if(SOSM.get(i).status.equals("Active")){
-                       // System.out.println("--------------------Active");
-                       // System.out.println("-------------------Reading Count-----"+SOSM.get(i).getInterval());
                         if(SOSM.get(i).readingsCount==SOSM.get(i).getInterval()){
                                  SOSM.get(i).status="Not-Active";
-                    //    System.out.println("##################################################"+SOSM.get(i).getInterval());
-                        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-                        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
                         embellishData(SOSM.get(i).getSensor(),SOSM.get(i).readingsCount);
                         notifyObservers();
                         }
                     }
-                   // System.out.println("-----------"+SOSM.get(i).readingsCount);
                 }
             
         }
 
 
     }
+    /**
+     * 
+     * @param senor
+     * @param count 
+     */
     
        public void embellishData(Sensor senor,double count){
         long timeInMills = 10; 
@@ -177,7 +193,10 @@ public class SensorMonitor implements Subject, Observer ,Serializable{
         String id = sensor.getSensorId();
         embellishedData = new EmbelishedData(count,this.stationName,this.interval, timeInMills, coords, id);
     }
-
+/**
+ * 
+ * @param sid 
+ */
     public void calculateDataCount(String sid) {
 
         for (int i = 0; i < SOD.size(); i++) {
@@ -189,15 +208,17 @@ public class SensorMonitor implements Subject, Observer ,Serializable{
 
     }
     /**
-     * @return the sensor
+     * 
+     * @return sensor
      */
     public Sensor getSensor() {
         return sensor;
     }
 
-    /**
-     * @return the interval
-     */
+   /**
+    * 
+    * @return interval
+    */
     public Double getInterval() {
         return interval;
     }
@@ -211,50 +232,57 @@ public class SensorMonitor implements Subject, Observer ,Serializable{
 
   
     /**
-     * @return the SOED
+     * 
+     * @return SOED
      */
     public SetOfEmbelishedData getSOED() {
         return SOED;
     }
     
-   /**
-     * @return the status
-     */
+  /**
+   * 
+   * @return status
+   */
     public String getStatus() {
         return status;
     }
 
-    /**
-     * @param status the status to set
-     */
+   /**
+    * 
+    * @param status 
+    */
     public void setStatus(String status) {
         this.status = status;
     }
 
-    /**
-     * @return the sensorDescription
-     */
+   /**
+    * 
+    * @return sensorDescription
+    */
     public String getSensorDescription() {
         return sensorDescription;
     }
 
     /**
-     * @param sensorDescription the sensorDescription to set
+     * 
+     * @param sensorDescription 
      */
     public void setSensorDescription(String sensorDescription) {
         this.sensorDescription = sensorDescription;
     }
 
-   /**
-     * @return the coords
-     */
+ /**
+  * 
+  * @return coords
+  */
     public ArrayList<Double> getCoords() {
         return coords;
     }
 
-    /**
-     * @param coords the coords to set
-     */
+   /**
+    * 
+    * @param coords 
+    */
     public void setCoords(ArrayList<Double> coords) {
         this.coords = coords;
     }
@@ -267,15 +295,17 @@ public class SensorMonitor implements Subject, Observer ,Serializable{
 
     }
 /**
-     * @return the observer
-     */
+ * 
+ * @return observer
+ */
     public Observer getObserver() {
         return observer;
     }
 
-    /**
-     * @param observer the observer to set
-     */
+   /**
+    * 
+    * @param observer 
+    */
     public void setObserver(Observer observer) {
         this.observer = observer;
     }

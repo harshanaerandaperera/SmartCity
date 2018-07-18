@@ -20,7 +20,15 @@ public class EmbelishedData {
      //additional
      private String stationName;
      private Double interval;
-   
+   /**
+    * 
+    * @param data
+    * @param stationName
+    * @param interval
+    * @param timeInMillis
+    * @param location
+    * @param sensorID 
+    */
      public EmbelishedData(double data,String stationName,Double interval, Long timeInMillis, ArrayList<Double> location ,String sensorID)
     {
         this.data = data;
@@ -32,82 +40,93 @@ public class EmbelishedData {
     }
 
     /**
-     * @return the data
+     * @return data
      */
     public double getData() {
         return data;
     }
 
     /**
-     * @param data the data to set
+     * 
+     * @param data 
      */
     public void setData(double data) {
         this.data = data;
     }
 
-    /**
-     * @return the timeInMillis
-     */
+   /**
+    * 
+    * @return timeInMillis
+    */
     public Long getTimeInMillis() {
         return timeInMillis;
     }
 
     /**
-     * @param timeInMillis the timeInMillis to set
+     * 
+     * @param timeInMillis 
      */
     public void setTimeInMillis(Long timeInMillis) {
         this.timeInMillis = timeInMillis;
     }
 
     /**
-     * @return the location
+     * 
+     * @return location
      */
     public ArrayList<Double> getLocation() {
         return location;
     }
 
     /**
-     * @param location the location to set
+     * 
+     * @param location 
      */
     public void setLocation(ArrayList<Double> location) {
         this.location = location;
     }
 
-    /**
-     * @return the sensorID
-     */
+   /**
+    * 
+    * @return sensorID
+    */
     public String getSensorID() {
         return sensorID;
     }
 
-    /**
-     * @param sensorID the sensorID to set
-     */
+  /**
+   * 
+   * @param sensorID 
+   */
     public void setSensorID(String sensorID) {
         this.sensorID = sensorID;
     }
  /**
-     * @return the stationName
-     */
+  * 
+  * @return stationName
+  */
     public String getStationName() {
         return stationName;
     }
 
-    /**
-     * @param stationName the stationName to set
-     */
+   /**
+    * 
+    * @param stationName 
+    */
     public void setStationName(String stationName) {
         this.stationName = stationName;
     }
     /**
-     * @return the interval
+     * 
+     * @return interval
      */
     public Double getInterval() {
         return interval;
     }
 
     /**
-     * @param interval the interval to set
+     * 
+     * @param interval 
      */
     public void setInterval(Double interval) {
         this.interval = interval;

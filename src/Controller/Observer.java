@@ -10,7 +10,11 @@ package Controller;
  * @author Oshin
  */
 public interface Observer {
-
+/**
+ * 
+ * @param ob
+ * @param observer 
+ */
     void update(Object ob, Observer observer);
 
 }

@@ -10,7 +10,11 @@ package Models;
  * @author Oshin
  */
 public class TrafficSensor extends Sensor {
-
+/**
+ * 
+ * @param TraficSensorId
+ * @param freq 
+ */
     public TrafficSensor(String TraficSensorId,double freq) {
         super(TraficSensorId,freq);
     }

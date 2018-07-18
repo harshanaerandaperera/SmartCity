@@ -10,9 +10,15 @@ package Controller;
  * @author Oshin
  */
 public interface Subject {
-
+/**
+ * 
+ * @param obs 
+ */
     public void registerObserver(Observer obs);
-
+/**
+ * 
+ * @param obs 
+ */
     public void unRegisterObserver(Observer obs);
 
     public void notifyObservers();

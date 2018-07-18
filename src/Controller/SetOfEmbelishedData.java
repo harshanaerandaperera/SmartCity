@@ -18,14 +18,20 @@ public class SetOfEmbelishedData extends ArrayList<EmbelishedData> {
 
     private SetOfEmbelishedData() {
     }
-
+/**
+ * 
+ * @return SetOfEmbelishedDataInstance
+ */
     public static SetOfEmbelishedData getSetOfEmbelishedDataInstance() {
         if (SetOfEmbelishedDataInstance == null) {
             SetOfEmbelishedDataInstance = new SetOfEmbelishedData();
         }
         return SetOfEmbelishedDataInstance;
     }
-
+/**
+ * 
+ * @param emblishedData 
+ */
     public void addEmblishedData(EmbelishedData emblishedData) {
         super.add(emblishedData);
     }

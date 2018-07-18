@@ -28,20 +28,38 @@ public class SensorStation implements Subject, Observer ,Serializable{
     public SensorStation(){
         
     }
-    
+    /**
+     * 
+     * @param instationID
+     * @param instationName
+     * @param inlatitude
+     * @param inlongitude 
+     */
     public SensorStation(String instationID,String instationName,Double inlatitude,Double inlongitude) {
         this.stationID = instationID;
         this.stationName=instationName;
         location=new Location(inlatitude,inlongitude);
     }
-    
+    /**
+     * 
+     * @param aSensorMonitor 
+     */
     public void addNewSensorMonitor(SensorMonitor aSensorMonitor){
         sensormonitors.add(aSensorMonitor);
         aSensorMonitor.registerObserver((Observer)this);
     }
+    /**
+     * 
+     * @param aSensorMonitor 
+     */
     public void removeSensorMonitor(SensorMonitor aSensorMonitor){
         sensormonitors.remove(aSensorMonitor);
     }
+    /**
+     * 
+     * @param sensorMonitorId
+     * @return sensormonitor
+     */
     public SensorMonitor getSensorMonitor(String sensorMonitorId){
        SensorMonitor sensormonitor=new SensorMonitor();
         for(int i=0;i<sensormonitors.size();i++){
@@ -52,7 +70,10 @@ public class SensorStation implements Subject, Observer ,Serializable{
         return sensormonitor;
         
     }
-    
+    /**
+     * 
+     * @return sensormonitors
+     */
     public ArrayList<SensorMonitor> getSensorMonitors(){
         return sensormonitors;
     }
@@ -66,7 +87,10 @@ public class SensorStation implements Subject, Observer ,Serializable{
     public void registerObserver(Observer obs) {
        observer=obs;
     }
-
+/**
+ * 
+ * @param obs 
+ */
     @Override
     public void unRegisterObserver(Observer obs) {
         observer=null;
@@ -87,7 +111,10 @@ public class SensorStation implements Subject, Observer ,Serializable{
          receiveSensorData((EmbelishedData)ob);
        
     }
-
+/**
+ * 
+ * @param aEmbelishedData 
+ */
    public void receiveSensorData(EmbelishedData aEmbelishedData){
       
        observer.update(aEmbelishedData, this.observer);

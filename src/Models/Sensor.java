@@ -24,20 +24,26 @@ public class Sensor {
  public Sensor(){
      
  } 
+ /**
+  * 
+  * @param sensorId
+  * @param freq 
+  */
  public Sensor(String sensorId,double freq){
      this.sensorId=sensorId;
      this.frequency=freq;
  } 
  
  /**
-  * @return the sensorId
+  * 
+  * @return sensorId
   */
 public String getSensorId() {
         return sensorId;
     }
 /**
  * 
- * @return data
+ * @return count
  */
     public Double getData() {
          double count=0;
@@ -54,15 +60,17 @@ public String getSensorId() {
        return count;
     }
   /**
-     * @return the frequency
-     */
+   * 
+   * @return frequency
+   */
     public double getFrequency() {
         return frequency;
     }
 
-    /**
-     * @param frequency the frequency to set
-     */
+   /**
+    * 
+    * @param frequency 
+    */
     public void setFrequency(double frequency) {
         this.frequency = frequency;
     }

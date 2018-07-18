@@ -21,6 +21,7 @@ public class MotherShip implements Observer,Serializable{
     /**
      * Constructor for the Mothership instance
      */
+    
     public MotherShip(){
         //As Mothership has a composition relationship with Sensorstation ,when create the Mothership creates a setOfStations(ArrayList<SensorStation>) inside cunstructor
         sensorStations=new  ArrayList<SensorStation>();
@@ -61,12 +62,20 @@ public class MotherShip implements Observer,Serializable{
     public ArrayList<SensorStation> getSensorStations(){
          return sensorStations;
     }
+    /**
+     * 
+     * @return publicInterface
+     */
     public PublicInterface receiveStationData()
     {
           PublicInterface publicInterface = new PublicInterface();
           return publicInterface;
     }
-
+/**
+ * 
+ * @param ob
+ * @param observer 
+ */
     @Override
     public void update(Object ob, Observer observer) {
        // System.out.println("------------------------------"+(EmbelishedData)ob);

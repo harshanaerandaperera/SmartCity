@@ -11,7 +11,11 @@ package Models;
  */
 public class BinSensor extends Sensor{
    
-    
+    /**
+     * 
+     * @param binSensorId
+     * @param freq 
+     */
     public BinSensor(String binSensorId,double freq){
         super(binSensorId,freq);
     }

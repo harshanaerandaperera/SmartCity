@@ -18,14 +18,20 @@ public class SetOfTrafficSensors extends ArrayList<TrafficSensor> {
 
     private SetOfTrafficSensors() {
     }
-
+/**
+ * 
+ * @return SetOfTrafficSensorsInstance
+ */
     public static SetOfTrafficSensors getSetOfTrafficSensorsInstance() {
         if (SetOfTrafficSensorsInstance == null) {
             SetOfTrafficSensorsInstance = new SetOfTrafficSensors();
         }
         return SetOfTrafficSensorsInstance;
     }
-
+/**
+ * 
+ * @param trfficSensor 
+ */
     public void addTrafficSensor(TrafficSensor trfficSensor) {
         super.add(trfficSensor);
         System.out.println("Traffic Sensor Added");

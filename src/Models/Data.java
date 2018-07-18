@@ -16,21 +16,26 @@ public class Data {
     public Data(){
         
     }
+    /**
+     * 
+     * @param sid 
+     */
     public Data(String sid) {
         this.Sensorid=sid;
      }
     
     
-    /**
-     * @return the Sensorid
-     */
+   /**
+    * 
+    * @return Sensorid
+    */
     public String getSensorid() {
         return Sensorid;
     }
-
-    /**
-     * @param Sensorid the Sensorid to set
-     */
+/**
+ * 
+ * @param Sensorid 
+ */
     public void setSensorid(String Sensorid) {
         this.Sensorid = Sensorid;
     }

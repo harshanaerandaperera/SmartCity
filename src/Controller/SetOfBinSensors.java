@@ -18,14 +18,20 @@ public class SetOfBinSensors extends ArrayList<BinSensor> {
 
     private SetOfBinSensors() {
     }
-
+/**
+ * 
+ * @return SetOfBinSensorsInstance
+ */
     public static SetOfBinSensors getSetOfBinSensorsInstance() {
         if (SetOfBinSensorsInstance == null) {
             SetOfBinSensorsInstance = new SetOfBinSensors();
         }
         return SetOfBinSensorsInstance;
     }
-
+/**
+ * 
+ * @param binsensor 
+ */
     public void addBinSensor(BinSensor binsensor) {
         super.add(binsensor);
         System.out.println("Bin Sensor added !");

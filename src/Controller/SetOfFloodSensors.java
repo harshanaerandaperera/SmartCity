@@ -18,14 +18,20 @@ public class SetOfFloodSensors extends ArrayList<FloodSensor> {
 
     private SetOfFloodSensors() {
     }
-
+/**
+ * 
+ * @return SetOfFloodSensorsInstance
+ */
     public static SetOfFloodSensors getSetOfFloodSensorsInstance() {
         if (SetOfFloodSensorsInstance == null) {
             SetOfFloodSensorsInstance = new SetOfFloodSensors();
         }
         return SetOfFloodSensorsInstance;
     }
-
+/**
+ * 
+ * @param floodsensor 
+ */
     public void addFloodSensor(FloodSensor floodsensor) {
         super.add(floodsensor);
         System.out.println("Flood Sensor Added !");
