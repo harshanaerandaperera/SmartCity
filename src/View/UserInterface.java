@@ -1132,7 +1132,7 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
             populateSensorStationList();
             populateSensorStationDetailsToComboBox(aSensorStation);
         } else {
-            JOptionPane.showMessageDialog(null, "Sorry, invalid details,please try again!!", "Add Sensor Station", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Sorry, invalid Sensor Station details,please try again!!", "Add Sensor Station", JOptionPane.ERROR_MESSAGE);
         }
         clearText();
 
@@ -1149,25 +1149,33 @@ public class UserInterface extends javax.swing.JFrame implements Serializable {
     }
     private void btnAddSensorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSensorActionPerformed
 
-        SensorMonitor sensormonitor = new SensorMonitor(txtSensorId.getText(), currentSensorStation.getStationName(), cmbStatus.getSelectedItem().toString(), Double.parseDouble(txtFrequency.getText()), cmbSensorType.getSelectedItem().toString());
-        currentSensorStation.addNewSensorMonitor(sensormonitor);
-        sensormonitor.setCoords(currentSensorStation.getLocation().getCoords());
-        SOSM.addSensorMonitor(sensormonitor);
-        populateSensorMonitorList();
-        if (cmbSensorType.getSelectedItem().toString() == "Bin Sensor") {
-            populateBinSensorsDetailsToComboBox(txtSensorId.getText());
+          if ((v.isValidSensorID(txtSensorId.getText())) && (v.isValidNumber(txtFrequency.getText())) && cmbSelectSensorStation.getSelectedIndex() != 0 && cmbSensorType.getSelectedIndex() != 0) {
+            SensorMonitor sensormonitor = new SensorMonitor(txtSensorId.getText(), currentSensorStation.getStationName(), cmbStatus.getSelectedItem().toString(), Double.parseDouble(txtFrequency.getText()), cmbSensorType.getSelectedItem().toString());
+            currentSensorStation.addNewSensorMonitor(sensormonitor);
+            sensormonitor.setCoords(currentSensorStation.getLocation().getCoords());
+            SOSM.addSensorMonitor(sensormonitor);
+            populateSensorMonitorList();
+
+            if (cmbSensorType.getSelectedItem().toString() == "Bin Sensor") {
+                populateBinSensorsDetailsToComboBox(txtSensorId.getText());
+            }
+            if (cmbSensorType.getSelectedItem().toString() == "Flood Sensor") {
+                populateFloodSensorsDetailsToComboBox(txtSensorId.getText());
+            }
+            if (cmbSensorType.getSelectedItem().toString() == "Traffic Sensor") {
+                populateTrafficSensorsDetailsToComboBox(txtSensorId.getText());
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Sorry, invalid Sensor Details,please try again!!", "Add Sensor", JOptionPane.ERROR_MESSAGE);
         }
-        if (cmbSensorType.getSelectedItem().toString() == "Flood Sensor") {
-            populateFloodSensorsDetailsToComboBox(txtSensorId.getText());
-        }
-        if (cmbSensorType.getSelectedItem().toString() == "Traffic Sensor") {
-            populateTrafficSensorsDetailsToComboBox(txtSensorId.getText());
-        }
+
         populateBinAlertDetails();
         populateUserTrafficAlertDetails();
         populateWasteCollectorTrafficAlertDetails();
         populateFloodAlertDetails();
         populateSensorStationList();
+        clearText();
     }//GEN-LAST:event_btnAddSensorActionPerformed
 
     private void tblViewSensorStationMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblViewSensorStationMouseMoved
