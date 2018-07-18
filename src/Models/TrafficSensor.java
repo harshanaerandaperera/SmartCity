@@ -3,18 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package Models;
 
 /**
  *
  * @author Oshin
  */
-public interface Observer {
+public class TrafficSensor extends Sensor {
 /**
  * 
- * @param ob
- * @param observer 
+ * @param TraficSensorId
+ * @param freq 
  */
-    void update(Object ob, Observer observer);
-
+    public TrafficSensor(String TraficSensorId,double freq) {
+        super(TraficSensorId,freq);
+    }
 }

@@ -3,18 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package Models;
 
 /**
  *
  * @author Oshin
  */
-public interface Observer {
+public class FloodSensor extends Sensor {
 /**
  * 
- * @param ob
- * @param observer 
+ * @param floodSensorId
+ * @param freq 
  */
-    void update(Object ob, Observer observer);
-
+    public FloodSensor(String floodSensorId,double freq) {
+        super(floodSensorId,freq);
+    }
 }

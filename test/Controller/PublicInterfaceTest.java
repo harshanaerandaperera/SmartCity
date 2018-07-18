@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package app;
+package Controller;
 
+import Models.EmbelishedData;
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -14,11 +16,11 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Oshin
+ * @author Debug
  */
-public class testControllerTest {
+public class PublicInterfaceTest {
     
-    public testControllerTest() {
+    public PublicInterfaceTest() {
     }
     
     @BeforeClass
@@ -31,7 +33,6 @@ public class testControllerTest {
     
     @Before
     public void setUp() {
-        
     }
     
     @After
@@ -39,33 +40,30 @@ public class testControllerTest {
     }
 
     /**
-     * Test of addTest method, of class testController.
+     * Test of uploadData method, of class PublicInterface.
      */
     @Test
-    public void testAddTest() {
-        System.out.println("addTest");
-        int num1 = 30;
-        int num2 = 30;
-        int expResult = 60;
-        int result = testController.addTest(num1, num2);
-        assertEquals(expResult, result);
+    public void testUploadData() {
+        System.out.println("uploadData");
+        EmbelishedData dataT = null;
+        PublicInterface instance = new PublicInterface();
+        instance.uploadData(dataT);
         // TODO review the generated test code and remove the default call to fail.
-    //    fail("The test case is a prototype.");
+        fail("The test case is a prototype.");
     }
 
     /**
-     * Test of multiTest method, of class testController.
+     * Test of getAllChangedData method, of class PublicInterface.
      */
     @Test
-    public void testMultiTest() {
-        System.out.println("multiTest");
-        int num1 = 20;
-        int num2 = 2;
-        int expResult = 40;
-        int result = testController.multiTest(num1, num2);
+    public void testGetAllChangedData() {
+        System.out.println("getAllChangedData");
+        PublicInterface instance = new PublicInterface();
+        ArrayList<EmbelishedData> expResult = null;
+        ArrayList<EmbelishedData> result = instance.getAllChangedData();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-       // fail("The test case is a prototype.");
+        fail("The test case is a prototype.");
     }
     
 }

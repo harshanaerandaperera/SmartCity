@@ -5,22 +5,19 @@
  */
 package Models;
 
-import java.util.Observable;
-import java.util.Observer;
-
 /**
  *
  * @author Oshin
  */
-public class MotherShip implements Observer{
-    String ID;
-    public MotherShip(String ID){
-        this.ID=ID;
-    }
-
-    @Override
-    public void update(Observable o, Object o1) {
-
+public class BinSensor extends Sensor{
+   
+    /**
+     * 
+     * @param binSensorId
+     * @param freq 
+     */
+    public BinSensor(String binSensorId,double freq){
+        super(binSensorId,freq);
     }
     
 }

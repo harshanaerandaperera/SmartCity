@@ -5,10 +5,36 @@
  */
 package Controller;
 
+import Models.SensorMonitor;
+import java.util.ArrayList;
+
 /**
  *
  * @author Oshin
  */
-public class SetOfSensorMonitors {
-    
+public class SetOfSensorMonitors extends ArrayList<SensorMonitor> {
+
+    private static SetOfSensorMonitors SetOfSensorMonitorsInstance;
+
+    private SetOfSensorMonitors() {
+    }
+/**
+ * 
+ * @return SetOfSensorMonitorsInstance
+ */
+    public static SetOfSensorMonitors getSetOfSensorMonitorsInstance() {
+        if (SetOfSensorMonitorsInstance == null) {
+            SetOfSensorMonitorsInstance = new SetOfSensorMonitors();
+        }
+        return SetOfSensorMonitorsInstance;
+    }
+/**
+ * 
+ * @param aSensorMonitor 
+ */
+    public void addSensorMonitor(SensorMonitor aSensorMonitor) {
+        super.add(aSensorMonitor);
+        System.out.println("Sensor Monitor Added");
+    }
+
 }
