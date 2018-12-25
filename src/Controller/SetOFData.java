@@ -36,4 +36,8 @@ public class SetOFData extends ArrayList<Data> {
         super.add(data);
         System.out.println("Data added !");
     }
+     public void removeData(Data data) {
+        super.remove(data);
+        System.out.println("Data remove !");
+    }
 }

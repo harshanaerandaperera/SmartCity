@@ -63,6 +63,7 @@ public class Clock implements Subject,Serializable{
     @Override
     public void unRegisterObserver(Observer obs) {
         Observers.remove(obs);
+        
     }
 
   
@@ -73,7 +74,7 @@ public class Clock implements Subject,Serializable{
     
     
     public void waitForTime() {
-        double wakeUpTime =2;
+        double wakeUpTime =100;
         while (wakeUpTime != 0) {
             wakeUpTime--;
             System.out.println("reduce time..");

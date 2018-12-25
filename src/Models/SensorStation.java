@@ -7,6 +7,8 @@ package Models;
 
 import Controller.Observer;
 import Controller.PublicInterface;
+import Controller.SetOfBinSensors;
+import Controller.SetOfSensors;
 import Controller.Subject;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ public class SensorStation implements Subject, Observer ,Serializable{
     private ArrayList<Double> coords = new ArrayList<>();
     //Hrere is one single observer
     private Observer observer;
+    
     public SensorStation(){
         
     }
@@ -47,6 +50,7 @@ public class SensorStation implements Subject, Observer ,Serializable{
     public void addNewSensorMonitor(SensorMonitor aSensorMonitor){
         sensormonitors.add(aSensorMonitor);
         aSensorMonitor.registerObserver((Observer)this);
+        aSensorMonitor.setSensorstation(this);
     }
     /**
      * 
@@ -54,6 +58,11 @@ public class SensorStation implements Subject, Observer ,Serializable{
      */
     public void removeSensorMonitor(SensorMonitor aSensorMonitor){
         sensormonitors.remove(aSensorMonitor);
+        Clock clock = Clock.getInstance();
+        clock.unRegisterObserver((Observer)aSensorMonitor);
+       
+//        SetOfBinSensors SOBS=SetOfBinSensors.getSetOfBinSensorsInstance();
+//        SOBS.removeBinSensor((BinSensor)aSensorMonitor.getSensor());
     }
     /**
      * 
@@ -69,6 +78,15 @@ public class SensorStation implements Subject, Observer ,Serializable{
         }
         return sensormonitor;
         
+    }
+    public int calculateActiveSensorMonitorCount(){
+      int count=0;
+        for(int i=0;i<sensormonitors.size();i++){
+            if(sensormonitors.get(i).getStatus().equals("Active")){
+                count++;
+            }
+        }
+        return count;
     }
     /**
      * 

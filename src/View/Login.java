@@ -180,6 +180,8 @@ public class Login extends javax.swing.JFrame {
     private void lbl_closeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_closeMousePressed
 
         System.exit(0);
+        
+         
     }//GEN-LAST:event_lbl_closeMousePressed
     int xy, xx;
     private void loginMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginMouseDragged

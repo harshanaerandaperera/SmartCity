@@ -21,6 +21,7 @@ public class SensorMonitor implements Subject, Observer ,Serializable{
 
     
     
+    
     private String sensorMonitorID;
     private ArrayList<Double> coords;
     //isActive is status(active/not active) 
@@ -36,7 +37,7 @@ public class SensorMonitor implements Subject, Observer ,Serializable{
      //Todo-public Data reading;
     
      //extra
-     
+     private SensorStation sensorstation;
      private String status;
      private String sensorDescription;
      //As one observer for a one sensor monitor we implemented as this
@@ -127,6 +128,7 @@ public class SensorMonitor implements Subject, Observer ,Serializable{
     public void unRegisterObserver(Observer obs) {
       //  getObservers().remove(obs);
          setObserver(null);
+         this.sensorstation=null;
     }
 
     public void Notify() {
@@ -171,6 +173,7 @@ public class SensorMonitor implements Subject, Observer ,Serializable{
                     if(SOSM.get(i).status.equals("Active")){
                         if(SOSM.get(i).readingsCount==SOSM.get(i).getInterval()){
                                  SOSM.get(i).status="Not-Active";
+                                 
                         embellishData(SOSM.get(i).getSensor(),SOSM.get(i).readingsCount);
                         notifyObservers();
                         }
@@ -310,7 +313,20 @@ public class SensorMonitor implements Subject, Observer ,Serializable{
         this.observer = observer;
     }
 
-    
+  /**
+     * @return the sensorstation
+     */
+    public SensorStation getSensorstation() {
+        return sensorstation;
+    }
+
+    /**
+     * @param sensorstation the sensorstation to set
+     */
+    public void setSensorstation(SensorStation sensorstation) {
+        this.sensorstation = sensorstation;
+    }
+  
    
 
 }

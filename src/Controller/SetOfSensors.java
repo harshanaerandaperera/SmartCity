@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Models.BinSensor;
 import Models.Sensor;
 import java.util.ArrayList;
 
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 public class SetOfSensors extends ArrayList<Sensor> {
 
     private static SetOfSensors SetOfSensorsInstance;
-
+    
     private SetOfSensors() {
     }
 /**
@@ -34,5 +35,17 @@ public class SetOfSensors extends ArrayList<Sensor> {
  */
     public void addSensor(Sensor sensor) {
         super.add(sensor);
+    }
+    public void removeSensor(Sensor sensor) {
+        super.remove(sensor);
+       // 
+      
+         //      SOBS.removeBinSensor(sensor);
+            
+        
+        
+        
+   //   SetOfBinSensors
+
     }
 }

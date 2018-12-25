@@ -41,6 +41,10 @@ public class PublicInterface {
        // System.out.println("-------------------------------Limit Exceeded....!!---------------"+data.size());
         return data;
     }
+     
+     public void removeData(EmbelishedData dataT){
+         this.data.remove(dataT);
+     }
     
     
     

@@ -35,5 +35,9 @@ public class SetOfEmbelishedData extends ArrayList<EmbelishedData> {
     public void addEmblishedData(EmbelishedData emblishedData) {
         super.add(emblishedData);
     }
+      public void removeEmblishedData(EmbelishedData emblishedData) {
+        super.remove(emblishedData);
+    }
+     
 
 }

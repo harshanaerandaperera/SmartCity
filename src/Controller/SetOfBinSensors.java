@@ -36,4 +36,7 @@ public class SetOfBinSensors extends ArrayList<BinSensor> {
         super.add(binsensor);
         System.out.println("Bin Sensor added !");
     }
+     public void removeBinSensor(BinSensor binsensor) {
+        super.remove(binsensor);
+    }
 }
